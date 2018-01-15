@@ -1,2 +1,2 @@
-# partner-dashboard-frontend
-Partner Dashboard Frontend for www.freedom.tm
+# Quasar Boilerplate
+Frontend boilerplate using Quasar Framework

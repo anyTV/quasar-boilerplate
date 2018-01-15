@@ -57,3 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
+# Intellij workspace settings
+.idea/
+
+# dependencies lock file
+package-lock.json
