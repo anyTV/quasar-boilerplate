@@ -62,3 +62,10 @@ typings/
 
 # dependencies lock file
 package-lock.json
+
+# Quasar Framework ignored files
+.DS_Store
+.thumbs.db
+dist/
+cordova/platforms
+cordova/plugins
