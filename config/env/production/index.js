@@ -1,6 +1,14 @@
 /**
  * @WARNING: production env config should be put to a submodule
  */
-module.exports = {
-    NODE_ENV: '"production"'
-};
+const merge = require('webpack-merge');
+const baseConfig = require('../../base');
+const { stringifyConfig } = require('../../../build/config-utils');
+
+module.exports = merge(
+    baseConfig,
+    stringifyConfig({
+        NODE_ENV: 'production'
+    })
+);
+
