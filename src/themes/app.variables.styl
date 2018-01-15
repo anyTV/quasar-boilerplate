@@ -10,18 +10,55 @@
 // Quasar's default Stylus variable values. Stylus variables specific
 // to the themes belong in either the app.ios.styl or app.mat.styl files.
 
-
 // App Shared Color Variables
 // --------------------------------------------------
 // It's highly recommended to change the default colors
 // to match your app's branding.
 
-$primary   = #027be3
-$secondary = #26A69A
-$tertiary  = #555
+// Style Guide
+// https://docs.google.com/document/d/1PepJ-RaraW2YsiCAO2hFv-zGqaYysIHOL5TRalj-Tpk/edit#
 
-$neutral   = #E0E1E2
-$positive  = #21BA45
-$negative  = #DB2828
-$info      = #31CCEC
-$warning   = #F2C037
+@font-face
+  font-family: 'Open Sans', sans-serif
+  font-weight: 300
+  src: url('/statics/fonts/OpenSans/OpenSans-Light.ttf') format('ttf');
+
+@font-face
+  font-family: 'Open Sans', sans-serif
+  font-weight: 400
+  src: url('/statics/fonts/OpenSans/OpenSans-Regular.ttf') format('ttf')
+
+@font-face
+  font-family: 'Open Sans' sans-serif
+  font-weight: 500
+  src: url('/statics/fonts/OpenSans/OpenSans-SemiBold.ttf') format('ttf')
+
+
+@font-face
+  font-family: 'Open Sans' sans-serif
+  font-weight: 700
+  src: url('/statics/fonts/OpenSans/OpenSans-SemiBold.ttf') format('ttf')
+
+
+@font-face
+  font-family: 'Open Sans' sans-serif
+  font-weight: 700
+  src: url('/statics/fonts/OpenSans/OpenSans-Bold.ttf') format('ttf')
+
+
+$typography-font-family = 'Open Sans', '-apple-system', 'Helvetica Neue', Helvetica, Arial, sans-serif
+
+$primary = #1A82DC
+$secondary = #FFFFFF
+$tertiary = #E6E6E6
+
+$neutral = #E0E1E2
+$positive = #27AE60
+$negative = #E74C3C
+$info = #2196F3
+$warning = #F1C40F
+
+$white = #FFFFFF
+$light = #F4F4F4
+$dark = #2E2E2E
+$faded = #E8E8E8
