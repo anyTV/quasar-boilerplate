@@ -1,0 +1,10 @@
+{
+  "email": [
+    "ferriel.melarpis@freedom.tm",
+    "lordinel.grajo@freedom.tm"
+  ],
+  "critical_branch": [
+    "master",
+    "dev-branch"
+  ]
+}
