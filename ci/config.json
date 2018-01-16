@@ -1,10 +1,8 @@
 {
   "email": [
-    "ferriel.melarpis@freedom.tm",
-    "lordinel.grajo@freedom.tm"
+    "email@freedom.tm"
   ],
   "critical_branch": [
-    "master",
-    "dev-branch"
+    "master"
   ]
 }
