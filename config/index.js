@@ -1,5 +1,4 @@
 const path = require('path');
-const { stringifyConfig } = require('../build/config-utils');
 
 module.exports = {
     // Webpack aliases
