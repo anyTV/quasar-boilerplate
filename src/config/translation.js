@@ -1,9 +1,23 @@
+const uuid = require('uuid/v1');
+
 const langIdentifier = '';
+const translation = {
+    baseURL: 'https://api-translations.freedom.tm',
+    paths: {
+        getAvailableLocalesURL: '/languages',
+        fetchLocaleURL: '/translations?download=false&lang={{lng}}'
+    },
+    bustString: `bust=${uuid()}`
+};
+const server = {
+    getAvailableLocalesURL: `${translation.baseURL}${translation.paths.getAvailableLocalesURL}?${translation.bustString}`,
+    fetchLocaleURL: `${translation.baseURL}${translation.paths.fetchLocaleURL}&${translation.bustString}`,
+};
 
 export default {
-    SERVER: process.env.TRANSLATION,
+    server,
 
-    I18NEXT_CONFIG: {
+    i18nextConfig: {
         // i18next options
         preload: ['en'],
         fallbackLng: 'en',
@@ -16,7 +30,7 @@ export default {
 
         // i18next-xhr-backend options
         backend: {
-            loadPath: process.env.TRANSLATION.fetch_locale_url,
+            loadPath: server.fetchLocaleURL,
             crossDomain: true
         },
 

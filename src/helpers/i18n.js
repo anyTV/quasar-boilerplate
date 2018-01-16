@@ -10,6 +10,6 @@ Vue.use(VueI18next);
 i18next
     .use(i18nextXHRBackend)
     .use(i18nextLangDetector)
-    .init(translation.I18NEXT_CONFIG);
+    .init(translation.i18nextConfig);
 
 export default new VueI18next(i18next);
