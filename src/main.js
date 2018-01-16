@@ -5,6 +5,8 @@ import Vuelidate from 'vuelidate';
 
 import router from 'src/router';
 import mixins from 'src/mixins';
+import store from 'src/store';
+import i18n from 'src/helpers/i18n';
 // Quasar has a known issue in which modal cannot be closed when the modal is open and the page is refreshed.
 // This will be fixed in Quasar v0.15 (https://github.com/quasarframework/quasar/issues/994).
 // Workaround is to manually set popstate (https://github.com/quasarframework/quasar/issues/823).
@@ -40,5 +42,7 @@ _.each(mixins, Vue.mixin.bind(Vue));
 new Vue({
     el: '#q-app',
     router,
+    store,
+    i18n,
     render: h => h(require('./App').default)
 });
