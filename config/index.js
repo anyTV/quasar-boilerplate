@@ -1,6 +1,9 @@
 const path = require('path');
+const pkg = require('../package.json');
 
 module.exports = {
+    projectName: pkg.name,
+    appTitle: 'Quasar Boilerplate',
     // Webpack aliases
     aliases: {
         quasar: path.resolve(__dirname, '../node_modules/quasar-framework/'),

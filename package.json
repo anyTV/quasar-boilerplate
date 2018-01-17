@@ -5,7 +5,7 @@
   "author": "MCN Freedom! Tech Inc. <development@freedom.tm>",
   "scripts": {
     "clean": "node build/script.clean.js",
-    "dev": "node build/script.dev.js",
+    "dev": "cross-env NODE_ENV=development node build/script.dev.js",
     "build": "cross-env NODE_ENV=production node build/script.build.js",
     "lint": "eslint --ext .js,.vue src",
     "test": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
@@ -100,7 +100,7 @@
     "webpack": "^3.6.0",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.19.1",
-    "webpack-merge": "^4.1.0",
-    "webpack-node-externals": "^1.6.0"
+    "webpack-md5-hash": "0.0.6",
+    "webpack-merge": "^4.1.0"
   }
 }

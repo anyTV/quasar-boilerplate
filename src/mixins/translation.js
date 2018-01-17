@@ -26,6 +26,10 @@ export default {
 
     methods: {
         async getAvailableLanguages() {
+            if (!PROD) {
+                return translation.availableLanguages;
+            }
+
             let response;
 
             try {
