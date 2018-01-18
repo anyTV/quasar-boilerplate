@@ -57,13 +57,14 @@ module.exports = merge(baseWebpackConfig, {
             chunksSortMode: 'dependency',
             serviceWorkerLoader: `
                 <script>${fsUtils.loadMinified(path.join(__dirname, './service-worker-prod.js'))}</script>`,
-            googleAnalyticsScript: `
-                <script async 
-                    src="https://www.googletagmanager.com/gtag/js?id=${config.build.env.googleAnalyticsId}"></script>
-                <script>${fsUtils.loadMinified(
-                    path.join(__dirname, './google-analytics.js'),
-                    { googleAnalyticsId: JSON.stringify(config.build.env.googleAnalyticsId) }
-                )}</script>`,
+            googleAnalyticsScript: config.build.env.googleAnalyticsId
+                && `<script async 
+                        src="https://www.googletagmanager.com/gtag/js?id=${config.build.env.googleAnalyticsId}">
+                    </script>
+                    <script>${fsUtils.loadMinified(
+                        path.join(__dirname, './google-analytics.js'),
+                        { googleAnalyticsId: JSON.stringify(config.build.env.googleAnalyticsId) }
+                    )}</script>`,
         }),
         // keep module.id stable when vendor modules does not change
         new webpack.HashedModuleIdsPlugin(),
