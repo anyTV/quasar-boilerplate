@@ -1,32 +1,9 @@
-const langIdentifier = '';
+const i18nextConfig = process.env.I18NEXT;
+const translationServer = process.env.SERVERS && process.env.SERVERS.translation;
+const availableLanguages = process.env.TRANSLATION && process.env.TRANSLATION.availableLanguages;
 
 export default {
-    SERVER: process.env.TRANSLATION,
-
-    I18NEXT_CONFIG: {
-        // i18next options
-        preload: ['en'],
-        fallbackLng: 'en',
-        ns: [       // files within a language directory
-            'index'
-        ],
-        defaultNS: 'index',
-        initImmediate: false,   // set to false to prevent displaying keys while rendering the page
-        debug: false,
-
-        // i18next-xhr-backend options
-        backend: {
-            loadPath: process.env.TRANSLATION.fetch_locale_url,
-            crossDomain: true
-        },
-
-        // i18next-browser-languagedetector options
-        detection: {
-            order: ['querystring', 'localStorage', 'cookie', 'navigator'],
-            lookupQuerystring: 'lang',  // e.g. ?lang=en
-            lookupCookie: langIdentifier,
-            lookupLocalStorage: langIdentifier,
-            caches: ['localStorage', 'cookie']
-        }
-    }
+    server: translationServer,
+    availableLanguages,
+    i18nextConfig,
 };

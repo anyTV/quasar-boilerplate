@@ -9,7 +9,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
 const fsUtils = require('./fs-utils');
+const pkg = require('../package.json');
 
 module.exports = merge(baseWebpackConfig, {
     module: {
@@ -40,6 +42,7 @@ module.exports = merge(baseWebpackConfig, {
             filename: '[name].[contenthash].css'
         }),
         new HtmlWebpackPlugin({
+            title: config.appTitle,
             filename: path.resolve(__dirname, '../dist/index.html'),
             template: 'src/index.html',
             inject: true,
@@ -52,13 +55,23 @@ module.exports = merge(baseWebpackConfig, {
             },
             // necessary to consistently work with multiple chunks via CommonsChunkPlugin
             chunksSortMode: 'dependency',
-            serviceWorkerLoader: `<script>${fsUtils.loadMinified(path.join(__dirname,
-                './service-worker-prod.js'))}</script>`
+            serviceWorkerLoader: `
+                <script>${fsUtils.loadMinified(path.join(__dirname, './service-worker-prod.js'))}</script>`,
+            googleAnalyticsScript: config.build.env.googleAnalyticsId
+                && `<script async 
+                        src="https://www.googletagmanager.com/gtag/js?id=${config.build.env.googleAnalyticsId}">
+                    </script>
+                    <script>${fsUtils.loadMinified(
+                        path.join(__dirname, './google-analytics.js'),
+                        { googleAnalyticsId: JSON.stringify(config.build.env.googleAnalyticsId) }
+                    )}</script>`,
         }),
+        // keep module.id stable when vendor modules does not change
+        new webpack.HashedModuleIdsPlugin(),
         // split vendor js into its own file
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
-            minChunks: function (module, count) {
+            minChunks(module, count) {
                 // any required modules inside node_modules are extracted to vendor
                 return (
                     module.resource &&
@@ -78,6 +91,9 @@ module.exports = merge(baseWebpackConfig, {
             name: 'manifest',
             chunks: ['vendor']
         }),
+        // Webpack has a bug wherein chunkhash does not always generate unique hash
+        // https://github.com/webpack/webpack/issues/1155
+        new WebpackMd5Hash(),
         // copy custom static assets
         new CopyWebpackPlugin([
             {
@@ -88,11 +104,11 @@ module.exports = merge(baseWebpackConfig, {
         ]),
         // service worker caching
         new SWPrecacheWebpackPlugin({
-            cacheId: 'my-quasar-app',
+            cacheId: pkg.name,
             filename: 'service-worker.js',
             staticFileGlobs: ['dist/**/*.{js,html,css,woff,ttf,eof,woff2,json,svg,gif,jpg,png,mp3}'],
             minify: true,
             stripPrefix: 'dist/'
-        })
+        }),
     ]
 });

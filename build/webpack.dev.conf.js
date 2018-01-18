@@ -30,6 +30,7 @@ module.exports = merge(baseWebpackConfig, {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new HtmlWebpackPlugin({
+            title: config.appTitle,
             filename: 'index.html',
             template: 'src/index.html',
             inject: true,

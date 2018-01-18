@@ -26,10 +26,14 @@ export default {
 
     methods: {
         async getAvailableLanguages() {
+            if (!PROD) {
+                return translation.availableLanguages;
+            }
+
             let response;
 
             try {
-                response = await axios.get(translation.SERVER.get_available_locales_url);
+                response = await axios.get(translation.server.getAvailableLocalesURL);
             }
             catch (error) {
                 throw error;

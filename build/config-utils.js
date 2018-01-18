@@ -14,11 +14,11 @@ const _ = require('lodash');
  */
 function stringifyConfig(config) {
     return _.mapValues(config, value => {
-        if (_.isObject(value)) {
+        if (_.isPlainObject(value)) {
             return stringifyConfig(value);
         }
 
-        return _.isString(value) ? JSON.stringify(value) : value;
+        return _.isString(value) || _.isArray(value) ? JSON.stringify(value) : value;
     });
 }
 
