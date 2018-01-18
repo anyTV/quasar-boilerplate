@@ -4,12 +4,21 @@ const path = require('path');
 const UglifyJS = require('uglify-es');
 
 
-function loadMinified(filePath) {
-    const code = fs.readFileSync(filePath, 'utf-8');
+function loadMinified(filePath, bindings) {
+    let code = fs.readFileSync(filePath, 'utf-8');
+
+    if (_.isPlainObject(bindings) && !_.isEmpty(bindings)) {
+        code = _.reduce(bindings, (result, value, key) => {
+            return _.replace(result, new RegExp(`{{\\s*${key}\\s*}}`), value);
+        }, code);
+    }
+
     const result = UglifyJS.minify(code);
+
     if (result.error) {
         return '';
     }
+
     return result.code;
 }
 

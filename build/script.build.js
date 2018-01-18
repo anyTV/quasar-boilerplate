@@ -12,6 +12,11 @@ console.log(' WARNING!'.bold);
 console.log(' Do NOT use VueRouter\'s "history" mode if');
 console.log(' building for Cordova or Electron.\n');
 
+if (!config.build.env.googleAnalyticsId) {
+    console.log(' WARNING!'.bold);
+    console.log(' Your app is missing a Google Analytics ID.\n');
+}
+
 require('./script.clean.js');
 console.log((' Building Quasar App with "' + env.platform.theme + '" theme...\n').bold);
 

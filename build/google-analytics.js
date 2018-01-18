@@ -8,5 +8,5 @@
     }
 
     gtag('js', new Date());
-    gtag('config', 'UA-46773919-28');
+    gtag('config', {{ googleAnalyticsId }});
 })();
