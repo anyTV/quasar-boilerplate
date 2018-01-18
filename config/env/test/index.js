@@ -4,10 +4,25 @@ const { stringifyConfig } = require('../../../build/config-utils');
 const { loadTranslationResources, loadAvailableLanguages } = require('../../../build/fs-utils');
 
 const languageResourcesPath = path.resolve(__dirname, '../../../resources/lang/');
+const translation = {
+    baseURL: '',
+    paths: {
+        getAvailableLocalesURL: '',
+        fetchLocaleURL: ''
+    },
+    bustString: ''
+};
+const translationServer = {
+    getAvailableLocalesURL: `${translation.baseURL}${translation.paths.getAvailableLocalesURL}?${translation.bustString}`,
+    fetchLocaleURL: `${translation.baseURL}${translation.paths.fetchLocaleURL}&${translation.bustString}`,
+};
 const lookupKey = 'lang';
 
 module.exports = stringifyConfig({
     NODE_ENV: 'test',
+    SERVERS: {
+        translation: translationServer
+    },
     TRANSLATION: {
         availableLanguages: loadAvailableLanguages(languageResourcesPath)
     },
@@ -23,6 +38,12 @@ module.exports = stringifyConfig({
         defaultNS: 'index',
         initImmediate: false, // set to false to prevent displaying keys while rendering the page
         debug: true,
+
+        // i18next-xhr-backend options
+        backend: {
+            loadPath: translationServer.fetchLocaleURL,
+            crossDomain: true
+        },
 
         // i18next-browser-languagedetector options
         detection: {
