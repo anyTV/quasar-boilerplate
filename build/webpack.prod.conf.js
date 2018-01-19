@@ -13,6 +13,15 @@ const WebpackMd5Hash = require('webpack-md5-hash');
 const fsUtils = require('./fs-utils');
 const pkg = require('../package.json');
 
+let googleAnalyticsId = config.build.env.googleAnalyticsId;
+
+try {
+    googleAnalyticsId = JSON.parse(googleAnalyticsId);
+}
+catch (e) {
+    console.error(e);
+}
+
 module.exports = merge(baseWebpackConfig, {
     module: {
         rules: cssUtils.styleRules({
@@ -57,13 +66,13 @@ module.exports = merge(baseWebpackConfig, {
             chunksSortMode: 'dependency',
             serviceWorkerLoader: `
                 <script>${fsUtils.loadMinified(path.join(__dirname, './service-worker-prod.js'))}</script>`,
-            googleAnalyticsScript: config.build.env.googleAnalyticsId
+            googleAnalyticsScript: googleAnalyticsId
                 && `<script async 
-                        src="https://www.googletagmanager.com/gtag/js?id=${config.build.env.googleAnalyticsId}">
+                        src="https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}">
                     </script>
                     <script>${fsUtils.loadMinified(
                         path.join(__dirname, './google-analytics.js'),
-                        { googleAnalyticsId: JSON.stringify(config.build.env.googleAnalyticsId) }
+                        { googleAnalyticsId: JSON.stringify(googleAnalyticsId) }
                     )}</script>`,
         }),
         // keep module.id stable when vendor modules does not change
