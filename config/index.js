@@ -1,5 +1,6 @@
 const path = require('path');
 const pkg = require('../package.json');
+const env = require('../build/env-utils');
 
 module.exports = {
     projectName: pkg.name,
@@ -21,7 +22,7 @@ module.exports = {
     defaultTheme: 'mat',
 
     build: {
-        env: require('./env/production'),
+        env: env.prod && require('./env/production'),
         publicPath: '',
         productionSourceMap: false,
 
