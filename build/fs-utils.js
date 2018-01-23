@@ -67,7 +67,7 @@ function loadTranslationResources(source) {
 
         resource[dir] = _.transform(namespaces, (namespace, file) => {
             namespace[_.replace(file, path.extname(file), '')] = require(path.join(source, dir, file));
-        });
+        }, {});
     }, {});
 }
 
