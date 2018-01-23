@@ -37,6 +37,9 @@ module.exports = stringifyConfig({
         ],
         defaultNS: 'index',
         initImmediate: false, // set to false to prevent displaying keys while rendering the page
+        returnNull: false,
+        returnEmptyString: false,
+        returnObjects: false,
         debug: true,
 
         // i18next-xhr-backend options
