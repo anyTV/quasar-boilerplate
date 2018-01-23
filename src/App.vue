@@ -3,6 +3,7 @@
   <div id="q-app">
     <header></header>
     <main>
+      <router-view></router-view>
     </main>
   </div>
 </template>
