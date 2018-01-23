@@ -1,29 +1,8 @@
 import _ from 'lodash';
 import axios from 'axios';
-import i18n from 'src/helpers/i18n';
 import translation from 'src/config/translation';
 
-const translateInnerHTML = (element, binding) => {
-    element.innerHTML = i18n.i18next.t(
-        binding.value.path || binding.value,
-        binding.value.args
-    );
-};
-
 export default {
-    directives: {
-        t: {
-            inserted: translateInnerHTML,
-            componentUpdated: translateInnerHTML
-        }
-    },
-
-    filters: {
-        $t(key) {
-            return i18n.i18next.t(key);
-        }
-    },
-
     methods: {
         async getAvailableLanguages() {
             if (!PROD) {
