@@ -39,8 +39,9 @@ module.exports = {
         'import/namespace': 2,
         'import/default': 2,
         'import/export': 2,
-        // allow debugger during development
-        'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+        // allow console and debugger during development
+        'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
+        'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
         'brace-style': [2, 'stroustrup', { 'allowSingleLine': true }]
     }
 };
