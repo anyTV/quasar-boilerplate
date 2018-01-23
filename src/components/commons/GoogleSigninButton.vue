@@ -13,8 +13,8 @@
     /**
      * Usage:
      * <google-signin-button
-     *   @googleSignIn:success="successHandler"
-     *   @googleSignIn:error="errorHandler"
+     *   @success="successHandler"
+     *   @error="errorHandler"
      *   icon="account_circle"
      *   color="green"
      * >
@@ -51,8 +51,8 @@
                     .then(() => {
                         this.$googleAPI.grantOfflineAccess(this.grantOfflineAccess);
                         this.$googleAPI.signIn()
-                            .then(googleUser => this.$emit('googleSignIn:success', googleUser))
-                            .catch(error => this.$emit('googleSignIn:error', error));
+                            .then(googleUser => this.$emit('success', googleUser))
+                            .catch(error => this.$emit('error', error));
                     });
             }
         },

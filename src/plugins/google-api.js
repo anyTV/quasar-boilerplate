@@ -7,10 +7,12 @@ const GoogleAPIPlugin = {
     install(Vue, options) {
         Vue.googleAPI = GoogleAPIClient;
 
+        const instance = new GoogleAPIClient(_.merge(googleAPIConfig, options));
+
         Object.defineProperties(Vue.prototype, {
             $googleAPI: {
                 get() {
-                    return new GoogleAPIClient(_.merge(googleAPIConfig, options));
+                    return instance;
                 }
             }
         });
