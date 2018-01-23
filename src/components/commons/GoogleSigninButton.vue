@@ -39,12 +39,17 @@
                 type: String,
                 default: 'primary',
             },
+            grantOfflineAccess: {
+                type: Boolean,
+                default: true,
+            }
         },
 
         methods: {
             signIn() {
                 this.$googleAPI.init()
                     .then(() => {
+                        this.$googleAPI.grantOfflineAccess(this.grantOfflineAccess);
                         this.$googleAPI.signIn()
                             .then(googleUser => this.$emit('googleSignIn:success', googleUser))
                             .catch(error => this.$emit('googleSignIn:error', error));
