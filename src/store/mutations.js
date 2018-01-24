@@ -1,6 +1,14 @@
 'use strict';
 
-// can be imported to actions as `import { mutationTypes } from './mutations'`
+/**
+ * Contains map of mutation types and methods
+ * @example
+ * import { mutationTypes } from './mutations';
+ * ...
+ * async exampleAction({ commit }, payload) {
+ *     commit(mutationTypes.SOME_METHOD, payload);
+ * }
+ */
 export const mutationTypes = {
 };
 

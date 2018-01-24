@@ -11,20 +11,19 @@ const defaultConfig = {
 };
 
 /**
- * Usage:
- * ```
+ * Plugin for injecting axios globally as default $http resource
+ * @example
  * import AxiosPlugin from 'src/plugins/axios-plugin';
+ * ...
  * Vue.use(AxiosPlugin); // defaultConfig will be merged with axios defaults
  * Vue.use(AxiosPlugin, options); // options will be merged to defaultConfig and axios defaults
- * ```
- * Default instance is available through:
- * - this.$http
- * - this.axios
- *
- * Creating new axios instance:
- * ```
+ * @example
+ * // In a component you can use it like:
+ * this.$http(...);
+ * this.axios(...);
+ * @example
+ * // Creating new axios instance:
  * const otherResourceXHR = this.axios.create(options);
- * ```
  */
 const AxiosPlugin = {
     install(Vue, options) {

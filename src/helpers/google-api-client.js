@@ -1,5 +1,16 @@
+/**
+ * Helper class for using google api from CDN
+ */
 export default class GoogleAPIClient {
 
+    /**
+     * Creates GoogleAPIClient instance
+     * @param {Object} options - Google API Client options
+     * @param {string} options.apiKey - The API Key to use.
+     * @param {string} options.clientId - The app's client ID, found and created in the Google Developers Console.
+     * @param {string[]} options.discoveryDocs - An array of discovery doc URLs or discovery doc JSON objects.
+     * @param {string[]} options.scope - The scopes to request.
+     */
     constructor(options) {
         this._apiKey = options.apiKey;
         this._clientId = options.clientId;
@@ -8,6 +19,11 @@ export default class GoogleAPIClient {
         this._libraries = ['client', 'auth2'];
     }
 
+    /**
+     * Injects google api script from cdn
+     * @param {string} clientURL - The CDN for the google api client to be used.
+     * @return {Promise<any>}
+     */
     static load(clientURL = 'https://apis.google.com/js/api.js') {
 
         if (window.gapi) {
@@ -37,6 +53,11 @@ export default class GoogleAPIClient {
         });
     }
 
+    /**
+     * Initializes the client to be used with the specified libraries.
+     * @param {string[]} libraries - Google libraries
+     * @return {Promise<any>}
+     */
     init(libraries = []) {
         return GoogleAPIClient.load().then(() => {
             return new Promise(resolve => {
@@ -54,10 +75,18 @@ export default class GoogleAPIClient {
         });
     }
 
+    /**
+     * Set if client requests for offline access
+     * @param {boolean} offlineAccess - request offline access
+     */
     grantOfflineAccess(offlineAccess = true) {
         this._offlineAccess = offlineAccess;
     }
 
+    /**
+     * Request for google sign in.
+     * @return {Promise<Object, Error>}
+     */
     signIn() {
 
         GoogleAPIClient.__assertAuth2ClientExists();
@@ -79,6 +108,10 @@ export default class GoogleAPIClient {
         });
     }
 
+    /**
+     * Request for google sign out.
+     * @return {Promise<Object, Error>}
+     */
     signOut() {
 
         GoogleAPIClient.__assertAuth2ClientExists();
@@ -91,6 +124,10 @@ export default class GoogleAPIClient {
         });
     }
 
+    /**
+     * Attach a div as click handler for google sign in prompt
+     * @return {Promise<Object, Error>}
+     */
     attachClickHandler() {
 
         GoogleAPIClient.__assertAuth2ClientExists();
@@ -99,6 +136,10 @@ export default class GoogleAPIClient {
     }
 
     // private properties __
+    /**
+     * Check if google api script has been loaded and client has been initialized.
+     * @throws Error
+     */
     static __assertAuth2ClientExists() {
         if (!(window.gapi && window.gapi.auth2)) {
             throw new Error('Auth2 client is not initialized. Perhaps you forgot to call init().');

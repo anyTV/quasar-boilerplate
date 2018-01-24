@@ -3,6 +3,14 @@ import _ from 'lodash';
 import googleAPIConfig from 'config/google-api';
 import GoogleAPIClient from 'helpers/google-api-client';
 
+/**
+ * Plugin for injecting google api
+ * @example
+ * import Vue from 'vue';
+ * import GoogleAPIPlugin from 'src/plugins/google-api-plugin';
+ * ...
+ * Vue.use(GoogleAPIPlugin);
+ */
 const GoogleAPIPlugin = {
     install(Vue, options) {
         Vue.googleAPI = GoogleAPIClient;

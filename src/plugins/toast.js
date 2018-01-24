@@ -6,6 +6,16 @@ const defaultConfig = {
     timeout: 5000,
 };
 
+/**
+ * Plugin for injecting toast helper methods
+ * @example
+ * import Vue from 'vue';
+ * import ToastPlugin from 'src/plugins/toast';
+ * ...
+ * Vue.use(ToastPlugin);
+ * @example
+ * this.$toast.error('error-occurred', error.type);
+ */
 const ToastPlugin = {
     install(Vue, options) {
 

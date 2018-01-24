@@ -1,5 +1,19 @@
 import i18n from 'src/helpers/i18n';
 
+/**
+ * Plugin for injecting i18n directive and filter
+ * @example
+ * import Vue from 'vue';
+ * import i18nPlugin from 'src/plugins/i18n';
+ * ...
+ * Vue.use(i18nPlugin);
+ * @example
+ * <span v-t="key"></span>
+ * @example
+ * <span>{{ 'key' | $t }}</span>
+ * @example
+ * const label = this.$t('key');
+ */
 const i18nPlugin = {
     install(Vue) {
 
