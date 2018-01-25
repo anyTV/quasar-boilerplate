@@ -1,30 +1,16 @@
 import _ from 'lodash';
 import axios from 'axios';
-import i18n from 'src/helpers/i18n';
 import translation from 'src/config/translation';
 
-const translateInnerHTML = (element, binding) => {
-    element.innerHTML = i18n.i18next.t(
-        binding.value.path || binding.value,
-        binding.value.args
-    );
-};
-
+/**
+ * Mixin containing helper methods for i18n
+ */
 export default {
-    directives: {
-        t: {
-            inserted: translateInnerHTML,
-            componentUpdated: translateInnerHTML
-        }
-    },
-
-    filters: {
-        $t(key) {
-            return i18n.i18next.t(key);
-        }
-    },
-
     methods: {
+        /**
+         * Fetches list of available languages
+         * @return {Promise<string[], Error>}
+         */
         async getAvailableLanguages() {
             if (!PROD) {
                 return translation.availableLanguages;
@@ -45,10 +31,26 @@ export default {
             return _.uniq(languages);
         },
 
+        /**
+         * Get current language used
+         * @return {string} current language
+         */
         getCurrentLanguage() {
             return this.$i18n.i18next.language;
         },
 
+        /**
+         * Set current language
+         * @param {string} lang - language abbreviation
+         * @example
+         * {
+         *   mixins: [i18nMixin],
+         *   ...
+         *   mounted() {
+         *      this.changeLanguage('en');
+         *   }
+         * }
+         */
         changeLanguage(lang) {
             this.$i18n.i18next.changeLanguage(lang);
         }
