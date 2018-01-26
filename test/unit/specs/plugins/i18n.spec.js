@@ -9,37 +9,64 @@ import i18nPlugin from 'src/plugins/i18n';
  */
 describe('i18nPlugin', function () {
 
-    it('should install i18n directive and filter', function () {
+    const localVue = createLocalVue();
 
-        const localVue = createLocalVue();
-
-        i18next.init({
-            resources: {
-                en: {
-                    index: {
-                        key: 'value'
-                    }
+    i18next.init({
+        resources: {
+            en: {
+                index: {
+                    key1: 'value1',
+                    key2: 'value2',
                 }
-            },
-            defaultNS: 'index',
-            lng: 'en',
-            debug: true
-        });
+            }
+        },
+        defaultNS: 'index',
+        lng: 'en',
+        debug: true
+    });
 
-        localVue.use(VueI18next);
-        localVue.use(i18nPlugin);
+    localVue.use(VueI18next);
+    localVue.use(i18nPlugin);
 
-        const component = {
-            template: `<div><p v-t="'key'"></p><p>{{ 'key' | $t }}</p></div>`,
-        };
-        const wrapper = shallow(component, {
-            localVue,
-            i18n: new VueI18next(i18next)
-        });
+    const component = {
+        template: `<div><p v-t="'key1'"></p><p>{{ 'key2' | $trans }}</p></div>`,
+    };
+    const wrapper = shallow(component, {
+        localVue,
+        i18n: new VueI18next(i18next)
+    });
 
+    it('should install i18n directive and filter', function () {
         wrapper.vm.$t.should.be.a('function');
         localVue.nextTick(() => {
-            wrapper.html().should.be.equals(`<div><p>value</p><p>value</p></div>`);
+            wrapper.html().should.be.equals(`<div><p>value1</p><p>value2</p></div>`);
         });
+    });
+
+    it('$t filter should translate string key', function () {
+        wrapper.vm.$t('key1').should.be.equals('value1');
+    });
+
+    it('$trans mixin method should translate string key', function () {
+        wrapper.vm.$trans('key1').should.be.equals('value1');
+    });
+
+    it('$trans mixin method should translate array of keys', function () {
+        wrapper.vm.$trans(['key1', 'key2']).should.deep.equals(['value1', 'value2']);
+    });
+
+    it('$trans mixin method should translate specified keys of an object', function () {
+        wrapper.vm.$trans({ key1: 'key1', key2: 'key2', extraKey: 'extra' }, ['key1', 'key2'])
+            .should.deep.equals({ key1: 'value1', key2: 'value2', extraKey: 'extra'  });
+    });
+
+    it('$trans mixin method should trim other properties of an object when trim is true', function () {
+        wrapper.vm.$trans({ key1: 'key1', key2: 'key2', extraKey: 'extra' }, ['key1', 'key2'], true)
+            .should.deep.equals({ key1: 'value1', key2: 'value2' });
+    });
+
+    it('$trans mixin method should translate a property of an object mapped to an array of keys', function () {
+        wrapper.vm.$trans({ keys: ['key1', 'key2'], extraKey: 'extra'  }, ['keys'], true)
+            .should.deep.equals({ keys: ['value1', 'value2'] });
     });
 });
