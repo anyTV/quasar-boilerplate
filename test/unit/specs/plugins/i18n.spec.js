@@ -51,8 +51,28 @@ describe('i18nPlugin', function () {
         wrapper.vm.$trans('key1').should.be.equals('value1');
     });
 
+    it('$trans mixin method should return null when given null', function () {
+        should.equal(wrapper.vm.$trans(null), null);
+    });
+
+    it('$trans mixin method should return undefined when no keys passed', function () {
+        should.equal(wrapper.vm.$trans(undefined), undefined);
+    });
+
+    it('$trans mixin method should return untranslated key', function () {
+        wrapper.vm.$trans('unknown-key').should.be.equals('unknown-key');
+    });
+
     it('$trans mixin method should translate array of keys', function () {
         wrapper.vm.$trans(['key1', 'key2']).should.deep.equals(['value1', 'value2']);
+    });
+
+    it('$trans mixin method should translate array of keys and return untranslated keys', function () {
+        wrapper.vm.$trans(['key1', 'unknown-key']).should.deep.equals(['value1', 'unknown-key']);
+    });
+
+    it('$trans mixin method should return empty array when given an empty array', function () {
+        wrapper.vm.$trans([]).should.deep.equals([]);
     });
 
     it('$trans mixin method should translate specified keys of an object', function () {
@@ -96,5 +116,30 @@ describe('i18nPlugin', function () {
     it('$trans mixin method should not translate a nested property of an object mapped to an object', function () {
         wrapper.vm.$trans({ keys: { subkeys: {} }, extraKey: 'extra' }, ['keys.subkeys'], true)
             .should.deep.equals({ keys: { subkeys: {} } });
+    });
+
+    it('$trans mixin method should return the object when props is not given', function () {
+        wrapper.vm.$trans({ key1: 'key1', key2: 'key2', extraKey: 'extra' })
+            .should.deep.equals({ key1: 'key1', key2: 'key2', extraKey: 'extra' });
+    });
+
+    it('$trans mixin method should return the object when props is null', function () {
+        wrapper.vm.$trans({ key1: 'key1', key2: 'key2', extraKey: 'extra' }, null)
+            .should.deep.equals({ key1: 'key1', key2: 'key2', extraKey: 'extra' });
+    });
+
+    it('$trans mixin method should support single property for object using string', function () {
+        wrapper.vm.$trans({ key1: 'key1', key2: 'key2', extraKey: 'extra' }, 'key1')
+            .should.deep.equals({ key1: 'value1', key2: 'key2', extraKey: 'extra' });
+    });
+
+    it('$trans mixin method should not inject a missing property to the object', function () {
+        wrapper.vm.$trans({ key1: 'key1', key2: 'key2', extraKey: 'extra' }, 'missing-key')
+            .should.deep.equals({ key1: 'key1', key2: 'key2', extraKey: 'extra' });
+    });
+
+    it('$trans mixin method should return property value when no matching translation', function () {
+        wrapper.vm.$trans({ key1: 'key1', key2: 'key2', extraKey: 'extra' }, 'extraKey')
+            .should.deep.equals({ key1: 'key1', key2: 'key2', extraKey: 'extra' });
     });
 });

@@ -19,6 +19,7 @@ import i18n from 'src/helpers/i18n';
  * this.$trans(obj, ['key1', 'key2']); // returns obj with translated specified properties
  * this.$trans(obj, ['key1', 'key2'], true); // returns obj with the translated specified properties only
  * this.$trans(obj, ['nested.key']); // also supports nested properties
+ * this.$trans(obj, 'single-key'); // also supports single key using string
  */
 const i18nPlugin = {
     install(Vue) {
@@ -50,23 +51,25 @@ const i18nPlugin = {
 
                     /**
                      * translate some properties of an object:
+                     * this.$t(obj, 'key1');
                      * this.$t(obj, ['key1', 'key2'])
                      * trim other properties
                      * this.$t(obj, ['key1', 'key2'], true)
                      */
-                    if (_.isPlainObject(obj) && _.isArray(props)) {
+                    if (_.isPlainObject(obj) && (_.isString(props) || _.isArray(props))) {
 
-                        const objClone = _.cloneDeep(obj);
-                        const accumulator = trim ? _.pick(objClone, props) : objClone;
+                        props = _.isArray(props) ? props : [props];
+                        // Create a new object to avoid unnecessary behaviors when parameter is mutated.
+                        const accumulator = _.pick(obj, trim ? props : _.keys(obj));
 
                         return _.transform(props, (result, prop) => {
                             if (_.has(result, prop)) {
-                                _.set(result, prop, this.$trans(_.get(result, prop), props, trim));
+                                _.set(result, prop, this.$trans(_.get(result, prop)));
                             }
                         }, accumulator);
                     }
 
-                    return null;
+                    return obj;
                 }
             }
         })
