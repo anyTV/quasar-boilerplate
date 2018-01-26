@@ -18,6 +18,7 @@ import i18n from 'src/helpers/i18n';
  * this.$trans(['key1', 'key2']); // returns array of translated keys
  * this.$trans(obj, ['key1', 'key2']); // returns obj with translated specified properties
  * this.$trans(obj, ['key1', 'key2'], true); // returns obj with the translated specified properties only
+ * this.$trans(obj, ['nested.key']); // also supports nested properties
  */
 const i18nPlugin = {
     install(Vue) {
@@ -60,7 +61,7 @@ const i18nPlugin = {
 
                         return _.transform(props, (result, prop) => {
                             if (_.has(result, prop)) {
-                                result[prop] = this.$trans(result[prop], props, trim);
+                                _.set(result, prop, this.$trans(_.get(result, prop), props, trim));
                             }
                         }, accumulator);
                     }
