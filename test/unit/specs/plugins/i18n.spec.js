@@ -29,17 +29,18 @@ describe('i18nPlugin', function () {
     localVue.use(i18nPlugin);
 
     const component = {
-        template: `<div><p v-t="'key1'"></p><p>{{ 'key2' | $trans }}</p></div>`,
+        template: `<div><p v-t="'key1'"></p><p>{{ 'key2' | $t }}</p></div>`,
     };
     const wrapper = shallow(component, {
         localVue,
         i18n: new VueI18next(i18next)
     });
 
-    it('should install i18n directive and filter', function () {
+    it('should install i18n directive and filter', function (done) {
         wrapper.vm.$t.should.be.a('function');
         localVue.nextTick(() => {
             wrapper.html().should.be.equals(`<div><p>value1</p><p>value2</p></div>`);
+            done();
         });
     });
 
