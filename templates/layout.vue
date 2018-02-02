@@ -1,16 +1,16 @@
 <template>
     <!-- Configure "view" prop for QLayout -->
     <q-layout>
-        <q-toolbar slot="header">
+        <!--<q-toolbar slot="header">-->
             <!-- opens drawer below
             <button class="hide-on-drawer-visible" @click="$refs.drawer.open()">
               <i>menu</i>
             </button>
             -->
-            <q-toolbar-title>
-                Title
-            </q-toolbar-title>
-        </q-toolbar>
+            <!--<q-toolbar-title>-->
+                <!--Title-->
+            <!--</q-toolbar-title>-->
+        <!--</q-toolbar>-->
 
         <!-- Navigation Tabs
         <q-tabs slot="navigation">
@@ -62,7 +62,15 @@
 </template>
 
 <script>
+    import {
+        QLayout
+    } from 'quasar';
+
     export default {
+        components: {
+            QLayout
+        },
+
         data() {
             return {};
         }
