@@ -4,5 +4,9 @@ export default {
     scope: [
         'email',
         'profile',
-    ],
+    ].join(' '),
+    libraries: [
+        'client',
+        'auth2'
+    ].join(':'),
 };
