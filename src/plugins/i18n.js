@@ -28,7 +28,7 @@ const i18nPlugin = {
             inserted: translateInnerHTML,
             componentUpdated: translateInnerHTML
         });
-        Vue.filter('$t', key => i18n.i18next.t(key));
+        Vue.filter('$t', (key, data) => i18n.i18next.t(key, data));
         Vue.mixin({
             methods: {
                 $trans(obj, props, trim = false) {

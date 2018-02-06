@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 /**
  * Helper class for using google api from CDN
  */
@@ -12,19 +14,17 @@ export default class GoogleAPIClient {
      * @param {string[]} options.scope - The scopes to request.
      */
     constructor(options) {
-        this._apiKey = options.apiKey;
-        this._clientId = options.clientId;
-        this._discoveryDocs = options.discoveryDocs;
-        this._scope = options.scope.join(' ');
-        this._libraries = ['client', 'auth2'];
+        this._options = options;
     }
 
     /**
      * Injects google api script from cdn
-     * @param {string} clientURL - The CDN for the google api client to be used.
+     * @param {Object} param
+     * @param {string} param.clientURL - The CDN for the google api client to be used.
+     * @param {string} param.libraries - Google API client libraries to be loaded.
      * @return {Promise<any>}
      */
-    static load(clientURL = 'https://apis.google.com/js/api.js') {
+    static load({ clientURL = '', libraries = '' }) {
 
         if (window.gapi) {
             return Promise.resolve(); // already injected
@@ -35,7 +35,7 @@ export default class GoogleAPIClient {
         // need to wrap to a native promise object since google has its own goog.Thenable
         return new Promise(resolve => {
 
-            window[callback] = () => resolve();
+            window[callback] = () => window.gapi.load(libraries, resolve);
 
             const script = document.createElement('script');
 
@@ -55,23 +55,16 @@ export default class GoogleAPIClient {
 
     /**
      * Initializes the client to be used with the specified libraries.
-     * @param {string[]} libraries - Google libraries
      * @return {Promise<any>}
      */
-    init(libraries = []) {
-        return GoogleAPIClient.load().then(() => {
-            return new Promise(resolve => {
-                window.gapi.load(this._libraries.concat(libraries).join(':'), resolve);
-            }).then(() => {
-                return new Promise(resolve => {
-                    window.gapi.client.init({
-                        apiKey: this._apiKey,
-                        client_id: this._clientId,
-                        discoveryDocs: this._discoveryDocs,
-                        scope: this._scope
-                    }).then(resolve);
-                });
-            });
+    init() {
+        return new Promise(resolve => {
+            window.gapi.client.init(_.pick(this._options, [
+                'apiKey',
+                'clientId',
+                'discoveryDocs',
+                'scope',
+            ])).then(resolve);
         });
     }
 
@@ -88,19 +81,15 @@ export default class GoogleAPIClient {
      * @return {Promise<Object, Error>}
      */
     signIn() {
+        return new Promise((resolve, reject) => {
 
-        GoogleAPIClient.__assertAuth2ClientExists();
-
-        if (this._offlineAccess) {
-            return new Promise((resolve, reject) => {
+            if (this._offlineAccess) {
                 return window.gapi.auth2
                     .getAuthInstance()
-                    .grantOfflineAccess({ prompt: 'select_account' })
+                    .grantOfflineAccess()
                     .then(resolve, reject);
-            });
-        }
+            }
 
-        return new Promise((resolve, reject) => {
             return window.gapi.auth2
                 .getAuthInstance()
                 .signIn()
@@ -113,9 +102,6 @@ export default class GoogleAPIClient {
      * @return {Promise<Object, Error>}
      */
     signOut() {
-
-        GoogleAPIClient.__assertAuth2ClientExists();
-
         return new Promise((resolve, reject) => {
             return window.gapi.auth2
                 .getAuthInstance()
@@ -129,20 +115,6 @@ export default class GoogleAPIClient {
      * @return {Promise<Object, Error>}
      */
     attachClickHandler() {
-
-        GoogleAPIClient.__assertAuth2ClientExists();
-
         window.gapi.auth2.getAuthInstance().attachClickHandler(...arguments);
-    }
-
-    // private properties __
-    /**
-     * Check if google api script has been loaded and client has been initialized.
-     * @throws Error
-     */
-    static __assertAuth2ClientExists() {
-        if (!(window.gapi && window.gapi.auth2)) {
-            throw new Error('Auth2 client is not initialized. Perhaps you forgot to call init().');
-        }
     }
 }

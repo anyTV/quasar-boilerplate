@@ -17,6 +17,7 @@ describe('i18nPlugin', function () {
                 index: {
                     key1: 'value1',
                     key2: 'value2',
+                    key3: 'value: {{ data }}'
                 }
             }
         },
@@ -29,7 +30,7 @@ describe('i18nPlugin', function () {
     localVue.use(i18nPlugin);
 
     const component = {
-        template: `<div><p v-t="'key1'"></p><p>{{ 'key2' | $t }}</p></div>`,
+        template: `<div><p v-t="'key1'"></p><p>{{ 'key2' | $t }}</p><p>{{ 'key3' | $t({ data: 'foo' }) }}</p></div>`,
     };
     const wrapper = shallow(component, {
         localVue,
@@ -39,13 +40,17 @@ describe('i18nPlugin', function () {
     it('should install i18n directive and filter', function (done) {
         wrapper.vm.$t.should.be.a('function');
         localVue.nextTick(() => {
-            wrapper.html().should.be.equals(`<div><p>value1</p><p>value2</p></div>`);
+            wrapper.html().should.be.equals(`<div><p>value1</p><p>value2</p><p>value: foo</p></div>`);
             done();
         });
     });
 
     it('$t filter should translate string key', function () {
         wrapper.vm.$t('key1').should.be.equals('value1');
+    });
+
+    it('$t filter should interpolate data', function () {
+        wrapper.vm.$t('key3', { data: 'foo' }).should.equals('value: foo');
     });
 
     it('$trans mixin method should translate string key', function () {

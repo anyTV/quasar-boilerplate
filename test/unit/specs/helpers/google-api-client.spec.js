@@ -1,5 +1,7 @@
+import _ from 'lodash';
 import sinon from 'sinon';
 
+import googleConfig from 'src/config/google-api';
 import GoogleAPIClient from 'src/helpers/google-api-client';
 
 
@@ -33,7 +35,7 @@ describe('GoogleAPIClient', function () {
      * @test {GoogleAPIClient#load}
      */
     it('GoogleAPIClient#load should return a promise', function () {
-        GoogleAPIClient.load().should.be.an.instanceof(Promise);
+        GoogleAPIClient.load(_.pick(googleConfig, ['clientURL', 'libraries'])).should.be.an.instanceof(Promise);
     });
 
     /**
@@ -42,9 +44,8 @@ describe('GoogleAPIClient', function () {
     it('GoogleAPIClient#load should request for google api script', function () {
 
         sandbox.useFakeServer();
-        const clientURL = 'https://apis.google.com/js/api.js';
         const content = '(function(){})()';
-        sandbox.server.respondWith('GET', 'https://apis.google.com/js/api.js', [
+        sandbox.server.respondWith('GET', googleConfig.clientURL, [
             200,
             { 'Content-Type': 'application/javascript' },
             content
@@ -54,7 +55,7 @@ describe('GoogleAPIClient', function () {
 
         delete window.gapi;
 
-        GoogleAPIClient.load(clientURL)
+        GoogleAPIClient.load(_.pick(googleConfig, ['clientURL', 'libraries']))
             .then(callback);
 
         sandbox.server.respond();
@@ -100,51 +101,5 @@ describe('GoogleAPIClient', function () {
 
         client.grantOfflineAccess(true);
         spy.thisValues[0]._offlineAccess.should.be.equals(true);
-    });
-
-    /**
-     * @test {GoogleAPIClient#signIn}
-     */
-    it('GoogleAPIClient#signIn should throw error when init is not called first', function () {
-
-        const client = new GoogleAPIClient({
-            apiKey: '',
-            clientId: '',
-            discoveryDocs: [],
-            scope: []
-        });
-        delete window.gapi;
-
-        client.signIn.should.throw();
-    });
-
-    /**
-     * @test {GoogleAPIClient#signOut}
-     */
-    it('GoogleAPIClient#signOut should throw error when init is not called first', function () {
-
-        const client = new GoogleAPIClient({
-            apiKey: '',
-            clientId: '',
-            discoveryDocs: [],
-            scope: []
-        });
-
-        client.signOut.should.throw();
-    });
-
-    /**
-     * @test {GoogleAPIClient#attachClickHandler}
-     */
-    it('GoogleAPIClient#attachClickHandler should throw error when init is not called first', function () {
-
-        const client = new GoogleAPIClient({
-            apiKey: '',
-            clientId: '',
-            discoveryDocs: [],
-            scope: []
-        });
-
-        client.attachClickHandler.should.throw();
     });
 });
