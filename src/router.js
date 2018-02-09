@@ -6,11 +6,11 @@ Vue.use(VueRouter);
 /*
  * Uncomment this section and use "load()" if you want
  * to lazy load routes.
+ */
 function load (component) {
   // '@' is aliased to src/components
   return () => import(`@/${component}.vue`)
 }
-*/
 
 export default new VueRouter({
     /*
@@ -26,5 +26,6 @@ export default new VueRouter({
      */
 
     routes: [
+        { path: '/', component: load('TestForm') }
     ]
 });
