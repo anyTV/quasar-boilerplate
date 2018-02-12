@@ -58,9 +58,8 @@ describe('FormField.vue', function () {
                 propsData: {
                     type: key,
                     model: '',
-                    fieldProps: {
-                        validation: {}
-                    }
+                    validation: {},
+                    fieldProps: {}
                 },
                 localVue,
             });
@@ -125,9 +124,8 @@ describe('FormField.vue', function () {
                 propsData: {
                     type: key,
                     model: '',
-                    fieldProps: {
-                        validation: {}
-                    }
+                    validation: {},
+                    fieldProps: {}
                 },
                 localVue,
             });
