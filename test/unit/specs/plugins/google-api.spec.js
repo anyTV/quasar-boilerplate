@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import { createLocalVue, mount } from '@vue/test-utils';
+import { createLocalVue, shallow } from '@vue/test-utils';
 
 import GoogleAPIPlugin from 'src/plugins/google-api';
 
@@ -21,7 +21,7 @@ describe('GoogleAPIPlugin', function () {
         const component = {
             template: `<p></p>`,
         };
-        const wrapper = mount(component, {
+        const wrapper = shallow(component, {
             localVue
         });
 
