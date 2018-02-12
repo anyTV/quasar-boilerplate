@@ -1,7 +1,8 @@
-import { createLocalVue, shallow } from '@vue/test-utils';
+import _ from 'lodash';
+
+import { createLocalVue, mount } from '@vue/test-utils';
 
 import GoogleAPIPlugin from 'src/plugins/google-api';
-import GoogleAPIClient from 'src/helpers/google-api-client';
 
 /**
  * @test {GoogleAPIPlugin}
@@ -20,16 +21,15 @@ describe('GoogleAPIPlugin', function () {
         const component = {
             template: `<p></p>`,
         };
-        const wrapper = shallow(component, {
+        const wrapper = mount(component, {
             localVue
         });
 
-        localVue.nextTick(() => {
-            localVue.googleAPI.should.be.instanceof(GoogleAPIClient);
-            wrapper.vm.$googleAPI.should.be.instanceof(GoogleAPIClient);
+        _.defer(() => {
+            localVue.googleAPI.should.be.equals(window.gapi);
+            wrapper.vm.$googleAPI.should.be.equals(window.gapi);
+            delete window.gapi;
             done();
         });
-
-        delete window.gapi;
     });
 });
