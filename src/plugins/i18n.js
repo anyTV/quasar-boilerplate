@@ -56,7 +56,7 @@ const i18nPlugin = {
                             return _.map(obj, item => this.$trans(item, props, trim));
                         }
 
-                        return _.map(obj, key => this.$t(key));
+                        return _.map(obj, key => translate(key));
                     }
 
                     /**
