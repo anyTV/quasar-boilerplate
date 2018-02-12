@@ -1,12 +1,11 @@
 <template>
-    <q-field v-bind="fieldProps">
+    <q-field v-bind="field">
         <component
-            v-bind="fieldInputProps"
+            v-bind="fieldInput"
             :is="`q-${type}`"
-            :error="$v.fieldModel.$error"
-            @blur="$v.fieldModel.$touch"
-            :value="fieldModel"
-            @input="updateValue"
+            :error="$v.value.$error"
+            @blur="$v.value.$touch"
+            :value="value"
             :ref="ref"
             v-on="$listeners"
         >
@@ -67,32 +66,23 @@
 
         props: {
             type: String,
-            model: {
+            value: {
                 required: true,
             },
-            fieldProps: Object,
-            validation: Object,
-            fieldInputProps: Object,
-        },
-
-        data() {
-            return {
-                fieldModel: this.model,
-            };
+            field: Object,
+            validation: {
+                default() {
+                    return {};
+                }
+            },
+            fieldInput: Object,
         },
 
         validations() {
             return {
-                fieldModel: this.validation,
+                value: this.validation,
             };
         },
-
-        methods: {
-            updateValue(value) {
-                this.fieldModel = value;
-                this.$emit('input', value);
-            },
-        }
     };
 </script>
 
