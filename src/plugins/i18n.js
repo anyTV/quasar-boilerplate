@@ -20,6 +20,8 @@ import i18n from 'src/helpers/i18n';
  * this.$trans(obj, ['key1', 'key2'], true); // returns obj with the translated specified properties only
  * this.$trans(obj, ['nested.key']); // also supports nested properties
  * this.$trans(obj, 'single-key'); // also supports single key using string
+ * this.$trans([obj1, obj2], 'single-key'); // also supports array of objects using single key using string
+ * this.$trans([obj1, obj2], ['key1', 'key2']); // also supports array of objects using multiple keys using array
  */
 function translate (key, data) {
     return i18n.i18next.t(key, data)
