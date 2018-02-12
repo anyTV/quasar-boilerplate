@@ -149,12 +149,12 @@ describe('i18nPlugin', function () {
             .should.deep.equals({ key1: 'key1', key2: 'key2', extraKey: 'extra' });
     });
 
-    it('$trans mixin method should translate a property of an array of objects', function () {
+    it('$trans mixin method should translate array of properties on an array of objects', function () {
         wrapper.vm.$trans([{ label: 'key1' }, { label: 'key2' }], ['label'], true)
             .should.deep.equals([{ label: 'value1'}, { label: 'value2'}]);
     });
 
-    it('$trans mixin method should translate a string property', function () {
+    it('$trans mixin method should translate a string property on an array of objects', function () {
         wrapper.vm.$trans([{ label: 'key1'}, { label: 'key2'}], 'label')
             .should.deep.equals([{ label: 'value1'}, { label: 'value2'}]);
     });
