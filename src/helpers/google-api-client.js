@@ -46,7 +46,8 @@ export default function GoogleAPIClient(options) {
                 'clientId',
                 'discoveryDocs',
                 'scope',
-            ])).then(resolve);
+            ]))
+            .then(() => resolve(window.gapi));
         });
     });
 }
