@@ -27,10 +27,9 @@
                     {
                         type: 'input',
                         model: null,
+                        validation: {},
                         config: {
-                            fieldProps: {
-                                validation: {},
-                            },
+                            fieldProps: {},
                             fieldInputProps: {}
                         },
                     }

@@ -70,12 +70,8 @@
             model: {
                 required: true,
             },
-            fieldProps: {
-                type: Object,
-                validator(fieldProps) {
-                    return _.isPlainObject(fieldProps.validation);
-                }
-            },
+            fieldProps: Object,
+            validation: Object,
             fieldInputProps: Object,
         },
 
@@ -87,7 +83,7 @@
 
         validations() {
             return {
-                fieldModel: this.fieldProps.validation,
+                fieldModel: this.validation,
             };
         },
 
