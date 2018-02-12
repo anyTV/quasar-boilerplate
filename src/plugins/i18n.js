@@ -21,6 +21,10 @@ import i18n from 'src/helpers/i18n';
  * this.$trans(obj, ['nested.key']); // also supports nested properties
  * this.$trans(obj, 'single-key'); // also supports single key using string
  */
+function translate (key, data) {
+    return i18n.i18next.t(key, data)
+}
+
 const i18nPlugin = {
     install(Vue) {
 
@@ -28,17 +32,16 @@ const i18nPlugin = {
             inserted: translateInnerHTML,
             componentUpdated: translateInnerHTML
         });
-        Vue.filter('$t', (key, data) => i18n.i18next.t(key, data));
+        Vue.filter('$t', translate);
         Vue.mixin({
             methods: {
                 $trans(obj, props, trim = false) {
-
                     /**
                      * string key is passed:
                      * this.$t('key')
                      */
                     if (_.isString(obj)) {
-                        return this.$t(obj);
+                        return translate(obj);
                     }
 
                     /**
@@ -46,6 +49,11 @@ const i18nPlugin = {
                      * this.$t(['key1', 'key2'])
                      */
                     if (_.isArray(obj)) {
+                        // array of objects and props is a path to the key
+                        if (props) {
+                            return _.map(obj, item => this.$trans(item, props, trim));
+                        }
+
                         return _.map(obj, key => this.$t(key));
                     }
 
@@ -57,7 +65,6 @@ const i18nPlugin = {
                      * this.$t(obj, ['key1', 'key2'], true)
                      */
                     if (_.isPlainObject(obj) && (_.isString(props) || _.isArray(props))) {
-
                         props = _.isArray(props) ? props : [props];
                         // Create a new object to avoid unnecessary behaviors when parameter is mutated.
                         const accumulator = _.pick(obj, trim ? props : _.keys(obj));
