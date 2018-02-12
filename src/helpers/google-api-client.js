@@ -1,12 +1,11 @@
 import _ from 'lodash';
 
 /**
- * Helper class for using google api from CDN
+ * Helper function for using google api from CDN
  */
 export default function GoogleAPIClient(options) {
 
     /**
-     * Creates GoogleAPIClient instance
      * @param {Object} options - Google API Client options
      * @param {string} options.apiKey - The API Key to use.
      * @param {string} options.clientId - The app's client ID, found and created in the Google Developers Console.
@@ -32,8 +31,9 @@ export default function GoogleAPIClient(options) {
         script.defer = true;
         script.onload = window[callback];
         script.onreadystatechange = () => {
-            if (script.readyState &&
-                /loaded|complete/.test(script.readyState)) {
+            let scriptIsLoadedOrCompleted = /loaded|complete/.test(script.readyState);
+
+            if (script.readyState && scriptIsLoadedOrCompleted) {
                 window[callback]();
             }
         };
