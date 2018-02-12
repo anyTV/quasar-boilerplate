@@ -18,18 +18,16 @@ const GoogleAPIPlugin = {
 
         const config = _.defaults(options, googleAPIConfig);
 
-        await GoogleAPIClient.load(config);
+        const client = await GoogleAPIClient(config);
 
-        const instance = new GoogleAPIClient(config);
-
-        Vue.googleAPI = instance;
+        Vue.googleAPI = client;
 
         Object.defineProperties(Vue.prototype, {
             $googleAPI: {
                 get() {
-                    return instance;
-                }
-            }
+                    return client;
+                },
+            },
         });
     }
 };
