@@ -40,7 +40,7 @@ const i18nPlugin = {
                 $trans(obj, props, trim = false) {
                     /**
                      * string key is passed:
-                     * this.$t('key')
+                     * this.$trans('key')
                      */
                     if (_.isString(obj)) {
                         return translate(obj);
@@ -48,7 +48,7 @@ const i18nPlugin = {
 
                     /**
                      * array of keys is passed:
-                     * this.$t(['key1', 'key2'])
+                     * this.$trans(['key1', 'key2'])
                      */
                     if (_.isArray(obj)) {
                         // array of objects and props is a path to the key
@@ -61,10 +61,10 @@ const i18nPlugin = {
 
                     /**
                      * translate some properties of an object:
-                     * this.$t(obj, 'key1');
-                     * this.$t(obj, ['key1', 'key2'])
+                     * this.$trans(obj, 'key1');
+                     * this.$trans(obj, ['key1', 'key2'])
                      * trim other properties
-                     * this.$t(obj, ['key1', 'key2'], true)
+                     * this.$trans(obj, ['key1', 'key2'], true)
                      */
                     if (_.isPlainObject(obj) && (_.isString(props) || _.isArray(props))) {
                         props = _.isArray(props) ? props : [props];
