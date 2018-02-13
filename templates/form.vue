@@ -3,10 +3,8 @@
         <form-field
             v-for="(field, index) in form"
             :key="index"
-            v-model="field.model"
-            v-bind="field.config"
-            :type="field.type"
-            :model="field.model"
+            v-model="field.value"
+            v-bind="field"
         />
     </div>
 </template>
@@ -25,13 +23,11 @@
             return {
                 form: [
                     {
-                        type: 'input',
-                        model: null,
-                        validation: {},
-                        config: {
-                            fieldProps: {},
-                            fieldInputProps: {}
-                        },
+                        type: 'input', // will resolve to `q-${type}`
+                        value: null, // initial value of model
+                        validation: {}, // input validation using Vuelidate
+                        field: {}, // QField properties
+                        fieldInput: {} // `q-${type}` properties
                     }
                 ]
             };
