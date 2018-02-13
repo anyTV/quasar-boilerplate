@@ -168,4 +168,19 @@ describe('i18nPlugin', function () {
         wrapper.vm.$trans([{ label: 'key1'}, { label: 'key2'}], ['label', 'nonexisting'])
             .should.deep.equals([{ label: 'value1'}, { label: 'value2'}]);
     });
+
+    it('$trans mixin method should translate object with format { key, data }', function () {
+        wrapper.vm.$trans({ key: 'key3', data: { data: 'data3' } })
+            .should.be.equals('value: data3');
+    });
+
+    it('$trans mixin method should translate object with format { key, data } inside an array', function () {
+        wrapper.vm.$trans([{ key: 'key3', data: { data: 'data3' } }])
+            .should.deep.equals(['value: data3']);
+    });
+
+    it('$trans mixin method should translate object with format { key, data } inside an object', function () {
+        wrapper.vm.$trans({ prop: { key: 'key3', data: { data: 'data3' } } }, 'prop')
+            .should.deep.equals({ prop: 'value: data3' });
+    });
 });
