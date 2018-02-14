@@ -1,9 +1,12 @@
 <template>
-    <q-field v-bind="field">
+    <q-field
+        v-bind="field"
+        :error-label="errorLabel"
+    >
         <component
             v-bind="fieldInput"
             :is="`q-${type}`"
-            :error="$v.value.$error"
+            :error="error || $v.value.$error"
             @blur="$v.value.$touch"
             :value="value"
             :ref="ref"
@@ -64,7 +67,10 @@
         },
 
         props: {
-            type: String,
+            type: {
+                type: String,
+                required: true,
+            },
             value: {
                 required: true,
             },
@@ -75,6 +81,8 @@
                 }
             },
             fieldInput: Object,
+            error: Boolean,
+            errorLabel: String
         },
 
         validations() {
