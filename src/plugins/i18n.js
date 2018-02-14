@@ -56,7 +56,7 @@ const i18nPlugin = {
                             return _.map(obj, item => this.$trans(item, props, trim));
                         }
 
-                        return _.map(obj, key => translate(key));
+                        return _.map(obj, key => this.$trans(key));
                     }
 
                     /**
@@ -76,6 +76,14 @@ const i18nPlugin = {
                                 _.set(result, prop, this.$trans(_.get(result, prop)));
                             }
                         }, accumulator);
+                    }
+
+                    /**
+                     * translate object format { key, data }
+                     * this.$trans({ key: 'translate-me', data: { message: 'hello' } })
+                     */
+                    if (_.isPlainObject(obj) && _.has(obj, 'key') && !props) {
+                        return translate(obj.key, obj.data || {});
                     }
 
                     return obj;
