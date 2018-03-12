@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import {
     mount,
+    shallow,
     createLocalVue
 } from '@vue/test-utils';
 import Vuelidate from 'vuelidate';
@@ -53,6 +54,8 @@ describe('FormField.vue', function () {
             'uploader': QUploader,
         };
 
+        const stubComponent = '<div class="quasar"></div>';
+
         _.forOwn(quasarComponents, (value, key) => {
             const wrapper = mount(FormField, {
                 propsData: {
@@ -62,10 +65,13 @@ describe('FormField.vue', function () {
                     fieldProps: {}
                 },
                 localVue,
+                stubs: {
+                    [`q-${key}`]: stubComponent,
+                }
             });
 
             wrapper.contains(QField).should.be.equals(true);
-            wrapper.contains(value).should.be.equals(true);
+            wrapper.contains('.quasar').should.be.equals(true);
         });
     });
 
@@ -120,7 +126,7 @@ describe('FormField.vue', function () {
         };
 
         _.forOwn(quasarComponents, (value, key) => {
-            const wrapper = mount(FormField, {
+            const wrapper = shallow(FormField, {
                 propsData: {
                     type: key,
                     model: '',
