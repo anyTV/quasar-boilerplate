@@ -65,6 +65,7 @@ package-lock.json
 yarn.lock
 
 # Quasar Framework ignored files
+.quasar
 .DS_Store
 .thumbs.db
 dist/
