@@ -1,4 +1,3 @@
-
 export default [
   {
     path: '/',
@@ -12,4 +11,4 @@ export default [
     path: '*',
     component: () => import('pages/404')
   }
-]
+];

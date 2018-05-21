@@ -1,6 +1,9 @@
 <template>
   <q-page class="flex flex-center">
-    <img alt="Quasar logo" src="~assets/quasar-logo-full.svg">
+    <img
+      :src="appLogo"
+      alt="App Logo"
+    >
   </q-page>
 </template>
 
@@ -8,7 +11,13 @@
 </style>
 
 <script>
-export default {
-  name: 'PageIndex'
-}
+  export default {
+    name: 'PageIndex',
+
+    computed: {
+      appLogo() {
+        return 'statics/app-logo.png';
+      }
+    }
+  };
 </script>
