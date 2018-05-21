@@ -45,15 +45,15 @@ module.exports = function (ctx) {
             https: true,
             port: 8080,
             open: true, // opens browser window automatically
-            proxy: {
-                '/api': {
-                    target: '',
-                    changeOrigin: true,
-                    pathRewrite: {
-                        '^/api': ''
-                    }
-                }
-            }
+            // proxy: {
+            //     '/api': {
+            //         target: '',
+            //         changeOrigin: true,
+            //         pathRewrite: {
+            //             '^/api': ''
+            //         }
+            //     }
+            // }
         },
         // framework: 'all' --- includes everything; for dev only!
         framework: {
