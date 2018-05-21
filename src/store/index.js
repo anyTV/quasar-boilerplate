@@ -1,21 +1,14 @@
-'use strict';
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-import Vue from 'vue';
-import Vuex from 'vuex';
+import example from './module-example'
 
-import modules from './modules';
-import state from './state';
-import getters from './getters';
-import actions from './actions';
-import mutations from './mutations';
+Vue.use(Vuex)
 
-Vue.use(Vuex);
+const store = new Vuex.Store({
+  modules: {
+    example
+  }
+})
 
-export default new Vuex.Store({
-    modules,
-    state,
-    getters,
-    actions,
-    mutations,
-    strict: !PROD,
-});
+export default store
