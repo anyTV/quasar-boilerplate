@@ -2,6 +2,7 @@
   "name": "anytv-quasar-boilerplate",
   "version": "0.0.1",
   "description": "AnyTV Quasar Boilerplate",
+  "repository": "https://github.com/anyTV/quasar-boilerplate",
   "productName": "Freedom! App",
   "cordovaId": "org.cordova.quasar.app",
   "author": {
@@ -10,7 +11,8 @@
     "url": "www.freedom.tm"
   },
   "scripts": {
-    "lint": "eslint --ext .js,.vue src"
+    "lint": "eslint --ext .js,.vue src",
+    "docs": "esdoc"
   },
   "dependencies": {
     "@panter/vue-i18next": "^0.9.1",
@@ -22,13 +24,15 @@
     "lodash": "^4.17.4",
     "moment": "^2.20.1",
     "qs": "^6.5.1",
+    "vue": "^2.5.16",
     "vuelidate": "^0.6.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
+    "esdoc": "^1.1.0",
+    "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^4.18.2",
-    "eslint-config-standard": "^11.0.0",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-loader": "^2.0.0",
     "eslint-plugin-import": "^2.9.0",
