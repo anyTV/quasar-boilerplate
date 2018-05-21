@@ -24,7 +24,7 @@ module.exports = function (ctx) {
             vueRouterMode: 'history',
             analyze: true,
             devtool: 'source-map',
-            // add process to process.env
+            // add config to process.env
             env: {},
             extendWebpack(cfg) {
                 cfg.module.rules.push({

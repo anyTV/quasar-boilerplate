@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   modules: {},
-  strict: process.env.NODE_ENV !== 'production'
+  strict: !process.env.PROD
 });
 
 export default store;
