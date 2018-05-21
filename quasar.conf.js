@@ -1,11 +1,13 @@
 const path = require('path');
-// Configuration for your app
+const config = require('./config');
 
+// Configuration for your app
 module.exports = function (ctx) {
   return {
     // app plugins (/src/plugins)
     plugins: [
-      'axios'
+      'axios',
+      'vue-analytics',
     ],
     css: [
       'app.styl'
@@ -24,8 +26,7 @@ module.exports = function (ctx) {
       vueRouterMode: 'history',
       analyze: true,
       devtool: 'source-map',
-      // add config to process.env
-      env: {},
+      env: config.env,
       extendWebpack(cfg) {
         cfg.module.rules.push({
           enforce: 'pre',
