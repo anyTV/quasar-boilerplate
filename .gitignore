@@ -62,13 +62,15 @@ typings/
 
 # dependencies lock file
 package-lock.json
+yarn.lock
 
 # Quasar Framework ignored files
 .DS_Store
 .thumbs.db
 dist/
-cordova/platforms
-cordova/plugins
+/src-cordova/platforms
+/src-cordova/plugins
+/src-cordova/www
 
 # esdoc
 docs/
