@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const config = require('./config');
 
 // Configuration for your app
@@ -41,6 +42,9 @@ module.exports = function (ctx) {
           // add custom aliases below
           '@': path.resolve(__dirname, './src/components'),
         };
+
+        // ignore moment locales
+        cfg.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/));
       }
     },
     devServer: {
