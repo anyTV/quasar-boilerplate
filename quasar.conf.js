@@ -9,6 +9,7 @@ module.exports = function (ctx) {
     plugins: [
       'axios',
       'vue-analytics',
+      'vuelidate',
     ],
     css: [
       'app.styl'
