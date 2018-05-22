@@ -23,6 +23,7 @@
     "jsonwebtoken": "^8.1.1",
     "lodash-es": "^4.17.10",
     "moment": "^2.20.1",
+    "qs": "^6.5.2",
     "vue": "^2.5.16",
     "vue-analytics": "^5.12.1",
     "vue-router": "^3.0.1",

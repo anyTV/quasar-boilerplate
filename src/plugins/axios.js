@@ -1,5 +1,16 @@
-import axios from 'axios';
+import axiosHelper from 'src/helpers/axios';
 
 export default ({ Vue }) => {
-  Vue.prototype.$axios = axios;
+  Object.defineProperties(Vue.prototype, {
+    $axios: {
+      get() {
+        return axiosHelper;
+      }
+    },
+    $http: {
+      get() {
+        return axiosHelper;
+      }
+    }
+  });
 }
