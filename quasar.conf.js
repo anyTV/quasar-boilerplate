@@ -11,6 +11,12 @@ module.exports = function (ctx) {
       'vue-analytics',
       'vuelidate',
       'jwt',
+
+      /**
+       * Enable `google-api` plugin ONLY IF the app is using it since this downloads script from google CDN.
+       * This also requires a GOOGLE_CLIENT_ID to be set in the environment config: config/env/<env>/index.js.
+       */
+      // 'google-api',
     ],
     css: [
       'app.styl'
