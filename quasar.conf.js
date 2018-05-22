@@ -24,6 +24,7 @@ module.exports = function (ctx) {
       // gzip: true, // use if deployment server does not have gzip by default
       scopeHoisting: true,
       vueRouterMode: 'history',
+      publicPath: '/',
       analyze: true,
       devtool: 'source-map',
       env: config.env,
