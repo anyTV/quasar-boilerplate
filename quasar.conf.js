@@ -10,6 +10,7 @@ module.exports = function (ctx) {
       'axios',
       'vue-analytics',
       'vuelidate',
+      'jwt',
     ],
     css: [
       'app.styl'
