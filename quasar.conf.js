@@ -11,6 +11,7 @@ module.exports = function (ctx) {
       'vue-analytics',
       'vuelidate',
       'jwt',
+      'vue-i18next',
 
       /**
        * Enable `google-api` plugin ONLY IF the app is using it since this downloads script from google CDN.
