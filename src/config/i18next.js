@@ -1,15 +1,11 @@
 import { merge } from 'lodash-es';
-import en from 'src/i18n/en';
+import resources from 'src/i18n';
 
 const i18nextEnv = process.env.I18NEXT;
 const lookupKey = 'lang';
 
 const i18nextOptions = {
-  resources: {
-    en: {
-      index: en
-    }
-  },
+  resources,
   lng: 'en',
   preload: ['en'],
   fallbackLng: 'en',
