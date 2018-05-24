@@ -6,11 +6,6 @@ export default ({ Vue }) => {
       get() {
         return axiosHelper;
       }
-    },
-    $http: {
-      get() {
-        return axiosHelper;
-      }
     }
   });
 }
