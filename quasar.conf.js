@@ -35,7 +35,7 @@ module.exports = function (ctx) {
       scopeHoisting: true,
       vueRouterMode: 'history',
       publicPath: '/',
-      analyze: true,
+      analyze: process.env.ANALYZE,
       devtool: 'source-map',
       env: config.env,
       extendWebpack(cfg) {
