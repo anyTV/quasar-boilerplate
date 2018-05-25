@@ -1,23 +1,22 @@
 const path = require('path');
 const webpack = require('webpack');
 const config = require('./config');
+const pkg = require('./package');
 
 // Configuration for your app
 module.exports = function (ctx) {
     return {
         // app plugins (/src/plugins)
         plugins: [
-            'axios',
-            'vue-analytics',
-            'vuelidate',
-            'jwt',
-            'vue-i18next',
-
             /**
-             * Enable `google-api` plugin ONLY IF the app is using it since this downloads script from google CDN.
-             * This also requires a GOOGLE_CLIENT_ID to be set in the environment config: config/env/<env>/index.js.
+             * Enable only the plugins that your app is going to use.
              */
+            // 'axios',
             // 'google-api',
+            // 'jwt',
+            // 'vue-analytics',
+            // 'vue-i18next',
+            // 'vuelidate',
         ],
         css: [
             'app.styl'
@@ -83,9 +82,9 @@ module.exports = function (ctx) {
             // workboxPluginMode: 'InjectManifest',
             // workboxOptions: {},
             manifest: {
-                // name: 'Quasar App',
-                // short_name: 'Quasar-PWA',
-                // description: 'Best PWA App in town!',
+                name: pkg.productName,
+                short_name: pkg.name,
+                description: pkg.description,
                 display: 'standalone',
                 orientation: 'portrait',
                 background_color: '#ffffff',
