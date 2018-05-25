@@ -11,47 +11,48 @@ import _ from 'lodash';
  */
 export default function GoogleAPIClient(options) {
 
-  if (window.gapi) {
-    return Promise.resolve(window.gapi); // already injected
-  }
+    if (window.gapi) {
+        return Promise.resolve(window.gapi); // already injected
+    }
 
-  if (!options.clientId) {
-    throw new Error('Google Client ID is required. You can set it in config/env/<env>/index.js');
-  }
+    if (!options.clientId) {
+        throw new Error('Google Client ID is required. You can set it in config/env/<env>/index.js');
+    }
 
-  const callback = '__googleAPIOnLoadCallback';
-  const src = options.clientURL;
-  // need to wrap to a native promise object since google has its own goog.Thenable
-  return new Promise(resolve => {
+    const callback = '__googleAPIOnLoadCallback';
+    const src = options.clientURL;
+    // need to wrap to a native promise object since google has its own goog.Thenable
+    return new Promise(resolve => {
 
-    window[callback] = () => window.gapi.load(options.libraries, resolve);
+        window[callback] = () => window.gapi.load(options.libraries, resolve);
 
-    const script = document.createElement('script');
+        const script = document.createElement('script');
 
-    script.src = src;
-    script.async = true;
-    script.defer = true;
-    script.onload = window[callback];
-    script.onreadystatechange = () => {
-      let scriptIsLoadedOrCompleted = /loaded|complete/.test(script.readyState);
+        script.src = src;
+        script.async = true;
+        script.defer = true;
+        script.onload = window[callback];
+        script.onreadystatechange = () => {
+            let scriptIsLoadedOrCompleted = /loaded|complete/.test(script.readyState);
 
-      if (script.readyState && scriptIsLoadedOrCompleted) {
-        window[callback]();
-      }
-    };
+            if (script.readyState && scriptIsLoadedOrCompleted) {
+                window[callback]();
+            }
+        };
 
-    document.body.appendChild(script);
-  })
-    .then(() => {
-
-      return new Promise(resolve => {
-        window.gapi.client.init(_.pick(options, [
-            'apiKey',
-            'clientId',
-            'discoveryDocs',
-            'scope',
-          ]))
-          .then(() => resolve(window.gapi));
-      });
+        document.body.appendChild(script);
+    }).then(() => {
+        return new Promise(resolve => {
+            window.gapi.client
+                .init(
+                    _.pick(options, [
+                        'apiKey',
+                        'clientId',
+                        'discoveryDocs',
+                        'scope',
+                    ])
+                )
+                .then(() => resolve(window.gapi));
+        });
     });
 }

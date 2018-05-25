@@ -8,18 +8,18 @@ const PROD = process.env.PROD;
 const GOOGLE_ANALYTICS_ID = process.env.GOOGLE_ANALYTICS_ID;
 
 export default ({ Vue }) => {
-  Vue.use(VueAnalytics, {
-    id: GOOGLE_ANALYTICS_ID,
-    router,
-    autoTracking: {
-      transformQueryString: false,
-      skipSamePath: true,
-      exception: true,
-      exceptionLogs: false,
-    },
-    debug: {
-      sendHitTask: PROD,
-      enabled: !PROD,
-    }
-  });
-}
+    Vue.use(VueAnalytics, {
+        id: GOOGLE_ANALYTICS_ID,
+        router,
+        autoTracking: {
+            transformQueryString: false,
+            skipSamePath: true,
+            exception: true,
+            exceptionLogs: false,
+        },
+        debug: {
+            sendHitTask: PROD,
+            enabled: !PROD,
+        }
+    });
+};

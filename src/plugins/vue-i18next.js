@@ -5,15 +5,15 @@ import VueI18next from '@panter/vue-i18next';
 import i18nextConfig from 'src/config/i18next';
 
 export default ({ app, Vue }) => {
-  Vue.use(VueI18next);
+    Vue.use(VueI18next);
 
-  i18next.use(i18nextLangDetector);
+    i18next.use(i18nextLangDetector);
 
-  if (i18nextConfig.backend) {
-    i18next.use(i18nextXHRBackend);
-  }
+    if (i18nextConfig.backend) {
+        i18next.use(i18nextXHRBackend);
+    }
 
-  i18next.init(i18nextConfig);
+    i18next.init(i18nextConfig);
 
-  app.i18n = new VueI18next(i18next);
-}
+    app.i18n = new VueI18next(i18next);
+};

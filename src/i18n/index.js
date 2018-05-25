@@ -5,6 +5,6 @@ import { transform } from 'lodash-es';
 import en from './en';
 
 export default transform(
-  { en }, // you can add other resources here for testing translations
-  (resources, value, key) => resources[key] = { index: value }
+    { en }, // you can add other resources here for testing translations
+    (resources, value, key) => resources[key] = { index: value }
 );

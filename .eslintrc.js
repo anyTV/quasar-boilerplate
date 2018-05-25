@@ -29,6 +29,20 @@ module.exports = {
     },
     // add your custom rules here
     'rules': {
+        // company standard
+        'vue/html-indent': ['error', 4, {
+            'attribute': 1,
+            'closeBracket': 0,
+            'alignAttributesVertically': true,
+            'ignores': []
+        }],
+        'vue/script-indent': ['error', 4, {
+            'baseIndent': 1,
+            'switchCase': 1,
+            'ignores': []
+        }],
+        'semi': ['error', 'always'],
+
         // allow async-await
         'generator-star-spacing': 'off',
 

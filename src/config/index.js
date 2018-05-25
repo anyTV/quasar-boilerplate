@@ -4,5 +4,5 @@
  * Build configurations should be placed in /config directory outside the /src directory.
  */
 export default {
-  JWT_STORAGE_KEY: 'JWT_STORAGE_KEY',
+    JWT_STORAGE_KEY: 'JWT_STORAGE_KEY',
 };

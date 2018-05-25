@@ -5,8 +5,8 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
-  modules: {},
-  strict: !process.env.PROD
+    modules: {},
+    strict: !process.env.PROD
 });
 
 export default store;
