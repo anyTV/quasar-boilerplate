@@ -11,12 +11,12 @@ module.exports = function (ctx) {
             /**
              * Enable only the plugins that your app is going to use.
              */
-            // 'axios',
-            // 'google-api',
-            // 'jwt',
-            // 'vue-analytics',
-            // 'vue-i18next',
-            // 'vuelidate',
+            'axios',
+            'google-api',
+            'jwt',
+            'vue-analytics',
+            'vue-i18next',
+            'vuelidate',
         ],
         css: [
             'app.styl'
@@ -69,13 +69,14 @@ module.exports = function (ctx) {
             //     }
             // }
         },
-        // framework: 'all' --- includes everything; for dev only!
-        framework: {
-            components: [],
-            directives: [],
-            // Quasar plugins
-            plugins: []
-        },
+        framework: 'all',
+        // --- includes everything; for dev only!
+        // framework: {
+        //     components: [],
+        //     directives: [],
+        //     // Quasar plugins
+        //     plugins: []
+        // },
         // animations: 'all' --- includes all animations
         animations: [],
         pwa: {
