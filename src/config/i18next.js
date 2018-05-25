@@ -7,7 +7,7 @@ const lookupKey = 'lang';
 const i18nextOptions = {
     resources,
     lng: 'en',
-    preload: ['en'],
+    preload: ['en', 'jp', 'th'],
     fallbackLng: 'en',
     ns: ['index'],
     defaultNS: 'index',

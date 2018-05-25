@@ -1,2 +1,7 @@
 {
+  "sample": "Sample i18n",
+  "english": "English",
+  "thai": "Thai",
+  "japanese": "Japanese",
+  "locales": "Locales"
 }
