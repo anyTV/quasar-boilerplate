@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { LocalStorage } from 'quasar';
-import { get } from 'lodash-es';
+import { get } from 'lodash';
 
 
 export default class JWT {

@@ -1,4 +1,4 @@
-import { transform } from 'lodash-es';
+import { transform } from 'lodash';
 
 // These resources are used in development
 // Production uses i18nextxhrbackend

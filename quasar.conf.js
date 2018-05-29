@@ -49,6 +49,7 @@ module.exports = function (ctx) {
                     ...cfg.resolve.alias,
                     // add custom aliases below
                     '@': path.resolve(__dirname, './src/components'),
+                    'lodash': 'lodash-es',
                 };
 
                 // ignore moment locales
