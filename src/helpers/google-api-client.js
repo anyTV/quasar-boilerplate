@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { pick } from 'lodash-es';
 
 /**
  * Helper function for using google api from CDN
@@ -44,14 +44,12 @@ export default function GoogleAPIClient(options) {
     }).then(() => {
         return new Promise(resolve => {
             window.gapi.client
-                .init(
-                    _.pick(options, [
-                        'apiKey',
-                        'clientId',
-                        'discoveryDocs',
-                        'scope',
-                    ])
-                )
+                .init(pick(options, [
+                    'apiKey',
+                    'clientId',
+                    'discoveryDocs',
+                    'scope',
+                ]))
                 .then(() => resolve(window.gapi));
         });
     });
