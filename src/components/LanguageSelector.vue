@@ -22,7 +22,7 @@
 </template>
 
 <script>
-    import { every } from 'lodash-es';
+    import { every } from 'lodash';
     import { hasKeys } from 'src/helpers/utils';
 
     /**

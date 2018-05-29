@@ -1,4 +1,4 @@
-import { merge } from 'lodash-es';
+import { merge } from 'lodash';
 import resources from 'src/i18n';
 
 const i18nextEnv = process.env.I18NEXT;
