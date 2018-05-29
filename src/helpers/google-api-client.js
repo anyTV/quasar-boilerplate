@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { pick } from 'lodash';
 
 /**
  * Helper function for using google api from CDN
@@ -13,6 +13,10 @@ export default function GoogleAPIClient(options) {
 
     if (window.gapi) {
         return Promise.resolve(window.gapi); // already injected
+    }
+
+    if (!options.clientId) {
+        throw new Error('Google Client ID is required. You can set it in config/env/<env>/index.js');
     }
 
     const callback = '__googleAPIOnLoadCallback';
@@ -37,17 +41,16 @@ export default function GoogleAPIClient(options) {
         };
 
         document.body.appendChild(script);
-    })
-    .then(() => {
-
+    }).then(() => {
         return new Promise(resolve => {
-            window.gapi.client.init(_.pick(options, [
-                'apiKey',
-                'clientId',
-                'discoveryDocs',
-                'scope',
-            ]))
-            .then(() => resolve(window.gapi));
+            window.gapi.client
+                .init(pick(options, [
+                    'apiKey',
+                    'clientId',
+                    'discoveryDocs',
+                    'scope',
+                ]))
+                .then(() => resolve(window.gapi));
         });
     });
 }

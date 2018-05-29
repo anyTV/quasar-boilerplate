@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { LocalStorage } from 'quasar';
+import { get } from 'lodash';
 
 
 export default class JWT {
@@ -26,10 +27,16 @@ export default class JWT {
         return this;
     }
 
-    decode() {
-        return jwt.decode(this.getToken(), {
+    decode(path = null, defaultValue = null) {
+        const decoded = jwt.decode(this.getToken(), {
             complete: true,
             force: true
         });
+
+        if (!path) {
+            return decoded;
+        }
+
+        return get(decoded, path, defaultValue);
     }
 }
