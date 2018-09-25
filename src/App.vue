@@ -1,5 +1,8 @@
 <template>
-    <div id="q-app">
+    <div
+        v-waitForT
+        id="q-app"
+    >
         <router-view />
     </div>
 </template>
