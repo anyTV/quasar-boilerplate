@@ -105,6 +105,23 @@
                 type: String,
                 default: ''
             },
+            monthOptions: {
+                type: [Array, Object],
+                default: () => [
+                    'January',
+                    'February',
+                    'March',
+                    'April',
+                    'May',
+                    'June',
+                    'July',
+                    'August',
+                    'September',
+                    'October',
+                    'November',
+                    'December',
+                ],
+            }
         },
 
         data() {
@@ -150,23 +167,6 @@
             yearOptions() {
                 return _.map(_.range(this.yearRange), offset => this.maxYear - offset);
             },
-
-            monthOptions() {
-                return _.map([
-                    'jan',
-                    'feb',
-                    'mar',
-                    'apr',
-                    'may',
-                    'jun',
-                    'jul',
-                    'aug',
-                    'sep',
-                    'oct',
-                    'nov',
-                    'dec',
-                ], this.$t);
-            }
         },
 
         methods: {
