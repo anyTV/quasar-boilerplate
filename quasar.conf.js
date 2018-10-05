@@ -15,7 +15,7 @@ module.exports = function (ctx) {
             // 'google-api',
             // 'jwt',
             // 'vue-analytics',
-            // 'vue-i18next',
+            'vue-i18next',
             // 'vuelidate',
         ],
         css: [
