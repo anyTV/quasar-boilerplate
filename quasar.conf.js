@@ -15,8 +15,13 @@ module.exports = function (ctx) {
             // 'google-api',
             // 'jwt',
             // 'vue-analytics',
-            // 'vue-i18next',
             // 'vuelidate',
+
+            /**
+             * if vue-i18next is enabled, we can use directive v-waitForT so translations can be loaded first
+             * before rendering the component
+             */
+            // 'vue-i18next',
         ],
         css: [
             'app.styl'

@@ -1,6 +1,5 @@
 <template>
     <div
-        v-waitForT
         id="q-app"
     >
         <router-view />
