@@ -5,6 +5,9 @@
 ## Build Setup
 
 ``` bash
+# install cross-env
+$ npm i -g cross-env
+
 # install dependencies
 $ npm install
 
