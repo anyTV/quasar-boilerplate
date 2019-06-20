@@ -12,6 +12,7 @@
   },
   "scripts": {
     "lint": "eslint --ext .js,.vue src",
+    "dev": "cross-env node node_modules/quasar-cli/bin/quasar dev",
     "docs": "esdoc"
   },
   "dependencies": {
