@@ -6,8 +6,8 @@ const pkg = require('./package');
 // Configuration for your app
 module.exports = function (ctx) {
     return {
-        // app plugins (/src/plugins)
-        plugins: [
+        // app boot (/src/boot)
+        boot: [
             /**
              * Enable only the plugins that your app is going to use.
              */
@@ -27,11 +27,9 @@ module.exports = function (ctx) {
             'app.styl'
         ],
         extras: [
-            ctx.theme.mat ? 'roboto-font' : null,
-            'material-icons',
-            ctx.theme.ios ? 'ionicons' : null,
-            // 'mdi',
-            // 'fontawesome'
+            // 'mdi-v3',
+            // 'fontawesome-v5',
+            // 'ionicons-v4'
         ],
         supportIE: true,
         build: {

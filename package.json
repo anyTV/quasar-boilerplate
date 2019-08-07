@@ -16,8 +16,10 @@
     "docs": "esdoc"
   },
   "dependencies": {
-    "@panter/vue-i18next": "^0.13.0",
-    "axios": "^0.17.1",
+    "@panter/vue-i18next": "^0.15.1",
+    "@quasar/app": "^1.0.4",
+    "@quasar/extras": "^1.2.0",
+    "axios": "^0.19.0",
     "i18next": "^10.2.2",
     "i18next-browser-languagedetector": "^2.1.0",
     "i18next-xhr-backend": "^1.5.1",
@@ -25,6 +27,7 @@
     "lodash-es": "^4.17.10",
     "moment": "^2.20.1",
     "qs": "^6.5.2",
+    "quasar": "^1.0.5",
     "vue": "^2.5.16",
     "vue-analytics": "^5.12.1",
     "vue-router": "^3.0.1",
@@ -47,7 +50,7 @@
     "lodash": "^4.17.10",
     "quasar-cli": "^0.17.23",
     "strip-ansi": "^3.0.1",
-    "webpack": "^4.8.3"
+    "webpack": "^4.39.1"
   },
   "engines": {
     "node": ">= 8.9.0",
