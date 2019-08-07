@@ -13,15 +13,6 @@ module.exports = {
                 'useBuiltIns': 'usage'
             }
         ],
-        [
-            '@babel/preset-stage-2',
-            {
-                'modules': false,
-                'loose': false,
-                'useBuiltIns': true,
-                'decoratorsLegacy': true
-            }
-        ]
     ],
     'comments': false
 }
