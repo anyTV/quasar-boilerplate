@@ -84,7 +84,9 @@ module.exports = function (ctx) {
         animations: [],
         pwa: {
             // workboxPluginMode: 'InjectManifest',
-            // workboxOptions: {},
+            workboxOptions: {
+                skipWaiting: true
+            },
             manifest: {
                 name: pkg.productName,
                 short_name: pkg.name,
