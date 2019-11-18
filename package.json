@@ -27,7 +27,7 @@
     "lodash-es": "^4.17.10",
     "moment": "^2.20.1",
     "qs": "^6.5.2",
-    "quasar": "^1.0.5",
+    "quasar": "^1.4.3",
     "vue": "^2.5.16",
     "vue-analytics": "^5.12.1",
     "vue-router": "^3.0.1",
