@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "@panter/vue-i18next": "^0.15.1",
-    "@quasar/app": "^1.0.4",
-    "@quasar/extras": "^1.2.0",
+    "@quasar/app": "^1.6.2",
+    "@quasar/extras": "^1.6.4",
     "axios": "^0.19.0",
     "i18next": "^10.2.2",
     "i18next-browser-languagedetector": "^2.1.0",
@@ -36,7 +36,7 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "@quasar/cli": "^1.0.0-beta.2",
+    "@quasar/cli": "^1.0.6",
     "babel-eslint": "^8.2.1",
     "esdoc": "^1.1.0",
     "esdoc-standard-plugin": "^1.0.0",
