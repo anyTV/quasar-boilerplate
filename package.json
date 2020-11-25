@@ -29,7 +29,7 @@
         "qs": "^6.5.2",
         "quasar": "^1.14.1",
         "vue": "^2.5.16",
-        "vue-analytics": "^5.12.1",
+        "vue-gtm": "3.1.0-vue2",
         "vue-router": "^3.0.1",
         "vue-template-compiler": "^2.6.7",
         "vuelidate": "^0.6.2",

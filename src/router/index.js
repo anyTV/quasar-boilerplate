@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import routes from './routes';
+import ga from './analytics';
 
 Vue.use(VueRouter);
 
@@ -19,6 +20,17 @@ const Router = new VueRouter({
     base: process.env.VUE_ROUTER_BASE,
     scrollBehavior: () => ({ y: 0 }),
     routes
+});
+
+Router.afterEach(to => {
+    Vue.gtm.trackView(
+        to.path,
+        to.name,
+        {
+            cid: ga.getSessionId() || ga.createSessionId(),
+            path: to.path
+        }
+    );
 });
 
 export default Router;
