@@ -15,7 +15,7 @@ module.exports = function (ctx) {
             // 'google-api',
             // 'jwt',
             // 'vuelidate',
-            // 'vue-gtm'
+            'vue-gtm'
 
             /**
              * if vue-i18next is enabled, we can use directive v-waitForT so translations can be loaded first
