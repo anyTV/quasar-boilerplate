@@ -27,7 +27,7 @@ Router.afterEach(to => {
         to.path,
         to.name,
         {
-            cid: ga.getSessionId() || ga.createSessionId(),
+            cid: ga.createSessionId(),
             path: to.path
         }
     );
