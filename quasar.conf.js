@@ -14,8 +14,8 @@ module.exports = function (ctx) {
             // 'axios',
             // 'google-api',
             // 'jwt',
-            // 'vue-analytics',
             // 'vuelidate',
+            'vue-gtm'
 
             /**
              * if vue-i18next is enabled, we can use directive v-waitForT so translations can be loaded first
