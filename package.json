@@ -35,6 +35,9 @@
         "vuelidate": "^0.6.2",
         "vuex": "^3.0.1"
     },
+    "dependenciesComments": {
+        "vue-gtm": "Default packages are built for vue3, use `-vue2` for all packages that would be installed. @see https://github.com/mib200/vue-gtm/issues/98"
+    },
     "devDependencies": {
         "@quasar/cli": "^1.1.2",
         "babel-eslint": "^8.2.1",
