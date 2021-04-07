@@ -2,7 +2,7 @@
     <div
         id="q-app"
     >
-        <router-view />
+        <router-view v-waitForT/>
     </div>
 </template>
 

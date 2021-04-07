@@ -75,7 +75,25 @@ module.exports = function (ctx) {
         },
         // framework: 'all' --- includes everything; for dev only!
         framework: {
-            components: [],
+            components: [
+                'QBadge',
+                'QBreadcrumbs',
+                'QBreadcrumbsEl',
+                'QBtn',
+                'QBtnToggle',
+                'QFooter',
+                'QHeader',
+                'QLayout',
+                'QList',
+                'QPagination',
+                'QRadio',
+                'QTab',
+                'QTabPanel',
+                'QTabPanels',
+                'QTable',
+                'QTabs',
+                'QToggle',
+            ],
             directives: [],
             // Quasar plugins
             plugins: []
