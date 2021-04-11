@@ -15,18 +15,19 @@ module.exports = function (ctx) {
             // 'google-api',
             // 'jwt',
             // 'vuelidate',
-            'vue-gtm'
+            'vue-gtm',
 
             /**
              * if vue-i18next is enabled, we can use directive v-waitForT so translations can be loaded first
              * before rendering the component
              */
-            // 'vue-i18next',
+            'vue-i18next',
         ],
         css: [
             'app.styl'
         ],
         extras: [
+            'material-icons',
             // 'mdi-v3',
             // 'fontawesome-v5',
             // 'ionicons-v4'
@@ -83,10 +84,12 @@ module.exports = function (ctx) {
                 'QBtnToggle',
                 'QFooter',
                 'QHeader',
+                'QIcon',
                 'QLayout',
                 'QList',
                 'QPagination',
                 'QRadio',
+                'QSelect',
                 'QTab',
                 'QTabPanel',
                 'QTabPanels',
@@ -96,7 +99,9 @@ module.exports = function (ctx) {
             ],
             directives: [],
             // Quasar plugins
-            plugins: []
+            plugins: [
+                'LocalStorage',
+            ]
         },
         // animations: 'all' --- includes all animations
         animations: [],

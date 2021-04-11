@@ -1,111 +1,57 @@
 <template>
-    <f-table
-        :tabs-data="headerTabs"
-        header-help-text="Payment requests"
-    >
-        <template v-slot:header-right>
-            <q-toggle
-                v-model="selection"
-                left-label
-                color="blue"
-                label="Auto Payment"
-                val="auto_payment" />
+    <div>
+        <f-table
+            :tabs-data="headerTabs"
+            :selected-tab="selectedTab"
+            :page-header="false"
+            tab-indicator-color="transparent"
+        >
+            <template v-slot:header-left />
 
-            <q-toggle
-                v-model="selection"
-                left-label
-                color="blue"
-                label="Payment Request"
-                val="auto_payment" />
-        </template>
+            <template v-slot:filter_preApprovedTracks>
+                Filter for Pre Approved Tasks
+            </template>
+            <template v-slot:table_preApprovedTracks>
+                <q-table
+                    :data="requestTabData"
+                    :columns="columns"
+                    :hide-bottom="hideBottom"
+                    :loading="loading"
+                    :pagination.sync="tablePagination"
+                    binary-state-sort
+                    row-key="id"
+                    @request="getTableData"
+                />
+            </template>
 
-        <template v-slot:control-right>
-            <div class="q-gutter-xs q-ma-none">
-                <q-btn
-                    color="primary"
-                    label="On Left" />
-                <q-btn
-                    color="secondary"
-                    label="On Right" />
-            </div>
-        </template>
+            <template v-slot:filter_recommended>
+                Filter for Recommended
+            </template>
+            <template v-slot:table_recommended>
+                <q-table
+                    :data="requestTabData"
+                    :columns="columns"
+                    :hide-bottom="hideBottom"
+                    :loading="loading"
+                    :pagination.sync="tablePagination"
+                    binary-state-sort
+                    row-key="id"
+                    @request="getTableData"
+                />
+            </template>
 
-        <template v-slot:filter_requests>
-            Placeholder filter for requests tab
-        </template>
-        <template v-slot:table_requests>
-            <q-table
-                :data="requestTabData"
-                :columns="columns"
-                :hide-bottom="hideBottom"
-                :loading="loading"
-                :pagination.sync="tablePagination"
-                binary-state-sort
-                row-key="id"
-                @request="getTableData"
-            />
-        </template>
-
-        <template v-slot:filter_payments>
-            Placeholder filter for payments tab
-        </template>
-        <template v-slot:table_payments>
-            <q-table
-                :data="requestTabData"
-                :columns="columns"
-                :hide-bottom="hideBottom"
-                :loading="loading"
-                :pagination.sync="tablePagination"
-                binary-state-sort
-                row-key="id"
-                @request="getTableData"
-            />
-        </template>
-
-        <template v-slot:filter_paid>
-            Placeholder filter for paid
-        </template>
-        <template v-slot:table_paid>
-            <q-table
-                :data="requestTabData"
-                :columns="columns"
-                :hide-bottom="hideBottom"
-                :loading="loading"
-                :pagination.sync="tablePagination"
-                binary-state-sort
-                row-key="id"
-                @request="getTableData"
-            />
-        </template>
-
-        <template v-slot:filter_rejected>
-            Placeholder filter for Rejected
-        </template>
-        <template v-slot:table_rejected>
-            <q-table
-                :data="requestTabData"
-                :columns="columns"
-                :hide-bottom="hideBottom"
-                :loading="loading"
-                :pagination.sync="tablePagination"
-                binary-state-sort
-                row-key="id"
-                @request="getTableData"
-            />
-        </template>
-
-        <template v-slot:paginate>
-            <f-paginate
-                v-model="pagination"
-                show-items-total
-                per-page-text="Requests per page"
-                total-items-text="Requests total"
-                align-end
-                @input="newPagination"
-            />
-        </template>
-
-    </f-table>
+            <template v-slot:paginate>
+                <f-paginate
+                    v-model="pagination"
+                    show-items-total
+                    per-page-text="requests-per-page"
+                    total-items-text="tracks-available"
+                    align-end
+                    @input="newPagination"
+                />
+            </template>
+        </f-table>
+    </div>
 </template>
 
 <script>
@@ -124,12 +70,10 @@
         ],
         data () {
             return {
-                selection: [ 'yellow', 'red' ],
+                selectedTab: 'preApprovedTracks',
                 headerTabs: [
-                    { name: 'requests', badge: '$300.00' },
-                    { name: 'payments', badge: '$02.00' },
-                    { name: 'paid', badge: 'Feb $100K' },
-                    { name: 'rejected',  badge: 'Feb $900' }
+                    { name: 'preApprovedTracks' },
+                    { name: 'recommended', badge: '3' },
                 ],
                 hideBottom: true,
                 loading: false,
@@ -157,6 +101,7 @@
             },
         },
         mounted () {
+            this.$q.dark.set(true);
             this.getTableData({
                 pagination: this.tablePagination
             });
@@ -225,7 +170,3 @@
         }
     };
 </script>
-
-<style scoped>
-
-</style>

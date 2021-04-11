@@ -1,22 +1,20 @@
 <template>
     <f-table
         :tabs-data="headerTabs"
-        header-help-text="Payment requests"
+        :breadcrumbs="breadcrumbs"
+        :table-title="tableTitle"
     >
-        <template v-slot:header-right>
-            <q-toggle
-                v-model="selection"
-                left-label
-                color="blue"
-                label="Auto Payment"
-                val="auto_payment" />
 
-            <q-toggle
-                v-model="selection"
-                left-label
-                color="blue"
-                label="Payment Request"
-                val="auto_payment" />
+        <template v-slot:header-right>
+            <div class="q-pa-md text-grey-7">
+                Space for additional info or help text
+                <q-icon
+                    name="warning_amber"
+                    class="q-px-xs" />
+                <q-icon
+                    name="error_outline"
+                    class="q-px-xs"/>
+            </div>
         </template>
 
         <template v-slot:control-right>
@@ -30,58 +28,10 @@
             </div>
         </template>
 
-        <template v-slot:filter_requests>
-            Placeholder filter for requests tab
+        <template v-slot:filter_preApprovedTracks>
+            FILTER requests
         </template>
-        <template v-slot:table_requests>
-            <q-table
-                :data="requestTabData"
-                :columns="columns"
-                :hide-bottom="hideBottom"
-                :loading="loading"
-                :pagination.sync="tablePagination"
-                binary-state-sort
-                row-key="id"
-                @request="getTableData"
-            />
-        </template>
-
-        <template v-slot:filter_payments>
-            Placeholder filter for payments tab
-        </template>
-        <template v-slot:table_payments>
-            <q-table
-                :data="requestTabData"
-                :columns="columns"
-                :hide-bottom="hideBottom"
-                :loading="loading"
-                :pagination.sync="tablePagination"
-                binary-state-sort
-                row-key="id"
-                @request="getTableData"
-            />
-        </template>
-
-        <template v-slot:filter_paid>
-            Placeholder filter for paid
-        </template>
-        <template v-slot:table_paid>
-            <q-table
-                :data="requestTabData"
-                :columns="columns"
-                :hide-bottom="hideBottom"
-                :loading="loading"
-                :pagination.sync="tablePagination"
-                binary-state-sort
-                row-key="id"
-                @request="getTableData"
-            />
-        </template>
-
-        <template v-slot:filter_rejected>
-            Placeholder filter for Rejected
-        </template>
-        <template v-slot:table_rejected>
+        <template v-slot:table_preApprovedTracks>
             <q-table
                 :data="requestTabData"
                 :columns="columns"
@@ -98,8 +48,8 @@
             <f-paginate
                 v-model="pagination"
                 show-items-total
-                per-page-text="Requests per page"
-                total-items-text="Requests total"
+                per-page-text="items-per-page"
+                total-items-text="items-total"
                 align-end
                 @input="newPagination"
             />
@@ -124,12 +74,16 @@
         ],
         data () {
             return {
+                tableTitle: 'Table Title',
+                breadcrumbs: [
+                    {label: 'Home', to: '/'},
+                    {label: 'Channel', to: '/channel'},
+                    {label: 'User', to: '/user'},
+                    {label: 'Freedom ID'},
+                ],
                 selection: [ 'yellow', 'red' ],
                 headerTabs: [
-                    { name: 'requests', badge: '$300.00' },
-                    { name: 'payments', badge: '$02.00' },
-                    { name: 'paid', badge: 'Feb $100K' },
-                    { name: 'rejected',  badge: 'Feb $900' }
+                    { name: 'preApprovedTracks' },
                 ],
                 hideBottom: true,
                 loading: false,
@@ -225,7 +179,3 @@
         }
     };
 </script>
-
-<style scoped>
-
-</style>
