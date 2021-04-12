@@ -7,7 +7,7 @@
 
         <template v-slot:header-right>
             <div class="q-pa-md text-grey-7">
-                Space for additional info or help text
+                <span v-text="$trans('additional_info')"/>
                 <q-icon
                     name="warning_amber"
                     class="q-px-xs" />
@@ -20,16 +20,18 @@
         <template v-slot:control-right>
             <div class="q-gutter-xs q-ma-none">
                 <q-btn
+                    :label="$trans('on_left')"
                     color="primary"
-                    label="On Left" />
+                />
                 <q-btn
+                    :label="$trans('on_right')"
                     color="secondary"
-                    label="On Right" />
+                />
             </div>
         </template>
 
         <template v-slot:filter_preApprovedTracks>
-            FILTER requests
+            <span v-text="$trans('filter_1')"/>
         </template>
         <template v-slot:table_preApprovedTracks>
             <q-table
@@ -46,10 +48,10 @@
 
         <template v-slot:paginate>
             <f-paginate
-                v-model="pagination"
+                v-model="tablePagination"
                 show-items-total
-                per-page-text="items-per-page"
-                total-items-text="items-total"
+                per-page-text="items_per_page"
+                total-items-text="items_total"
                 align-end
                 @input="newPagination"
             />
@@ -62,8 +64,8 @@
     import FPaginate from "src/components/common/FPaginate";
     import FTable from 'src/components/partials/tables/FTable';
     import pageConfig from 'src/config/pagination';
-    import tableData from 'src/data/tableData/tableWithTabs';
-    import tableColumns from 'src/data/tableColumns/tableWithTabs';
+    import tableData from 'src/sample/tableData/tableWithTabs';
+    import tableColumns from 'src/sample/tableColumns/tableWithTabs';
     import UtilMixin from 'src/mixins/utils';
 
     export default {
@@ -74,12 +76,12 @@
         ],
         data () {
             return {
-                tableTitle: 'Table Title',
+                tableTitle: this.$trans('table_title'),
                 breadcrumbs: [
-                    {label: 'Home', to: '/'},
-                    {label: 'Channel', to: '/channel'},
-                    {label: 'User', to: '/user'},
-                    {label: 'Freedom ID'},
+                    {label: 'home', to: '/'},
+                    {label: 'channel', to: '/channel'},
+                    {label: 'user', to: '/user'},
+                    {label: 'freedom_id'},
                 ],
                 selection: [ 'yellow', 'red' ],
                 headerTabs: [
@@ -90,24 +92,16 @@
                 tableData,
                 tableColumns,
                 requestTabData: [],
-                pagination: pageConfig.default,
                 tablePagination: {
+                    ...pageConfig.default,
                     sortBy: 'id',
-                    descending: false,
-                    page: pageConfig.default.page,
-                    rowsPerPage: pageConfig.default.perPage,
-                    rowsNumber: pageConfig.default.total
+                    descending: false
                 },
             };
         },
         computed: {
             columns() {
-                return this.tableColumns.map(col => {
-                    return {
-                        ...col,
-                        label: this.$trans(col.label),
-                    };
-                });
+                return this.getTableColumns(tableColumns);
             },
         },
         mounted () {
@@ -130,27 +124,26 @@
                 // emulate server
                 setTimeout(() => {
                     const returnedData = this.fetchFromServer({
-                        ...props.pagination, ...this.pagination
+                        ...props.pagination
                     });
                     this.requestTabData = returnedData.data.items;
-                    this.pagination = this.setPaginationOptions(returnedData);
+                    const pagination = this.setPaginationOptions(returnedData);
+
                     this.tablePagination = {
-                        page: this.pagination.page,
-                        rowsPerPage: this.pagination.perPage,
-                        rowsNumber: this.pagination.total,
+                        ...pagination,
                         sortBy,
                         descending
                     };
                     this.loading = false;
-                });
+                }, 500);
             },
 
             // emulate api call
-            fetchFromServer ({page, perPage, sortBy, descending}) {
+            fetchFromServer ({page, rowsPerPage, sortBy, descending}) {
 
                 const total = this.tableData.items.length;
-                const startRow = (page - 1) * perPage;
-                const count = perPage === 0 ? total : perPage;
+                const startRow = (page - 1) * rowsPerPage;
+                const count = rowsPerPage === 0 ? total : rowsPerPage;
                 const tableData = this.tableData.items;
 
                 if (sortBy) {
@@ -168,7 +161,7 @@
 
                 const data = {
                     page,
-                    perPage: perPage,
+                    perPage: rowsPerPage,
                     total,
                     items: tableData.slice(startRow, startRow + count)
                 };

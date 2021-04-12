@@ -1,5 +1,5 @@
 <template>
-    <div class="q-px-none q-py-sm">
+    <div class="q-px-none q-py-sm table-pagination">
         <div
             v-if="pageHeader"
             class="row"
@@ -22,7 +22,7 @@
                         </template>
                         <q-breadcrumbs-el
                             v-for="breadcrumb in breadcrumbs"
-                            :label="breadcrumb.label"
+                            :label="$trans(breadcrumb.label)"
                             :key="breadcrumb.label"
                             :to="breadcrumb.to"
                             class="text-grey-7"
@@ -74,15 +74,13 @@
                             :key="tab.name"
                             v-bind="tab"
                             :name="tab.name"
-                            :class="tab.name === selectedTab && isDark ? 'bg-grey-9 border-radius-3' : ''"
-                            :content-class="contentClass(tab.name)"
-                            class="text-weight-regular"
+                            content-class="tab-content-class"
+                            class="text-weight-regular q-mx-sm"
                             label=""
                         >
                             <span v-text="tab.label" />
                             <q-badge
                                 v-if="tab.badge"
-                                :color="tab.name === selectedTab ? selectedBadgeColor : badgeColor"
                                 class="q-ml-xs"
                                 v-text="tab.badge"/>
                         </q-tab>
@@ -123,7 +121,6 @@
             <div class="col">
                 <q-footer class="page-footer">
                     <div
-                        :class="isDark ? 'bg-black text-white' : 'bg-white text-black'"
                         class="q-px-md pagination">
                         <slot name="paginate" />
                     </div>
@@ -141,45 +138,31 @@
         props: {
             pageHeader: {
                 type: Boolean,
-                default () {
-                    return true;
-                }
+                default: true
             },
             tableTitle: {
                 type: String,
-                default () {
-                    return '';
-                }
+                default: ''
             },
             TabsData: {
                 type: Array,
-                default () {
-                    return [];
-                }
+                default: () => []
             },
             breadcrumbs: {
                 type: Array,
-                default () {
-                    return [];
-                }
+                default: () => []
             },
             headerHelpText: {
                 type: String,
-                default () {
-                    return '';
-                }
+                default: ''
             },
             defaultTab: {
                 type: String,
-                default () {
-                    return '';
-                }
+                default: ''
             },
             tabIndicatorColor: {
                 type: String,
-                default () {
-                    return "";
-                }
+                default: ''
             }
         },
         data () {
@@ -188,37 +171,18 @@
             };
         },
         computed: {
-            isDark() {
-                return this.$q.dark.isActive;
-            },
             tabs() {
                 return this.TabsData.map(tab => {
                     return {
                         ...tab,
-                        label: this.$trans(_.kebabCase(tab.name)),
+                        label: this.$trans(_.snakeCase(tab.name)),
                     };
                 });
-            },
-            badgeColor() {
-                return this.isDark ? 'grey-9' : 'grey-8';
-            },
-            selectedBadgeColor() {
-                return this.isDark ? 'white text-grey-10' : 'blue';
             },
         },
         created() {
             this.selectedTab = this.defaultTab ? this.defaultTab : _.first(this.tabs).name;
         },
-        methods: {
-            contentClass(tab) {
-                if (this.isDark) {
-                    return this.selectedTab === tab ? 'white' : 'text-grey-5';
-                }
-                else {
-                    return 'text-weight-bold';
-                }
-            }
-        }
     };
 </script>
 
@@ -226,8 +190,8 @@
     .border-bottom-grey
         border-bottom: 1px solid $grey-5
 
-    .border-radius-3
-        border-radius: 5px
+    .tab-content-class
+        font-weight 600
 
     .pagination
         background #FFFFFF 0% 0% no-repeat padding-box
@@ -237,4 +201,42 @@
 
     .page-footer
         background transparent
+
+    body.body--dark
+        .q-tab
+            border-radius: 5px
+
+        .q-badge
+            background $grey-9
+            color $fff
+
+        .q-tab--active
+            background $grey-9
+            .q-badge
+                color $grey-8
+
+        .pagination
+            background #000
+            color $fff
+</style>
+
+<style lang="stylus">
+    .table-pagination
+        .tab-content-class
+            font-weight 600
+
+    body.body--dark
+        .table-pagination
+            .tab-content-class
+                font-weight 500
+
+        .tab-content-class
+            color $grey-5
+
+        .q-tab--active
+            .tab-content-class
+                color #fff
+            .q-badge
+                background #fff
+                color $grey-10
 </style>

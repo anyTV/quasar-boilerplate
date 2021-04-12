@@ -5,7 +5,7 @@
     >
         <div
             v-if="showItemsTotal"
-            v-text="getItemsTotal(value.total)"
+            v-text="getItemsTotal(value.rowsNumber)"
         />
 
         <div
@@ -19,7 +19,7 @@
             />
             <q-select
                 v-if="!noPerPage"
-                :value="value.perPage"
+                :value="value.rowsPerPage"
                 :options="perPageOptions"
                 :disable="disable"
                 class="paginate-select"
@@ -42,7 +42,8 @@
 
 <script>
     import _ from 'lodash';
-    import UtilMixin from 'src/mixins/utils';
+    import UtilMixin, { arrayToOptions } from 'src/mixins/utils';
+    import pageConfig from 'src/config/pagination';
 
     export default {
         name: 'FPaginate',
@@ -87,10 +88,8 @@
         },
 
         data() {
-            let perPageOptions = [10, 30, 50];
-
             return {
-                perPageOptions: this.arrayToOptions(perPageOptions),
+                perPageOptions: arrayToOptions(pageConfig.perPageOptions),
             };
         },
 
@@ -100,7 +99,7 @@
             },
 
             pageMax() {
-                return Math.ceil(this.value.total / this.value.perPage) || 1;
+                return Math.ceil(this.value.rowsNumber / this.value.rowsPerPage) || 1;
             },
 
             checkPerPageMessage() {
@@ -115,9 +114,9 @@
                 const newPagination = _.cloneDeep(this.value);
 
                 newPagination.page = 1;
-                newPagination.perPage = newPerPage.value;
+                newPagination.rowsPerPage = newPerPage.value;
                 this.$emit('input', newPagination);
-                this.$emit('change', { perPage: newPerPage.value });
+                this.$emit('change', { rowsPerPage: newPerPage.value });
             },
 
             setPage(newPage) {
@@ -126,15 +125,6 @@
                 newPagination.page = newPage;
                 this.$emit('input', newPagination);
                 this.$emit('change', { page: newPage });
-            },
-
-            arrayToOptions(array) {
-                return _.map(array, element => {
-                    return {
-                        label: `${element}`,
-                        value: element
-                    };
-                });
             },
 
             getItemsTotal(value) {

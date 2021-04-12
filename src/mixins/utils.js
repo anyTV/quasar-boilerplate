@@ -32,12 +32,23 @@ export default {
         };
     },
     methods: {
+        getTableColumns (columns) {
+            return columns.map(col => {
+                return {
+                    ...col,
+                    field: _.snakeCase(col.name),
+                    label: this.$trans(_.snakeCase(col.name)),
+                    align: _.get(col,'align', 'left'),
+                    sortable: _.get(col,'sortable', true)
+                };
+            });
+        },
         setPaginationOptions (response) {
             return {
                 ...pageConfig.default,
                 page: parseInt(_.get(response, 'data.page')),
-                perPage: _.get(response, 'data.perPage'),
-                total: _.get(response, 'data.total'),
+                rowsPerPage: _.get(response, 'data.perPage'),
+                rowsNumber: _.get(response, 'data.total'),
                 pageMax: Math.ceil(response.data.total / response.data.perPage),
             };
         },

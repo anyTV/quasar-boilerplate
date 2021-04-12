@@ -6,7 +6,7 @@ export default {
         {
             id: 1,
             name: 'Frozen Yogurt',
-            calories: 159,
+            two_words: 159,
             fat: 6.0,
             carbs: 24,
             protein: 4.0,
@@ -17,7 +17,7 @@ export default {
         {
             id: 2,
             name: 'Ice cream sandwich',
-            calories: 237,
+            two_words: 237,
             fat: 9.0,
             carbs: 37,
             protein: 4.3,
@@ -28,7 +28,7 @@ export default {
         {
             id: 3,
             name: 'Eclair',
-            calories: 262,
+            two_words: 262,
             fat: 16.0,
             carbs: 23,
             protein: 6.0,
@@ -39,7 +39,7 @@ export default {
         {
             id: 4,
             name: 'Cupcake',
-            calories: 305,
+            two_words: 305,
             fat: 3.7,
             carbs: 67,
             protein: 4.3,
@@ -50,7 +50,7 @@ export default {
         {
             id: 5,
             name: 'Gingerbread',
-            calories: 356,
+            two_words: 356,
             fat: 16.0,
             carbs: 49,
             protein: 3.9,
@@ -61,7 +61,7 @@ export default {
         {
             id: 6,
             name: 'Jelly bean',
-            calories: 375,
+            two_words: 375,
             fat: 0.0,
             carbs: 94,
             protein: 0.0,
@@ -72,7 +72,7 @@ export default {
         {
             id: 7,
             name: 'Lollipop',
-            calories: 392,
+            two_words: 392,
             fat: 0.2,
             carbs: 98,
             protein: 0,
@@ -83,7 +83,7 @@ export default {
         {
             id: 8,
             name: 'Honeycomb',
-            calories: 408,
+            two_words: 408,
             fat: 3.2,
             carbs: 87,
             protein: 6.5,
@@ -94,7 +94,7 @@ export default {
         {
             id: 9,
             name: 'Donut',
-            calories: 452,
+            two_words: 452,
             fat: 25.0,
             carbs: 51,
             protein: 4.9,
@@ -105,7 +105,7 @@ export default {
         {
             id: 10,
             name: 'KitKat',
-            calories: 518,
+            two_words: 518,
             fat: 26.0,
             carbs: 65,
             protein: 7,
@@ -116,7 +116,7 @@ export default {
         {
             id: 11,
             name: 'Frozen Yogurt-1',
-            calories: 159,
+            two_words: 159,
             fat: 6.0,
             carbs: 24,
             protein: 4.0,
@@ -127,7 +127,7 @@ export default {
         {
             id: 12,
             name: 'Ice cream sandwich-1',
-            calories: 237,
+            two_words: 237,
             fat: 9.0,
             carbs: 37,
             protein: 4.3,
@@ -138,7 +138,7 @@ export default {
         {
             id: 13,
             name: 'Eclair-1',
-            calories: 262,
+            two_words: 262,
             fat: 16.0,
             carbs: 23,
             protein: 6.0,
@@ -149,7 +149,7 @@ export default {
         {
             id: 14,
             name: 'Cupcake-1',
-            calories: 305,
+            two_words: 305,
             fat: 3.7,
             carbs: 67,
             protein: 4.3,
@@ -160,7 +160,7 @@ export default {
         {
             id: 15,
             name: 'Gingerbread-1',
-            calories: 356,
+            two_words: 356,
             fat: 16.0,
             carbs: 49,
             protein: 3.9,
@@ -171,7 +171,7 @@ export default {
         {
             id: 16,
             name: 'Jelly bean-1',
-            calories: 375,
+            two_words: 375,
             fat: 0.0,
             carbs: 94,
             protein: 0.0,
@@ -182,7 +182,7 @@ export default {
         {
             id: 17,
             name: 'Lollipop-1',
-            calories: 392,
+            two_words: 392,
             fat: 0.2,
             carbs: 98,
             protein: 0,
@@ -193,7 +193,7 @@ export default {
         {
             id: 18,
             name: 'Honeycomb-1',
-            calories: 408,
+            two_words: 408,
             fat: 3.2,
             carbs: 87,
             protein: 6.5,
@@ -204,7 +204,7 @@ export default {
         {
             id: 19,
             name: 'Donut-1',
-            calories: 452,
+            two_words: 452,
             fat: 25.0,
             carbs: 51,
             protein: 4.9,
@@ -215,7 +215,7 @@ export default {
         {
             id: 20,
             name: 'KitKat-1',
-            calories: 518,
+            two_words: 518,
             fat: 26.0,
             carbs: 65,
             protein: 7,
@@ -226,7 +226,7 @@ export default {
         {
             id: 21,
             name: 'Frozen Yogurt-2',
-            calories: 159,
+            two_words: 159,
             fat: 6.0,
             carbs: 24,
             protein: 4.0,
@@ -237,7 +237,7 @@ export default {
         {
             id: 22,
             name: 'Ice cream sandwich-2',
-            calories: 237,
+            two_words: 237,
             fat: 9.0,
             carbs: 37,
             protein: 4.3,
@@ -248,7 +248,7 @@ export default {
         {
             id: 23,
             name: 'Eclair-2',
-            calories: 262,
+            two_words: 262,
             fat: 16.0,
             carbs: 23,
             protein: 6.0,
@@ -259,7 +259,7 @@ export default {
         {
             id: 24,
             name: 'Cupcake-2',
-            calories: 305,
+            two_words: 305,
             fat: 3.7,
             carbs: 67,
             protein: 4.3,
@@ -270,7 +270,7 @@ export default {
         {
             id: 25,
             name: 'Gingerbread-2',
-            calories: 356,
+            two_words: 356,
             fat: 16.0,
             carbs: 49,
             protein: 3.9,
@@ -281,7 +281,7 @@ export default {
         {
             id: 26,
             name: 'Jelly bean-2',
-            calories: 375,
+            two_words: 375,
             fat: 0.0,
             carbs: 94,
             protein: 0.0,
@@ -292,7 +292,7 @@ export default {
         {
             id: 27,
             name: 'Lollipop-2',
-            calories: 392,
+            two_words: 392,
             fat: 0.2,
             carbs: 98,
             protein: 0,
@@ -303,7 +303,7 @@ export default {
         {
             id: 28,
             name: 'Honeycomb-2',
-            calories: 408,
+            two_words: 408,
             fat: 3.2,
             carbs: 87,
             protein: 6.5,
@@ -314,7 +314,7 @@ export default {
         {
             id: 29,
             name: 'Donut-2',
-            calories: 452,
+            two_words: 452,
             fat: 25.0,
             carbs: 51,
             protein: 4.9,
@@ -325,7 +325,7 @@ export default {
         {
             id: 30,
             name: 'KitKat-2',
-            calories: 518,
+            two_words: 518,
             fat: 26.0,
             carbs: 65,
             protein: 7,
@@ -336,7 +336,7 @@ export default {
         {
             id: 31,
             name: 'Frozen Yogurt-3',
-            calories: 159,
+            two_words: 159,
             fat: 6.0,
             carbs: 24,
             protein: 4.0,
@@ -347,7 +347,7 @@ export default {
         {
             id: 32,
             name: 'Ice cream sandwich-3',
-            calories: 237,
+            two_words: 237,
             fat: 9.0,
             carbs: 37,
             protein: 4.3,
@@ -358,7 +358,7 @@ export default {
         {
             id: 33,
             name: 'Eclair-3',
-            calories: 262,
+            two_words: 262,
             fat: 16.0,
             carbs: 23,
             protein: 6.0,
@@ -369,7 +369,7 @@ export default {
         {
             id: 34,
             name: 'Cupcake-3',
-            calories: 305,
+            two_words: 305,
             fat: 3.7,
             carbs: 67,
             protein: 4.3,
@@ -380,7 +380,7 @@ export default {
         {
             id: 35,
             name: 'Gingerbread-3',
-            calories: 356,
+            two_words: 356,
             fat: 16.0,
             carbs: 49,
             protein: 3.9,
@@ -391,7 +391,7 @@ export default {
         {
             id: 36,
             name: 'Jelly bean-3',
-            calories: 375,
+            two_words: 375,
             fat: 0.0,
             carbs: 94,
             protein: 0.0,
@@ -402,7 +402,7 @@ export default {
         {
             id: 37,
             name: 'Lollipop-3',
-            calories: 392,
+            two_words: 392,
             fat: 0.2,
             carbs: 98,
             protein: 0,
@@ -413,7 +413,7 @@ export default {
         {
             id: 38,
             name: 'Honeycomb-3',
-            calories: 408,
+            two_words: 408,
             fat: 3.2,
             carbs: 87,
             protein: 6.5,
@@ -424,7 +424,7 @@ export default {
         {
             id: 39,
             name: 'Donut-3',
-            calories: 452,
+            two_words: 452,
             fat: 25.0,
             carbs: 51,
             protein: 4.9,
@@ -435,7 +435,7 @@ export default {
         {
             id: 40,
             name: 'KitKat-3',
-            calories: 518,
+            two_words: 518,
             fat: 26.0,
             carbs: 65,
             protein: 7,

@@ -9,7 +9,7 @@
             <template v-slot:header-left />
 
             <template v-slot:filter_preApprovedTracks>
-                Filter for Pre Approved Tasks
+                <span v-text="$trans('filter_5')"/>
             </template>
             <template v-slot:table_preApprovedTracks>
                 <q-table
@@ -25,7 +25,7 @@
             </template>
 
             <template v-slot:filter_recommended>
-                Filter for Recommended
+                <span v-text="$trans('filter_6')"/>
             </template>
             <template v-slot:table_recommended>
                 <q-table
@@ -42,10 +42,10 @@
 
             <template v-slot:paginate>
                 <f-paginate
-                    v-model="pagination"
+                    v-model="tablePagination"
+                    per-page-text="requests_per_page"
+                    total-items-text="tracks_available"
                     show-items-total
-                    per-page-text="requests-per-page"
-                    total-items-text="tracks-available"
                     align-end
                     @input="newPagination"
                 />
@@ -58,8 +58,8 @@
     import FPaginate from "src/components/common/FPaginate";
     import FTable from 'src/components/partials/tables/FTable';
     import pageConfig from 'src/config/pagination';
-    import tableData from 'src/data/tableData/tableWithTabs';
-    import tableColumns from 'src/data/tableColumns/tableWithTabs';
+    import tableData from 'src/sample/tableData/tableWithTabs';
+    import tableColumns from 'src/sample/tableColumns/tableWithTabs';
     import UtilMixin from 'src/mixins/utils';
 
     export default {
@@ -78,26 +78,17 @@
                 hideBottom: true,
                 loading: false,
                 tableData,
-                tableColumns,
                 requestTabData: [],
-                pagination: pageConfig.default,
                 tablePagination: {
+                    ...pageConfig.default,
                     sortBy: 'id',
-                    descending: false,
-                    page: pageConfig.default.page,
-                    rowsPerPage: pageConfig.default.perPage,
-                    rowsNumber: pageConfig.default.total
+                    descending: false
                 },
             };
         },
         computed: {
             columns() {
-                return this.tableColumns.map(col => {
-                    return {
-                        ...col,
-                        label: this.$trans(col.label),
-                    };
-                });
+                return this.getTableColumns(tableColumns);
             },
         },
         mounted () {
@@ -121,27 +112,26 @@
                 // emulate server
                 setTimeout(() => {
                     const returnedData = this.fetchFromServer({
-                        ...props.pagination, ...this.pagination
+                        ...props.pagination
                     });
                     this.requestTabData = returnedData.data.items;
-                    this.pagination = this.setPaginationOptions(returnedData);
+                    const pagination = this.setPaginationOptions(returnedData);
+
                     this.tablePagination = {
-                        page: this.pagination.page,
-                        rowsPerPage: this.pagination.perPage,
-                        rowsNumber: this.pagination.total,
+                        ...pagination,
                         sortBy,
                         descending
                     };
                     this.loading = false;
-                });
+                }, 500);
             },
 
             // emulate api call
-            fetchFromServer ({page, perPage, sortBy, descending}) {
+            fetchFromServer ({page, rowsPerPage, sortBy, descending}) {
 
                 const total = this.tableData.items.length;
-                const startRow = (page - 1) * perPage;
-                const count = perPage === 0 ? total : perPage;
+                const startRow = (page - 1) * rowsPerPage;
+                const count = rowsPerPage === 0 ? total : rowsPerPage;
                 const tableData = this.tableData.items;
 
                 if (sortBy) {
@@ -159,7 +149,7 @@
 
                 const data = {
                     page,
-                    perPage: perPage,
+                    perPage: rowsPerPage,
                     total,
                     items: tableData.slice(startRow, startRow + count)
                 };

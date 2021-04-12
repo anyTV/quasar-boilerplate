@@ -1,37 +1,39 @@
 <template>
     <f-table
         :tabs-data="headerTabs"
-        header-help-text="Payment requests"
+        :header-help-text="$trans('payment_requests')"
     >
         <template v-slot:header-right>
             <q-toggle
                 v-model="selection"
+                :label="$trans('auto_payment')"
                 left-label
                 color="blue"
-                label="Auto Payment"
                 val="auto_payment" />
 
             <q-toggle
                 v-model="selection"
+                :label="$trans('payment_request')"
                 left-label
                 color="blue"
-                label="Payment Request"
                 val="auto_payment" />
         </template>
 
         <template v-slot:control-right>
             <div class="q-gutter-xs q-ma-none">
                 <q-btn
+                    :label="$trans('on_left')"
                     color="primary"
-                    label="On Left" />
+                />
                 <q-btn
+                    :label="$trans('on_right')"
                     color="secondary"
-                    label="On Right" />
+                />
             </div>
         </template>
 
         <template v-slot:filter_requests>
-            Placeholder filter for requests tab
+            <span v-text="$trans('filter_1')"/>
         </template>
         <template v-slot:table_requests>
             <q-table
@@ -47,7 +49,7 @@
         </template>
 
         <template v-slot:filter_payments>
-            Placeholder filter for payments tab
+            <span v-text="$trans('filter_2')"/>
         </template>
         <template v-slot:table_payments>
             <q-table
@@ -63,7 +65,7 @@
         </template>
 
         <template v-slot:filter_paid>
-            Placeholder filter for paid
+            <span v-text="$trans('filter_3')"/>
         </template>
         <template v-slot:table_paid>
             <q-table
@@ -79,7 +81,7 @@
         </template>
 
         <template v-slot:filter_rejected>
-            Placeholder filter for Rejected
+            <span v-text="$trans('filter_4')"/>
         </template>
         <template v-slot:table_rejected>
             <q-table
@@ -96,10 +98,10 @@
 
         <template v-slot:paginate>
             <f-paginate
-                v-model="pagination"
+                v-model="tablePagination"
+                per-page-text="requests_per_page"
+                total-items-text="requests_total"
                 show-items-total
-                per-page-text="Requests per page"
-                total-items-text="Requests total"
                 align-end
                 @input="newPagination"
             />
@@ -112,8 +114,8 @@
     import FPaginate from "src/components/common/FPaginate";
     import FTable from 'src/components/partials/tables/FTable';
     import pageConfig from 'src/config/pagination';
-    import tableData from 'src/data/tableData/tableWithTabs';
-    import tableColumns from 'src/data/tableColumns/tableWithTabs';
+    import tableData from 'src/sample/tableData/tableWithTabs';
+    import tableColumns from 'src/sample/tableColumns/tableWithTabs';
     import UtilMixin from 'src/mixins/utils';
 
     export default {
@@ -134,26 +136,17 @@
                 hideBottom: true,
                 loading: false,
                 tableData,
-                tableColumns,
                 requestTabData: [],
-                pagination: pageConfig.default,
                 tablePagination: {
+                    ...pageConfig.default,
                     sortBy: 'id',
-                    descending: false,
-                    page: pageConfig.default.page,
-                    rowsPerPage: pageConfig.default.perPage,
-                    rowsNumber: pageConfig.default.total
+                    descending: false
                 },
             };
         },
         computed: {
             columns() {
-                return this.tableColumns.map(col => {
-                    return {
-                        ...col,
-                        label: this.$trans(col.label),
-                    };
-                });
+                return this.getTableColumns(tableColumns);
             },
         },
         mounted () {
@@ -176,27 +169,26 @@
                 // emulate server
                 setTimeout(() => {
                     const returnedData = this.fetchFromServer({
-                        ...props.pagination, ...this.pagination
+                        ...props.pagination
                     });
                     this.requestTabData = returnedData.data.items;
-                    this.pagination = this.setPaginationOptions(returnedData);
+                    const pagination = this.setPaginationOptions(returnedData);
+
                     this.tablePagination = {
-                        page: this.pagination.page,
-                        rowsPerPage: this.pagination.perPage,
-                        rowsNumber: this.pagination.total,
+                        ...pagination,
                         sortBy,
                         descending
                     };
                     this.loading = false;
-                });
+                }, 500);
             },
 
             // emulate api call
-            fetchFromServer ({page, perPage, sortBy, descending}) {
+            fetchFromServer ({page, rowsPerPage, sortBy, descending}) {
 
                 const total = this.tableData.items.length;
-                const startRow = (page - 1) * perPage;
-                const count = perPage === 0 ? total : perPage;
+                const startRow = (page - 1) * rowsPerPage;
+                const count = rowsPerPage === 0 ? total : rowsPerPage;
                 const tableData = this.tableData.items;
 
                 if (sortBy) {
@@ -214,7 +206,7 @@
 
                 const data = {
                     page,
-                    perPage: perPage,
+                    perPage: rowsPerPage,
                     total,
                     items: tableData.slice(startRow, startRow + count)
                 };

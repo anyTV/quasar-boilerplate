@@ -3,8 +3,9 @@
 export default {
     default: {
         page: 1,
-        perPage: 10,
-        total: 0,
+        rowsPerPage: 10,
+        rowsNumber: 0,
         pageMax: 0,
     },
+    perPageOptions: [10, 30, 50]
 };
