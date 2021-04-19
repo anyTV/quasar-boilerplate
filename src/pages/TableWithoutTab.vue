@@ -63,7 +63,7 @@
         <template v-slot:content>
             <div class="row">
                 <div class="col q-pa-md border-bottom">
-                    FILTER
+                    <span v-text="$trans('filter')" />
                 </div>
             </div>
             <q-table

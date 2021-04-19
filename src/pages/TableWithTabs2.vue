@@ -17,9 +17,8 @@
                         :key="tab.name"
                         v-bind="tab"
                         :name="tab.name"
-                        label=""
+                        :label="tab.label"
                     >
-                        <span v-text="tab.label" />
                         <q-badge
                             v-if="tab.badge"
                             class="q-ml-xs"
@@ -40,7 +39,8 @@
                         class="q-pa-none">
                         <div class="row">
                             <div class="col q-pa-md border-bottom">
-                                FILTER <span v-text="tab.name" />
+                                <span v-text="$trans('filter')" />
+                                <span v-text="tab.name" />
                             </div>
                         </div>
                         <q-table

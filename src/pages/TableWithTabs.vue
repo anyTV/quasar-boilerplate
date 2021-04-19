@@ -4,7 +4,10 @@
         :header-help-text="$trans('payment_requests')"
     >
         <template v-slot:header-left>
-            <span class="text-tertiary">Payment requests</span>
+            <span
+                class="text-tertiary"
+                v-text="$trans('payment_requests')"
+            />
         </template>
 
         <template v-slot:header-right>
@@ -68,7 +71,8 @@
                     class="q-pa-none">
                     <div class="row">
                         <div class="col q-pa-md border-bottom">
-                            FILTER <span v-text="tab.name" />
+                            <span v-text="$trans('filter')" />
+                            <span v-text="tab.name" />
                         </div>
                     </div>
                     <q-table
