@@ -28,18 +28,12 @@
   "table_title": "Table Title",
   "payment_requests": "Payment requests",
   "auto_payment": "Auto Payment",
-  "payment_request": "Payment Request",
   "on_left": "On left",
   "on_right": "On right",
-  "filter_1": "Placeholder filter for requests tab",
-  "filter_2": "Placeholder filter for payments tab",
-  "filter_3": "Placeholder filter for paid",
-  "filter_4": "Placeholder filter for Rejected",
-  "filter_5": "Filter for Pre Approved Tasks",
-  "filter_6": "Filter for Recommended",
   "additional_info": "Space for additional info or help text",
   "home": "Home",
   "user": "User",
   "freedom_id": "Freedom Id",
-  "two_words": "Two Words"
+  "two_words": "Two Words",
+  "toggle_theme": "Toggle Theme"
 }

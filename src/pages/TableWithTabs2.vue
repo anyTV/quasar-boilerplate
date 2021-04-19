@@ -1,43 +1,61 @@
 <template>
     <div>
         <f-table
-            :tabs-data="headerTabs"
-            :selected-tab="selectedTab"
             :page-header="false"
-            tab-indicator-color="transparent"
         >
-            <template v-slot:header-left />
+            <template v-slot:control-left>
+                <q-tabs
+                    v-model="selectedTab"
+                    inline-label
+                    no-caps
+                    stretch
+                    align="left"
+                    class="f-tabs"
+                >
+                    <q-tab
+                        v-for="tab in tabs"
+                        :key="tab.name"
+                        v-bind="tab"
+                        :name="tab.name"
+                        label=""
+                    >
+                        <span v-text="tab.label" />
+                        <q-badge
+                            v-if="tab.badge"
+                            class="q-ml-xs"
+                            v-text="tab.badge"/>
+                    </q-tab>
+                </q-tabs>
 
-            <template v-slot:filter_preApprovedTracks>
-                <span v-text="$trans('filter_5')"/>
-            </template>
-            <template v-slot:table_preApprovedTracks>
-                <q-table
-                    :data="requestTabData"
-                    :columns="columns"
-                    :hide-bottom="hideBottom"
-                    :loading="loading"
-                    :pagination.sync="tablePagination"
-                    binary-state-sort
-                    row-key="id"
-                    @request="getTableData"
-                />
             </template>
 
-            <template v-slot:filter_recommended>
-                <span v-text="$trans('filter_6')"/>
-            </template>
-            <template v-slot:table_recommended>
-                <q-table
-                    :data="requestTabData"
-                    :columns="columns"
-                    :hide-bottom="hideBottom"
-                    :loading="loading"
-                    :pagination.sync="tablePagination"
-                    binary-state-sort
-                    row-key="id"
-                    @request="getTableData"
-                />
+            <template v-slot:content>
+                <q-tab-panels
+                    v-model="selectedTab"
+                    animated>
+                    <q-tab-panel
+                        v-for="tab in tabs"
+                        :key="tab.name"
+                        :name="tab.name"
+                        class="q-pa-none">
+                        <div class="row">
+                            <div class="col q-pa-md border-bottom">
+                                FILTER <span v-text="tab.name" />
+                            </div>
+                        </div>
+                        <q-table
+                            :data="requestTabData"
+                            :columns="columns"
+                            :hide-bottom="hideBottom"
+                            :loading="loading"
+                            :pagination.sync="tablePagination"
+                            binary-state-sort
+                            row-key="id"
+                            @request="getTableData"
+                        />
+                    </q-tab-panel>
+
+                </q-tab-panels>
             </template>
 
             <template v-slot:paginate>
@@ -55,6 +73,7 @@
 </template>
 
 <script>
+    import _ from 'lodash';
     import FPaginate from "src/components/common/FPaginate";
     import FTable from 'src/components/partials/tables/FTable';
     import pageConfig from 'src/config/pagination';
@@ -87,6 +106,14 @@
             };
         },
         computed: {
+            tabs() {
+                return this.headerTabs.map(tab => {
+                    return {
+                        ...tab,
+                        label: this.$trans(_.snakeCase(tab.name)),
+                    };
+                });
+            },
             columns() {
                 return this.getTableColumns(tableColumns);
             },

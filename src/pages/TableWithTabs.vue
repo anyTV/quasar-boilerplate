@@ -3,24 +3,49 @@
         :tabs-data="headerTabs"
         :header-help-text="$trans('payment_requests')"
     >
+        <template v-slot:header-left>
+            <span class="text-tertiary">Payment requests</span>
+        </template>
+
         <template v-slot:header-right>
             <q-toggle
-                v-model="selection"
-                :label="$trans('auto_payment')"
+                v-model="isDark"
+                :label="$trans('toggle_theme')"
                 left-label
+                dense
                 color="blue"
-                val="auto_payment" />
+            />
+        </template>
 
-            <q-toggle
-                v-model="selection"
-                :label="$trans('payment_request')"
-                left-label
-                color="blue"
-                val="auto_payment" />
+        <template v-slot:control-left>
+            <q-tabs
+                v-model="selectedTab"
+                inline-label
+                no-caps
+                stretch
+                align="left"
+                class="f-tabs"
+            >
+                <q-tab
+                    v-for="tab in tabs"
+                    :key="tab.name"
+                    v-bind="tab"
+                    :name="tab.name"
+                    :label="tab.label"
+                    class="q-mx-sm"
+                >
+                    <q-badge
+                        v-if="tab.badge"
+                        class="q-ml-xs"
+                        v-text="tab.badge"
+                    />
+                </q-tab>
+            </q-tabs>
+
         </template>
 
         <template v-slot:control-right>
-            <div class="q-gutter-xs q-ma-none">
+            <div class="q-gutter-xs">
                 <q-btn
                     :label="$trans('on_left')"
                     color="primary"
@@ -32,68 +57,33 @@
             </div>
         </template>
 
-        <template v-slot:filter_requests>
-            <span v-text="$trans('filter_1')"/>
-        </template>
-        <template v-slot:table_requests>
-            <q-table
-                :data="requestTabData"
-                :columns="columns"
-                :hide-bottom="hideBottom"
-                :loading="loading"
-                :pagination.sync="tablePagination"
-                binary-state-sort
-                row-key="id"
-                @request="getTableData"
-            />
-        </template>
+        <template v-slot:content>
+            <q-tab-panels
+                v-model="selectedTab"
+                animated>
+                <q-tab-panel
+                    v-for="tab in tabs"
+                    :key="tab.name"
+                    :name="tab.name"
+                    class="q-pa-none">
+                    <div class="row">
+                        <div class="col q-pa-md border-bottom">
+                            FILTER <span v-text="tab.name" />
+                        </div>
+                    </div>
+                    <q-table
+                        :data="requestTabData"
+                        :columns="columns"
+                        :hide-bottom="hideBottom"
+                        :loading="loading"
+                        :pagination.sync="tablePagination"
+                        binary-state-sort
+                        row-key="id"
+                        @request="getTableData"
+                    />
+                </q-tab-panel>
 
-        <template v-slot:filter_payments>
-            <span v-text="$trans('filter_2')"/>
-        </template>
-        <template v-slot:table_payments>
-            <q-table
-                :data="requestTabData"
-                :columns="columns"
-                :hide-bottom="hideBottom"
-                :loading="loading"
-                :pagination.sync="tablePagination"
-                binary-state-sort
-                row-key="id"
-                @request="getTableData"
-            />
-        </template>
-
-        <template v-slot:filter_paid>
-            <span v-text="$trans('filter_3')"/>
-        </template>
-        <template v-slot:table_paid>
-            <q-table
-                :data="requestTabData"
-                :columns="columns"
-                :hide-bottom="hideBottom"
-                :loading="loading"
-                :pagination.sync="tablePagination"
-                binary-state-sort
-                row-key="id"
-                @request="getTableData"
-            />
-        </template>
-
-        <template v-slot:filter_rejected>
-            <span v-text="$trans('filter_4')"/>
-        </template>
-        <template v-slot:table_rejected>
-            <q-table
-                :data="requestTabData"
-                :columns="columns"
-                :hide-bottom="hideBottom"
-                :loading="loading"
-                :pagination.sync="tablePagination"
-                binary-state-sort
-                row-key="id"
-                @request="getTableData"
-            />
+            </q-tab-panels>
         </template>
 
         <template v-slot:paginate>
@@ -111,6 +101,7 @@
 </template>
 
 <script>
+    import _ from 'lodash';
     import FPaginate from "src/components/common/FPaginate";
     import FTable from 'src/components/partials/tables/FTable';
     import pageConfig from 'src/config/pagination';
@@ -126,13 +117,14 @@
         ],
         data () {
             return {
-                selection: [ 'yellow', 'red' ],
+                isDark: false,
                 headerTabs: [
                     { name: 'requests', badge: '$300.00' },
                     { name: 'payments', badge: '$02.00' },
                     { name: 'paid', badge: 'Feb $100K' },
                     { name: 'rejected',  badge: 'Feb $900' }
                 ],
+                selectedTab: 'requests',
                 hideBottom: true,
                 loading: false,
                 tableData,
@@ -145,9 +137,22 @@
             };
         },
         computed: {
+            tabs() {
+                return this.headerTabs.map(tab => {
+                    return {
+                        ...tab,
+                        label: this.$trans(_.snakeCase(tab.name)),
+                    };
+                });
+            },
             columns() {
                 return this.getTableColumns(tableColumns);
             },
+        },
+        watch: {
+            isDark: function (val) {
+                this.$q.dark.set(val);
+            }
         },
         mounted () {
             this.getTableData({
@@ -217,7 +222,3 @@
         }
     };
 </script>
-
-<style scoped>
-
-</style>

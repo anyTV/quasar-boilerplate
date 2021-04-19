@@ -6,7 +6,7 @@ export default [
         name: "name",
     },
     {
-        name: "TwoWords",
+        name: "two_words",
     },
     {
         name: "fat",

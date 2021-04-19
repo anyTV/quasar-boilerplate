@@ -12,7 +12,3 @@
     };
 </script>
 
-<style lang="stylus">
-    body.body--dark
-        background: var(--q-color-dark)
-</style>

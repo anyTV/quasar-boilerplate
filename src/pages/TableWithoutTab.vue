@@ -1,24 +1,54 @@
 <template>
-    <f-table
-        :tabs-data="headerTabs"
-        :breadcrumbs="breadcrumbs"
-        :table-title="tableTitle"
-    >
+    <f-table>
+        <template v-slot:header-left>
+            <q-breadcrumbs
+                active-color="tertiary"
+                separator-color="tertiary"
+            >
+                <template v-slot:separator>
+                    <q-icon
+                        size="1.3em"
+                        name="chevron_right"
+                    />
+                </template>
+                <q-breadcrumbs-el
+                    v-for="breadcrumb in breadcrumbs"
+                    :label="$trans(breadcrumb.label)"
+                    :key="breadcrumb.label"
+                    :to="breadcrumb.to"
+                />
+            </q-breadcrumbs>
+        </template>
 
         <template v-slot:header-right>
-            <div class="q-pa-md text-grey-7">
+            <div class="text-tertiary">
                 <span v-text="$trans('additional_info')"/>
                 <q-icon
                     name="warning_amber"
-                    class="q-px-xs" />
+                    class="q-px-xs"
+                />
                 <q-icon
                     name="error_outline"
-                    class="q-px-xs"/>
+                    class="q-px-xs"
+                />
             </div>
         </template>
 
+        <template v-slot:control-left>
+            <div
+                class="text-h5"
+                v-text="tableTitle"
+            />
+        </template>
+
         <template v-slot:control-right>
-            <div class="q-gutter-xs q-ma-none">
+            <div class="q-gutter-xs q-pb-xs">
+                <q-toggle
+                    v-model="isDark"
+                    :label="$trans('toggle_theme')"
+                    left-label
+                    color="blue"
+                />
                 <q-btn
                     :label="$trans('on_left')"
                     color="primary"
@@ -30,10 +60,12 @@
             </div>
         </template>
 
-        <template v-slot:filter_preApprovedTracks>
-            <span v-text="$trans('filter_1')"/>
-        </template>
-        <template v-slot:table_preApprovedTracks>
+        <template v-slot:content>
+            <div class="row">
+                <div class="col q-pa-md border-bottom">
+                    FILTER
+                </div>
+            </div>
             <q-table
                 :data="requestTabData"
                 :columns="columns"
@@ -76,16 +108,13 @@
         ],
         data () {
             return {
+                isDark: false,
                 tableTitle: this.$trans('table_title'),
                 breadcrumbs: [
                     {label: 'home', to: '/'},
-                    {label: 'channel', to: '/channel'},
-                    {label: 'user', to: '/user'},
+                    {label: 'channel', to: '/table-with-tabs-2'},
+                    {label: 'user', to: '/table-with-tabs'},
                     {label: 'freedom_id'},
-                ],
-                selection: [ 'yellow', 'red' ],
-                headerTabs: [
-                    { name: 'preApprovedTracks' },
                 ],
                 hideBottom: true,
                 loading: false,
@@ -103,6 +132,11 @@
             columns() {
                 return this.getTableColumns(tableColumns);
             },
+        },
+        watch: {
+            isDark: function (val) {
+                this.$q.dark.set(val);
+            }
         },
         mounted () {
             this.getTableData({
