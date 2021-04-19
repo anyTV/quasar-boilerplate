@@ -13,7 +13,7 @@
         </div>
 
         <div class="row justify-end lt-md q-pr-md">
-            <div class="col-auto border-bottom">
+            <div class="col-auto">
                 <slot name="control-right" />
             </div>
         </div>

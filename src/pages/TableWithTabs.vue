@@ -81,6 +81,7 @@
                         :hide-bottom="hideBottom"
                         :loading="loading"
                         :pagination.sync="tablePagination"
+                        class="f-table"
                         binary-state-sort
                         row-key="id"
                         @request="getTableData"

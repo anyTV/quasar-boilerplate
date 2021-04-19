@@ -51,6 +51,7 @@
                             :pagination.sync="tablePagination"
                             binary-state-sort
                             row-key="id"
+                            class="f-table"
                             @request="getTableData"
                         />
                     </q-tab-panel>
