@@ -15,18 +15,19 @@ module.exports = function (ctx) {
             // 'google-api',
             // 'jwt',
             // 'vuelidate',
-            'vue-gtm'
+            'vue-gtm',
 
             /**
              * if vue-i18next is enabled, we can use directive v-waitForT so translations can be loaded first
              * before rendering the component
              */
-            // 'vue-i18next',
+            'vue-i18next',
         ],
         css: [
             'app.styl'
         ],
         extras: [
+            'material-icons',
             // 'mdi-v3',
             // 'fontawesome-v5',
             // 'ionicons-v4'
@@ -75,10 +76,32 @@ module.exports = function (ctx) {
         },
         // framework: 'all' --- includes everything; for dev only!
         framework: {
-            components: [],
+            components: [
+                'QBadge',
+                'QBreadcrumbs',
+                'QBreadcrumbsEl',
+                'QBtn',
+                'QBtnToggle',
+                'QFooter',
+                'QHeader',
+                'QIcon',
+                'QLayout',
+                'QList',
+                'QPagination',
+                'QRadio',
+                'QSelect',
+                'QTab',
+                'QTabPanel',
+                'QTabPanels',
+                'QTable',
+                'QTabs',
+                'QToggle',
+            ],
             directives: [],
             // Quasar plugins
-            plugins: []
+            plugins: [
+                'LocalStorage',
+            ]
         },
         // animations: 'all' --- includes all animations
         animations: [],

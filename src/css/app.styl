@@ -1,1 +1,96 @@
-// app global css
+// Here we override colors depends on dark and light theme
+body
+  &.body--light
+      --q-color-pagination: $grey-1
+      --q-color-tertiary: $grey-8
+  &.body--dark
+      --q-color-primary: $grey-8
+      --q-color-pagination: $grey-10
+      --q-color-tertiary: $grey-6
+
+body
+    &.body--dark
+        background: var(--q-color-dark)
+        .f-tabs
+            color transparent
+            padding 10px
+            .q-tab
+                border-radius: 5px
+                &.q-tab--active
+                    .q-tab__content
+                        color $white
+                &.q-tab--inactive
+                    .q-tab__content
+                        color $grey-6
+                .q-tab__content
+                    color $grey-1
+            .q-badge
+                background $grey-9
+                color $fff
+            .q-tab--active
+                background $grey-9
+                .q-badge
+                    background $grey-1
+                    color $grey-10
+        .border-bottom
+            border-bottom 1px solid $grey-8
+        .f-table
+            td:first-child
+                background-color var(--q-color-dark)
+            tr th
+                background var(--q-color-dark)
+
+body
+    &.body--light
+        .f-tabs
+            color $primary
+            .q-tab
+                border-radius: 5px
+                &.q-tab--active
+                    .q-tab__content
+                        color $primary
+                .q-tab__content
+                    color $grey-9
+                    .q-tab__label
+                        font-weight: 600;
+            .q-badge
+                background $grey-9
+                color $white
+            .q-tab--active
+                .q-badge
+                    background $primary
+                    color $white
+        .border-bottom
+            border-bottom 1px solid $grey-4
+
+body
+    .text-tertiary
+        color var(--q-color-tertiary)
+    .bg-tertiary
+        color var(--q-color-tertiary)
+    .f-table
+        height calc(100vh - 200px)
+        td:first-child
+            background-color $white
+        tr th
+            position sticky
+            z-index 2
+            background $white
+        thead tr:last-child th
+            top 48px
+            z-index 3
+        thead tr:first-child th
+            top 0
+            z-index 1
+        tr:first-child th:first-child
+            z-index 3
+        td:first-child
+            z-index 1
+        td:first-child, th:first-child
+            position sticky
+            left 0
+
+@media (max-width: $breakpoint-sm-max)
+    body
+        .f-table
+            height calc(100vh - 230px)
