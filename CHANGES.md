@@ -1,3 +1,6 @@
+Version 1.4.0:
+ - Boilerplate > Table page layout > Create a reusable component for pages with one table [(#33)](https://github.com/anyTV/quasar-boilerplate/pull/33)
+
 Version 1.3.0:
  - HD-108695 Freedom.tm > GA not tracking properly [(#32)](https://github.com/anyTV/quasar-boilerplate/pull/32)
  - Quasar upgrade [(#31)](https://github.com/anyTV/quasar-boilerplate/pull/31)
