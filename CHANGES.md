@@ -7,3 +7,7 @@ Version 1.3.0:
  - Dev-3287 Platform > Update Quasar Boilerplate to V1 [(#27)](https://github.com/anyTV/quasar-boilerplate/pull/27)
  - Add dev script; Add installing cross-env in README [(#26)](https://github.com/anyTV/quasar-boilerplate/pull/26)
 
+Version 1.4.0:
+ - Dev-3914 Table page layout > Create a reusable component for pages with one table [(#33)](https://github.com/anyTV/quasar-boilerplate/pull/33)
+ - Added feature for switching between dark and light theme
+ 
