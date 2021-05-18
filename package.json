@@ -17,29 +17,29 @@
     },
     "dependencies": {
         "@panter/vue-i18next": "^0.15.1",
-        "@quasar/app": "^1.9.6",
-        "@quasar/extras": "^1.9.9",
+        "@quasar/app": "1.9.6",
+        "@quasar/extras": "1.9.9",
         "axios": "^0.19.0",
         "i18next": "^10.2.2",
         "i18next-browser-languagedetector": "^2.1.0",
-        "i18next-xhr-backend": "^1.5.1",
+        "i18next-http-backend": "^1.2.4",
         "jsonwebtoken": "^8.2.1",
         "lodash-es": "^4.17.10",
         "moment": "^2.20.1",
         "qs": "^6.5.2",
-        "quasar": "^1.14.1",
-        "vue": "^2.5.16",
+        "quasar": "1.14.1",
+        "vue": "2.5.16",
         "vue-gtm": "3.1.0-vue2",
-        "vue-router": "^3.0.1",
-        "vue-template-compiler": "^2.6.7",
+        "vue-router": "3.0.1",
+        "vue-template-compiler": "2.6.7",
         "vuelidate": "^0.6.2",
-        "vuex": "^3.0.1"
+        "vuex": "3.0.1"
     },
     "dependenciesComments": {
         "vue-gtm": "Default packages are built for vue3, use `-vue2` for all packages that would be installed. @see https://github.com/mib200/vue-gtm/issues/98"
     },
     "devDependencies": {
-        "@quasar/cli": "^1.1.2",
+        "@quasar/cli": "1.1.2",
         "babel-eslint": "^8.2.1",
         "esdoc": "^1.1.0",
         "esdoc-standard-plugin": "^1.0.0",
