@@ -19,7 +19,7 @@
         "@panter/vue-i18next": "^0.15.1",
         "@quasar/app": "^1.9.6",
         "@quasar/extras": "^1.9.9",
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "i18next": "^10.2.2",
         "i18next-browser-languagedetector": "^2.1.0",
         "i18next-http-backend": "^1.2.4",
