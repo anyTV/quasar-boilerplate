@@ -2,6 +2,10 @@
 
 import _ from 'lodash';
 import pageConfig from 'src/config/pagination';
+import transformKeys from 'src/mixins/transform-keys';
+
+export const keysToCamelCase = transformKeys('camelCase');
+export const keysToSnakeCase = transformKeys('snakeCase');
 
 export function arrayToOptions(inputArray, prefix = null) {
     return _.map(inputArray, value => ({
@@ -32,6 +36,8 @@ export default {
         };
     },
     methods: {
+        keysToCamelCase,
+        keysToSnakeCase,
         getTableColumns (columns) {
             return columns.map(col => {
                 return {

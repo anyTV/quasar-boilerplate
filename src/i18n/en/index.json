@@ -36,5 +36,9 @@
   "freedom_id": "Freedom Id",
   "two_words": "Two Words",
   "toggle_theme": "Toggle Theme",
-  "filter": "Filter"
+  "filter": "Filter",
+  "sign-in": "Sign in",
+  "logging-in": "Logging in",
+  "logging-out": "Logging out",
+  "logout": "Logout"
 }

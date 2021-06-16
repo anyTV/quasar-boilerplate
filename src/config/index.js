@@ -3,7 +3,11 @@
  * E.g. plugin config, vue config, static data, etc.
  * Build configurations should be placed in /config directory outside the /src directory.
  */
+import API from './api';
+
 export default {
+    API,
+    AUTH_SERVER: process.env.AUTH_SERVER,
     JWT_STORAGE_KEY: 'JWT_STORAGE_KEY',
 
     GTM_LOCALSTORAGE_SESSION_KEY: 'GTM_SESSION_ID',

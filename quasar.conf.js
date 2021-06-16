@@ -11,9 +11,11 @@ module.exports = function (ctx) {
             /**
              * Enable only the plugins that your app is going to use.
              */
-            // 'axios',
+            'axios',
+            'jwt',
+            'notify',
+            'admin-api',
             // 'google-api',
-            // 'jwt',
             // 'vuelidate',
             'vue-gtm',
 
@@ -100,6 +102,8 @@ module.exports = function (ctx) {
             directives: [],
             // Quasar plugins
             plugins: [
+                'Notify',
+                'Loading',
                 'LocalStorage',
             ]
         },
