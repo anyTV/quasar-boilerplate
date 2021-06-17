@@ -14,7 +14,7 @@
                 grant_type: 'authorization_code'
             };
 
-            this.$q.loading.show({ message: this.$trans('logging-in') });
+            this.$q.loading.show({ message: this.$trans('logging_in') });
             await this.authenticateUser(payload);
         },
         methods: {
@@ -26,14 +26,14 @@
                     this.$q.localStorage.set('PROFILE', response.data.user);
                     this.$jwt.setToken(response.data.accessToken);
 
-                    return this.$router.push('/table-with-tabs');
+                    return this.$router.push('/logoutpage');
                 }
                 catch (error) {
                     this.$q.loading.hide();
                     await this.$router.push('/');
 
                     if (!this.$route.query.code) {
-                        return this.$notify.error('oauth-denied-error');
+                        return this.$notify.error('oauth_denied_error');
                     }
 
                     this.$notify.error(error.message);

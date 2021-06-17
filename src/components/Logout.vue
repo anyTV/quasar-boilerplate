@@ -12,7 +12,7 @@
         ],
 
         mounted() {
-            this.$q.loading.show({ message: this.$trans('logging-out') });
+            this.$q.loading.show({ message: this.$trans('logging_out') });
             this.logout();
         },
 
@@ -20,7 +20,7 @@
             async logout() {
                 try {
                     await this.$adminAPI.$post(config.API.LOGOUT);
-                    this.$notify.success('logged-out-notice');
+                    this.$notify.success('logged_out_notice');
                 }
                 catch (error) {
                     this.$notify.error(error.message);

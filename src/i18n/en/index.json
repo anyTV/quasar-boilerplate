@@ -37,8 +37,12 @@
   "two_words": "Two Words",
   "toggle_theme": "Toggle Theme",
   "filter": "Filter",
-  "sign-in": "Sign in",
-  "logging-in": "Logging in",
-  "logging-out": "Logging out",
-  "logout": "Logout"
+  "sign_in": "Sign in",
+  "logging_in": "Logging in",
+  "logging_out": "Logging out",
+  "logout": "Logout",
+  "oauth_denied_error": "Failed authentication. Please try again.",
+  "server_error_notice": "There was a problem in our server. Try again later",
+  "logged_out_notice": "Successfully logged out",
+  "quasar_boilerplate": "Quasar Boilerplate"
 }

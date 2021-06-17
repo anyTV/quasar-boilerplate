@@ -4,11 +4,6 @@ import config from 'src/config';
 import index from 'src/router';
 import qs from 'qs';
 
-import {
-    keysToCamelCase,
-    keysToSnakeCase,
-} from 'src/mixins/utils';
-
 /**
  * Plugin for injecting axios globally as $adminAPI resource
  * @example
@@ -19,16 +14,8 @@ export default ({ Vue }) => {
 
     const apiConfig = {
         baseURL: config.API.BASE_URL,
-        transformRequest: [
-            keysToSnakeCase,
-            ...axios.defaults.transformRequest
-        ],
-        transformResponse: [
-            ...axios.defaults.transformResponse,
-            keysToCamelCase
-        ],
         paramsSerializer(params) {
-            return qs.stringify(keysToSnakeCase(params), { arrayFormat: 'brackets' });
+            return qs.stringify(params, { arrayFormat: 'brackets' });
         }
     };
 
@@ -54,8 +41,8 @@ export default ({ Vue }) => {
             // general handler for when error is not from axios (i.e. no response prop)
             if (!error.response || error.response.status >= 500) {
                 throw {
-                    error: 'server-error-notice',
-                    message: 'server-error-notice'
+                    error: 'server_error_notice',
+                    message: 'server_error_notice'
                 };
             }
 

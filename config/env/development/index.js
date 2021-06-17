@@ -1,7 +1,7 @@
 module.exports = {
   NODE_ENV: 'development',
   GOOGLE_ANALYTICS_ID: 'UA-CHANGE-X',
-  SERVER_URL: '',
+  SERVER_URL: 'http://localhost:5000',
   GOOGLE_CLIENT_ID: '',
 
   APP_URL: 'https://localhost:8080',
