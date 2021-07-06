@@ -1,8 +1,17 @@
 import TableWithTabs from 'pages/TableWithTabs';
 import TableWithTabs2 from 'pages/TableWithTabs2';
 import TableWithoutTab from 'pages/TableWithoutTab';
+import Logout from 'components/Logout';
+import LogoutPage from 'pages/Logout';
+import LandingPage from 'pages/Landing';
+import SSOCallback from 'components/SSOCallback';
 
 export default [
+    {
+        path: '/',
+        name: 'home',
+        component: LandingPage,
+    },
     {
         path: '/table-with-tabs',
         name: 'table_with_tabs',
@@ -17,5 +26,20 @@ export default [
         path: '/table-without-tabs',
         name: 'table_without_tabs',
         component: TableWithoutTab
+    },
+    {
+        path: '/logout',
+        name: 'logout',
+        component: Logout
+    },
+    {
+        path: '/logoutpage',
+        name: 'logoutpage',
+        component: LogoutPage
+    },
+    {
+        path: '/sso/callback',
+        name: 'login',
+        component: SSOCallback,
     },
 ];

@@ -14,7 +14,7 @@ export default class JWT {
     }
 
     getToken() {
-        return LocalStorage.get.item(this.key);
+        return LocalStorage.getItem(this.key);
     }
 
     setToken(token) {

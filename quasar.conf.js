@@ -11,9 +11,11 @@ module.exports = function (ctx) {
             /**
              * Enable only the plugins that your app is going to use.
              */
-            // 'axios',
+            'axios',
+            'jwt',
+            'notify',
+            'admin-api',
             // 'google-api',
-            // 'jwt',
             // 'vuelidate',
             'vue-gtm',
 
@@ -77,6 +79,7 @@ module.exports = function (ctx) {
         // framework: 'all' --- includes everything; for dev only!
         framework: {
             components: [
+                'QAvatar',
                 'QBadge',
                 'QBreadcrumbs',
                 'QBreadcrumbsEl',
@@ -90,16 +93,21 @@ module.exports = function (ctx) {
                 'QPagination',
                 'QRadio',
                 'QSelect',
+                'QSpace',
                 'QTab',
                 'QTabPanel',
                 'QTabPanels',
                 'QTable',
                 'QTabs',
                 'QToggle',
+                'QToolbar',
+                'QToolbarTitle',
             ],
             directives: [],
             // Quasar plugins
             plugins: [
+                'Notify',
+                'Loading',
                 'LocalStorage',
             ]
         },
