@@ -27,7 +27,7 @@ import _ from 'lodash';
  * this.$trans([obj1, obj2], ['key1', 'key2']); // also supports array of objects using multiple keys using array
  */
 
-export default ({ app, Vue }) => {
+export default async ({ app, Vue }) => {
     Vue.use(VueI18next);
 
     i18next.use(i18nextLangDetector);
@@ -36,7 +36,7 @@ export default ({ app, Vue }) => {
         i18next.use(i18nextHttpBackend);
     }
 
-    i18next.init(i18nextConfig);
+    await i18next.init(i18nextConfig);
 
     app.i18n = new VueI18next(i18next);
 
