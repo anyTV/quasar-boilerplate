@@ -5,8 +5,6 @@
  */
 
 import { register } from 'register-service-worker';
-import { Notify } from 'quasar';
-import config from 'src/config';
 
 
 // Just enable the consoles for debugging purposes
@@ -19,19 +17,7 @@ register(process.env.SERVICE_WORKER_FILE, {
     //     console.log('Content has been cached for offline use.');
     // },
     updated() {
-        Notify.create({
-            color: 'info',
-            message: 'A new version of <your-app> is available.',
-            actions: [{
-                label: 'Refresh page',
-                color: 'white',
-                handler: () => {
-                    window.location.reload();
-                }
-            }],
-            position: config.NOTIFY_POSITION,
-            timeout: 0
-        });
+        window.location.reload();
     },
     // offline() {
     //     console.log('No internet connection found. App is running in offline mode.');
