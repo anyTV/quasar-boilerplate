@@ -1,5 +1,5 @@
 'use strict';
-
+import { boot } from 'quasar/wrappers'
 import { Notify } from 'quasar';
 import config from 'src/config';
 
@@ -15,7 +15,7 @@ const closeBtn = '✖';
  * this.$notify.success('successfully-created');
  */
 
-export default ({ app, Vue }) => {
+export default boot(({ app }) => {
 
     Notify.setDefaults({
         position: config.NOTIFY_POSITION,
@@ -46,11 +46,5 @@ export default ({ app, Vue }) => {
         }),
     };
 
-    Object.defineProperties(Vue.prototype, {
-        $notify: {
-            get() {
-                return notifyHandlers;
-            }
-        }
-    });
-};
+    app.config.globalProperties.$notify = notifyHandlers;
+});

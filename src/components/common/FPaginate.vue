@@ -19,22 +19,22 @@
             />
             <q-select
                 v-if="!noPerPage"
-                :value="value.rowsPerPage"
+                :model-value="value.rowsPerPage"
                 :options="perPageOptions"
                 :disable="disable"
                 class="paginate-select"
                 dense
                 borderless
-                @input="setPerPage"
+                @update:modelValue="setPerPage"
             />
         </div>
         <div class="col-auto">
             <q-pagination
-                :value="value.page"
+                :model-value="value.page"
                 :max="pageMax"
                 :disable="disable"
                 input
-                @input="setPage"
+                @update:modelValue="setPage"
             />
         </div>
     </div>

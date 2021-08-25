@@ -1,11 +1,11 @@
 <template>
     <f-table>
-        <template v-slot:header-left>
+        <template #header-left>
             <q-breadcrumbs
                 active-color="tertiary"
                 separator-color="tertiary"
             >
-                <template v-slot:separator>
+                <template #separator>
                     <q-icon
                         size="1.3em"
                         name="chevron_right"
@@ -13,16 +13,16 @@
                 </template>
                 <q-breadcrumbs-el
                     v-for="breadcrumb in breadcrumbs"
-                    :label="$trans(breadcrumb.label)"
                     :key="breadcrumb.label"
+                    :label="$trans(breadcrumb.label)"
                     :to="breadcrumb.to"
                 />
             </q-breadcrumbs>
         </template>
 
-        <template v-slot:header-right>
+        <template #header-right>
             <div class="text-tertiary">
-                <span v-text="$trans('additional_info')"/>
+                <span v-text="$trans('additional_info')" />
                 <q-icon
                     name="warning_amber"
                     class="q-px-xs"
@@ -34,14 +34,14 @@
             </div>
         </template>
 
-        <template v-slot:control-left>
+        <template #control-left>
             <div
                 class="text-h5"
                 v-text="tableTitle"
             />
         </template>
 
-        <template v-slot:control-right>
+        <template #control-right>
             <div class="q-gutter-xs q-pb-xs">
                 <q-toggle
                     v-model="isDark"
@@ -60,18 +60,18 @@
             </div>
         </template>
 
-        <template v-slot:content>
+        <template #content>
             <div class="row">
                 <div class="col q-pa-md border-bottom">
                     <span v-text="$trans('filter')" />
                 </div>
             </div>
             <q-table
+                v-model="tablePagination"
                 :data="requestTabData"
                 :columns="columns"
                 :hide-bottom="hideBottom"
                 :loading="loading"
-                :pagination.sync="tablePagination"
                 binary-state-sort
                 row-key="id"
                 class="f-table"
@@ -79,17 +79,16 @@
             />
         </template>
 
-        <template v-slot:paginate>
+        <template #paginate>
             <f-paginate
                 v-model="tablePagination"
                 show-items-total
                 per-page-text="items_per_page"
                 total-items-text="items_total"
                 align-end
-                @input="newPagination"
+                @update:modelValue="newPagination"
             />
         </template>
-
     </f-table>
 </template>
 

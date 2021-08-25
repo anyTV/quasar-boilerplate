@@ -6,7 +6,7 @@
             </q-avatar>
 
             <q-toolbar-title class="title">
-                <span v-text="$trans('quasar_boilerplate')"/>
+                <span v-text="$trans('quasar_boilerplate')" />
             </q-toolbar-title>
 
             <q-space />

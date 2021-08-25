@@ -1,36 +1,37 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-
+import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router'
 import routes from './routes';
 import ga from './analytics';
+import { getCurrentInstance } from 'vue';
 
-Vue.use(VueRouter);
+export default function (/* { store, ssrContext } */) {
+    const createHistory = process.env.SERVER
+      ? createMemoryHistory
+      : process.env.VUE_ROUTER_MODE === 'history' ? createWebHistory : createWebHashHistory
+  
+    const Router = createRouter({
+      scrollBehavior: () => ({ left: 0, top: 0 }),
+      routes,
+  
+      // Leave this as is and make changes in quasar.conf.js instead!
+      // quasar.conf.js -> build -> vueRouterMode
+      // quasar.conf.js -> build -> publicPath
+      history: createHistory(process.env.MODE === 'ssr' ? undefined : process.env.VUE_ROUTER_BASE)
+    })
 
-const Router = new VueRouter({
-    /*
-     * NOTE! Change Vue Router mode from quasar.conf.js -> build -> vueRouterMode
-     *
-     * When going with "history" mode, please also make sure "build.publicPath"
-     * is set to something other than an empty string.
-     * Example: '/' instead of ''
-     */
 
-    // Leave as is and change from quasar.conf.js instead!
-    mode: process.env.VUE_ROUTER_MODE,
-    base: process.env.VUE_ROUTER_BASE,
-    scrollBehavior: () => ({ y: 0 }),
-    routes
-});
+    Router.afterEach(to => {
 
-Router.afterEach(to => {
-    Vue.gtm.trackView(
-        to.path,
-        to.name,
-        {
-            cid: ga.createSessionId(),
-            path: to.path
-        }
-    );
-});
-
-export default Router;
+    
+        const app = getCurrentInstance();
+        app.gtm.trackView(
+            to.path,
+            to.name,
+            {
+                cid: ga.createSessionId(),
+                path: to.path
+            }
+        );
+    });
+  
+    return Router
+};

@@ -1,16 +1,8 @@
 import JWT from 'src/helpers/jwt';
 import config from 'src/config';
+import { boot } from 'quasar/wrappers';
 
-export default ({ Vue }) => {
+export default boot(({ app }) => {
     const jwt = new JWT(config.JWT_STORAGE_KEY);
-
-    Vue.jwt = jwt;
-
-    Object.defineProperties(Vue.prototype, {
-        $jwt: {
-            get() {
-                return jwt;
-            }
-        }
-    });
-};
+    app.config.globalProperties.$jwt = jwt;
+});

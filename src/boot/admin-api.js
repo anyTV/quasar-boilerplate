@@ -10,7 +10,7 @@ import qs from 'qs';
  * // In a component you can use it like:
  * this.$adminAPI.post(...);
  */
-export default ({ Vue }) => {
+export default ({ app }) => {
 
     const apiConfig = {
         baseURL: config.API.BASE_URL,
@@ -89,11 +89,5 @@ export default ({ Vue }) => {
         }
     };
 
-    Object.defineProperties(Vue.prototype, {
-        $adminAPI: {
-            get() {
-                return adminAPI;
-            }
-        },
-    });
+    app.config.globalProperties.$adminAPI = adminAPI;
 };

@@ -3,7 +3,7 @@
         <f-table
             :page-header="false"
         >
-            <template v-slot:control-left>
+            <template #control-left>
                 <q-tabs
                     v-model="selectedTab"
                     inline-label
@@ -22,21 +22,23 @@
                         <q-badge
                             v-if="tab.badge"
                             class="q-ml-xs"
-                            v-text="tab.badge"/>
+                            v-text="tab.badge"
+                        />
                     </q-tab>
                 </q-tabs>
-
             </template>
 
-            <template v-slot:content>
+            <template #content>
                 <q-tab-panels
                     v-model="selectedTab"
-                    animated>
+                    animated
+                >
                     <q-tab-panel
                         v-for="tab in tabs"
                         :key="tab.name"
                         :name="tab.name"
-                        class="q-pa-none">
+                        class="q-pa-none"
+                    >
                         <div class="row">
                             <div class="col q-pa-md border-bottom">
                                 <span v-text="$trans('filter')" />
@@ -44,29 +46,28 @@
                             </div>
                         </div>
                         <q-table
+                            v-model="tablePagination"
                             :data="requestTabData"
                             :columns="columns"
                             :hide-bottom="hideBottom"
                             :loading="loading"
-                            :pagination.sync="tablePagination"
                             binary-state-sort
                             row-key="id"
                             class="f-table"
                             @request="getTableData"
                         />
                     </q-tab-panel>
-
                 </q-tab-panels>
             </template>
 
-            <template v-slot:paginate>
+            <template #paginate>
                 <f-paginate
                     v-model="tablePagination"
                     per-page-text="requests_per_page"
                     total-items-text="tracks_available"
                     show-items-total
                     align-end
-                    @input="newPagination"
+                    @update:modelValue="newPagination"
                 />
             </template>
         </f-table>

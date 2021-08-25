@@ -5,7 +5,9 @@
         no-border
     >
         <slot name="header">
-            <q-list-header v-if="header">{{ $t(header) }}</q-list-header>
+            <q-list-header v-if="header">
+                {{ $t(header) }}
+            </q-list-header>
         </slot>
         <slot
             :change-language="changeLanguage"
@@ -14,7 +16,7 @@
             <q-item
                 v-for="lang in languages"
                 :key="lang.value"
-                @click.native="changeLanguage(lang.value)"
+                @click="changeLanguage(lang.value)"
                 v-text="$t(lang.label)"
             />
         </slot>
