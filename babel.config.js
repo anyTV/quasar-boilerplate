@@ -8,9 +8,10 @@ module.exports = {
         [
             '@babel/preset-env',
             {
+                'corejs': '3',
                 'modules': false,
                 'loose': false,
-                'useBuiltIns': 'usage'
+                'useBuiltIns': 'entry'
             }
         ],
     ],

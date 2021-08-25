@@ -36,6 +36,10 @@ module.exports = function (ctx) {
         ],
         supportIE: true,
         build: {
+            chainWebpack (chain) {
+                const nodePolyfillWebpackPlugin = require('node-polyfill-webpack-plugin');
+                chain.plugin('node-polyfill').use(nodePolyfillWebpackPlugin);
+            },
             // gzip: true, // use if deployment server does not have gzip by default
             scopeHoisting: true,
             vueRouterMode: 'history',

@@ -1,8 +1,7 @@
 module.exports = {
     root: true,
     parserOptions: {
-        parser: 'babel-eslint',
-        sourceType: 'module'
+        parser: '@babel/eslint-parser',
     },
     env: {
         browser: true
@@ -12,7 +11,7 @@ module.exports = {
         'eslint:recommended',
         // https://github.com/vuejs/eslint-plugin-vue#gear-configs
         'plugin:vue/base',
-        'plugin:vue/essential',
+        'plugin:vue/vue3-essential',
         'plugin:vue/strongly-recommended',
         'plugin:vue/recommended',
     ],
