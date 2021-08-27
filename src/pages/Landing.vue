@@ -16,7 +16,7 @@
                 :href="loginUrl"
             >
                 <q-btn
-                    :label="$trans('sign-in')"
+                    :label="$trans('sign_in')"
                     text-color="white"
                     color="secondary"
                     flat

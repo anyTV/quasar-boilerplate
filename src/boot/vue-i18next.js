@@ -1,9 +1,10 @@
 import i18next from 'i18next';
 import i18nextHttpBackend from 'i18next-http-backend';
 import i18nextLangDetector from 'i18next-browser-languagedetector';
-import VueI18next from '@panter/vue-i18next';
+import VueI18next from 'src/helpers/VueI18next';
 import i18nextConfig from 'src/config/i18next';
 import _ from 'lodash';
+import { boot } from 'quasar/wrappers';
 
 /**
  * Plugin for injecting i18n directive and filter
@@ -27,7 +28,8 @@ import _ from 'lodash';
  * this.$trans([obj1, obj2], ['key1', 'key2']); // also supports array of objects using multiple keys using array
  */
 
-export default async ({ app }) => {
+export default boot(async ({ app }) => {
+    console.log(app);
     app.use(VueI18next);
 
     i18next.use(i18nextLangDetector);
@@ -38,7 +40,8 @@ export default async ({ app }) => {
 
     await i18next.init(i18nextConfig);
 
-    app.i18n = new VueI18next(i18next);
+    const i18n = VueI18next.createI18n(i18next);
+    app.use(i18n);
 
     app.mixin({
         methods: {
@@ -95,4 +98,4 @@ export default async ({ app }) => {
             }
         }
     });
-};
+});
