@@ -2,7 +2,7 @@
     <div>
         <q-toolbar class="bg-primary shadow-2 q-pa-sm content-center">
             <q-avatar>
-                <img src="statics/app-logo.png">
+                <q-img src="app-logo.png" />
             </q-avatar>
 
             <q-toolbar-title class="title">
