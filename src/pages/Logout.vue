@@ -29,7 +29,7 @@
 <script>
     import URLs from 'src/mixins/urls';
     export default {
-        name: 'LandingPage',
+        name: 'Logout',
         mixins: [
             URLs
         ],

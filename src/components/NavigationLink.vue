@@ -1,0 +1,45 @@
+<template>
+    <q-item clickable tag="a" target="_blank" :href="link">
+        <q-item-section v-if="icon" avatar>
+            <q-icon :name="icon" />
+        </q-item-section>
+
+        <q-item-section>
+            <q-item-label :v-text="title" />
+            <q-item-label
+                :v-text="caption"
+                caption
+            />
+        </q-item-section>
+    </q-item>
+</template>
+
+<script>
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+    name: 'NavigationLink',
+
+    props: {
+        title: {
+            type: String,
+            required: true,
+        },
+
+        caption: {
+            type: String,
+            default: '',
+        },
+
+        link: {
+            type: String,
+            default: '#',
+        },
+
+        icon: {
+            type: String,
+            default: '',
+        },
+    },
+});
+</script>

@@ -26,22 +26,26 @@ export default boot(({ app }) => {
     const notifyHandlers = {
         success: (message) => Notify.create({
             color: 'positive',
-            message: app.i18n.i18next.t(message),
+            // message: app.i18n.i18next.t(message),
+            message,
             closeBtn
         }),
         error: (message) => Notify.create({
             color: 'negative',
-            message: app.i18n.i18next.t(message),
+            // message: app.i18n.i18next.t(message),
+            message,
             closeBtn
         }),
         warning: (message) => Notify.create({
             color: 'warning',
-            message: app.i18n.i18next.t(message),
+            // message: app.i18n.i18next.t(message),
+            message,
             closeBtn
         }),
         info: (message) => Notify.create({
             color: 'info',
-            message: app.i18n.i18next.t(message),
+            // message: app.i18n.i18next.t(message),
+            message,
             closeBtn
         }),
     };

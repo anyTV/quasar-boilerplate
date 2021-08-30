@@ -29,7 +29,6 @@ import { boot } from 'quasar/wrappers';
  */
 
 export default boot(async ({ app }) => {
-    console.log(app);
     app.use(VueI18next);
 
     i18next.use(i18nextLangDetector);
@@ -99,3 +98,5 @@ export default boot(async ({ app }) => {
         }
     });
 });
+
+export { VueI18next };
