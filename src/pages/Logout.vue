@@ -21,6 +21,7 @@
                     color="secondary"
                     flat
                 />
+                {{ logoutUrl }}
             </a>
         </q-toolbar>
     </div>

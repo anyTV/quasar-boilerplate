@@ -1,15 +1,24 @@
 <template>
-    <q-item clickable tag="a" target="_blank" :href="link">
-        <q-item-section v-if="icon" avatar>
+    <q-item
+        clickable
+        tag="a"
+        target="_blank"
+        :href="link"
+    >
+        <q-item-section
+            v-if="icon"
+            avatar
+        >
             <q-icon :name="icon" />
         </q-item-section>
 
         <q-item-section>
-            <q-item-label :v-text="title" />
-            <q-item-label
-                :v-text="caption"
-                caption
-            />
+            <q-item-label>
+                <span v-text="title" />
+            </q-item-label>
+            <q-item-label caption>
+                <span v-text="caption" />
+            </q-item-label>
         </q-item-section>
     </q-item>
 </template>

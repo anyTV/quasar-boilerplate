@@ -15,13 +15,17 @@
                     <q-avatar>
                         <q-img src="app-logo.png" />
                     </q-avatar>
-                    Quasar Boilerplate
+                    <span
+                        v-text="'App Name'"
+                        class="q-ml-sm"
+                    />
                 </q-toolbar-title>
 
                 <div>
-                    <span class="q-mr-sm">
-                        Username
-                    </span>
+                    <span
+                        v-text="'Username'"
+                        class="q-mr-sm"
+                    />
                     <q-avatar>
                         <q-img src="app-logo.png" />
                     </q-avatar>

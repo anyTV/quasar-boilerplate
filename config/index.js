@@ -4,9 +4,9 @@
  */
 const env = process.env.NODE_ENV || 'development';
 const envConfig = require(`./env/${env}`);
-const { stringifyConfig } = require('./utils');
+// const {  } = require('./utils');
 
 
-module.exports = stringifyConfig({
+module.exports = {
   env: envConfig,
-});
+};

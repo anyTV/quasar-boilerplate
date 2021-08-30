@@ -3,6 +3,11 @@
 const app_url = process.env.APP_URL;
 const auth_server = process.env.AUTH_SERVER;
 
+console.log('process.env', process.env);
+console.log(auth_server);
+console.log(auth_server.ENDPOINTS.LOGOUT);
+console.log( `${auth_server.BASE_URL}${auth_server.ENDPOINTS.LOGOUT}?redirect=${app_url}`,);
+
 export default {
     data() {
         return {
