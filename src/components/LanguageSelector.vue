@@ -6,7 +6,7 @@
     >
         <slot name="header">
             <q-list-header v-if="header">
-                {{ $t(header) }}
+                <span v-text="$trans(header)" />
             </q-list-header>
         </slot>
         <slot

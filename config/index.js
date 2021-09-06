@@ -4,8 +4,6 @@
  */
 const env = process.env.NODE_ENV || 'development';
 const envConfig = require(`./env/${env}`);
-// const {  } = require('./utils');
-
 
 module.exports = {
   env: envConfig,

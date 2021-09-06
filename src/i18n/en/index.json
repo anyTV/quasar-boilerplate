@@ -1,5 +1,9 @@
 {
   "hello": "Hello",
+  "hello_name": "Hello {{ name }}",
+  "notification_demo": "Notification Demo",
+  "translation_demo": "Translation Demo",
+  "axios_demo": "Axios Demo",
   "results_per_page": "Results per page",
   "total_item": "Total Items",
   "channel_id": "Channel ID",

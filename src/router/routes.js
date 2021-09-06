@@ -8,11 +8,6 @@ import MainLayout from 'layouts/MainLayout';
 export default [
     {
         path: '/',
-        name: 'home',
-        component: LandingPage,
-    },
-    {
-        path: '/demo',
         component: MainLayout,
         children: [
             { path: '', component: () => Demo, name: 'demo' },
