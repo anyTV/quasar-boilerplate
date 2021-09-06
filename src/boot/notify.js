@@ -16,7 +16,12 @@ const closeBtn = '✖';
  * 
  * @notes
  * This will only utilize $t
- * You will need to translate manually if it is interpolated
+ * 
+ * For interpolations, you will need to translate manually if it is interpolated
+ * on i18n json
+ *   hello_name: 'Hello {{ name }}
+ * on component
+ *   this.$notify.success($trans({key: 'hello_name', data: { name: 'John Doe' });
  */
 
 export default boot(({ app }) => {
@@ -26,7 +31,6 @@ export default boot(({ app }) => {
         timeout: 5000,
         textColor: 'white',
     });
-    console.log('APP:', app);
 
     const notifyHandlers = {
         success: (message) => Notify.create({
