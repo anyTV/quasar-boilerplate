@@ -1,4 +1,5 @@
 {
+  "hello": "Hello",
   "results_per_page": "Results per page",
   "total_item": "Total Items",
   "channel_id": "Channel ID",

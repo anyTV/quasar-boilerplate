@@ -14,6 +14,7 @@ export default defineComponent({
     },
 
     created() {
+        // Sample usage for notify
         this.$notify.success('hello');
     },
 });
