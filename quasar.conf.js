@@ -68,6 +68,9 @@ module.exports = function (ctx) {
             }
         },
         devServer: {
+            watchFiles: [
+                '../freedom-components/f-table',
+            ],
             https: true,
             port: 8080,
             open: true, // opens browser window automatically
