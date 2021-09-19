@@ -6,7 +6,23 @@
                 <f-table 
                     :rows="rows"
                     :columns="columns"
-                />
+                >
+                    <template #pagination>
+                        <f-paginate />
+                    </template>
+                </f-table>
+            </q-card-section>
+        </q-card>
+        <q-card class="col-12">
+            <q-card-section>
+                <h5 v-text="$trans('Placeholder Demo')" /> <br>
+                <f-placeholder />
+                <h5 v-text="$trans('Placeholder with Controls')" /> <br>
+                <f-placeholder>
+                    <template #control>
+                        Add controls here
+                    </template>
+                </f-placeholder>
             </q-card-section>
         </q-card>
         <q-card class="col-12">

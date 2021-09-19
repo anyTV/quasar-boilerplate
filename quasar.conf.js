@@ -70,6 +70,7 @@ module.exports = function (ctx) {
         devServer: {
             watchFiles: [
                 '../freedom-components/f-table',
+                '../freedom-components/f-placeholder',
             ],
             https: true,
             port: 8080,

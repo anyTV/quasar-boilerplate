@@ -30,6 +30,8 @@
         "node-polyfill-webpack-plugin": "^1.1.4",
         "qs": "^6.5.2",
         "quasar": "^2.0.4",
+        "quasar-app-extension-f-paginate": "file:../freedom-components/f-paginate",
+        "quasar-app-extension-f-placeholder": "file:../freedom-components/f-placeholder",
         "quasar-app-extension-f-table": "file:../freedom-components/f-table",
         "stylus-loader": "^3.0.2",
         "vue": "^3.2.6",
