@@ -2,40 +2,59 @@
     <q-page class="flex flex-center row q-pa-md q-gutter-md ">
         <q-card class="col-12">
             <q-card-section>
-                <h5 v-text="$trans('f_table_demo')" /> <br>
-                <f-table 
+                <h5 v-text="'FTable and FPagination ' + $trans('demo')" /> <br>
+                <f-table
                     :rows="rows"
                     :columns="columns"
+                    :pagination="pagination"
+                    height="500px"
                 >
-                    <template #pagination>
-                        <f-paginate />
+                    <template #bottom>
+                        <f-paginate 
+                            :pagination="pagination"
+                        />
                     </template>
                 </f-table>
             </q-card-section>
         </q-card>
+
         <q-card class="col-12">
             <q-card-section>
-                <h5 v-text="$trans('Placeholder Demo')" /> <br>
-                <f-placeholder />
-                <h5 v-text="$trans('Placeholder with Controls')" /> <br>
-                <f-placeholder>
-                    <template #control>
-                        Add controls here
+                <h5 v-text="'Placeholder ' + $trans('demo')" /> <br>
+
+                <f-table
+                    :rows="[]"
+                    :columns="columns"
+                    height="320px"
+                    :pagination="pagination"
+                >
+                    <template #top-row>
+                        <f-placeholder />
                     </template>
-                </f-placeholder>
+                </f-table>
             </q-card-section>
         </q-card>
+
         <q-card class="col-12">
             <q-card-section>
-                <h5 v-text="$trans('translation_demo')" /> <br>
+                <h5 v-text="'FBreadcrumbs ' + $trans('demo')" /> <br>
+
+                <f-breadcrumbs :bread-crumbs="breadCrumbs" />
+            </q-card-section>
+        </q-card>
+
+        <q-card class="col-12">
+            <q-card-section>
+                <h5 v-text="'Translation ' + $trans('demo')" /> <br>
                 <span v-text="'hello_name: hello {{ name }}'" /><br>
                 <span v-text="`$trans(${JSON.stringify(hello_with_name)}) = `" />
                 <span v-text="$trans(hello_with_name)" />
             </q-card-section>
         </q-card>
+
         <q-card class="col-12">
             <q-card-section>
-                <h5 v-text="$trans('axios_demo')" /> <br>
+                <h5 v-text="'Axios ' + $trans('demo')" /> <br>
                 <q-input
                     v-model="post_id"
                     label="post_id"
@@ -51,9 +70,10 @@
                 <span v-text="text" />
             </q-card-section>
         </q-card>
+
         <q-card class="col-12">
             <q-card-section>
-                <h5 v-text="$trans('notification_demo')" /> <br>
+                <h5 v-text="'Notification ' + $trans('demo')" /> <br>
                 <q-btn
                     class="q-mr-xs"
                     :label="$trans('success')"
@@ -197,38 +217,63 @@
     export default defineComponent({
         name: 'Demo',
 
-        setup() {
+        setup () {
             return {
                 hello_with_name: {
                     key: 'hello_name',
-                    data: {name: 'John Doe' }
+                    data: { name: 'John Doe' }
                 },
                 text: ref('Update post_id (1,2,3) and click submit'),
                 post_id: ref(null),
                 columns,
-                rows
+                rows,
+                pagination: {
+                    sortBy: 'calories',
+                    descending: false,
+                    page: 1,
+                    rowsPerPage: 10,
+                    max: 2,
+                    min: 1,
+                },
+                breadCrumbs: [
+                    {
+                        label: 'Workspaces',
+                        icon: 'workspaces',
+                        route: '/workspaces',
+                    },
+                    {
+                        label: 'Folder',
+                        icon: 'folder',
+                        route: '/workspaces/folder',
+                    },
+                    {
+                        label: 'File',
+                        icon: 'attachment',
+                        route: '/workspaces/folder/file',
+                    },
+                ],
             };
         },
 
         methods: {
-            async update_post() {
+            async update_post () {
                 try {
                     const response = await this.$axios.get(`/posts/${this.post_id}`);
                     this.text = response.data.body;
 
-                    this.$notify.success(`Axioss Success!`);
+                    this.$notify.success(`Axios Success!`);
                 }
                 catch (error) {
-                    this.$notify.error('Axioss Failed');
+                    this.$notify.error('Axios Failed');
                 }
             },
 
-            notify_success() {
-                this.$notify.success('notification_demo');
+            notify_success () {
+                this.$notify.success('Notification ' + this.$trans('demo'));
             },
 
-            notify_error() {
-                this.$notify.error('notification_demo');
+            notify_error () {
+                this.$notify.error('Notification ' + this.$trans('demo'));
             },
         },
     });
