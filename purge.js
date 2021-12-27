@@ -1,7 +1,12 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+
 'use strict';
 
-const axios = require('axios').default;
-const config = require('./config/env/production');
+import axios from 'axios';
+import config from './config/env/production';
 
 const app_zone = '<your-app-zone-from-cloudflare>';
 const cloudflare_token = config.CLOUDFLARE_API_TOKEN;
@@ -11,7 +16,7 @@ async function start () {
     try {
         const response = await axios({
             method: 'POST',
-            url: `https://api.cloudflare.com/client/v4/zones/${cid_zone}/purge_cache`,
+            url: `https://api.cloudflare.com/client/v4/zones/${app_zone}/purge_cache`,
             data: {
                 files: ['<your-app-domain>']
             },

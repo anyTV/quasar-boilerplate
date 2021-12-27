@@ -1,0 +1,18 @@
+{
+  "vetur.validation.template": false,
+  "vetur.format.enable": false,
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "vue"],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "vetur.experimental.templateInterpolationService": true,
+  "files.trimTrailingWhitespace": true,
+  "window.zoomLevel": 1,
+  "editor.renderWhitespace": "none",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.alwaysShowStatus": true,
+  "editor.formatOnSave": true,
+  "files.autoSave": "onFocusChange",
+  "breadcrumbs.enabled": false
+}

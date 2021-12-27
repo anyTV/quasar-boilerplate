@@ -1,14 +1,10 @@
 <template>
-    <div id="q-app">
-        <q-layout view="hHr LpR lFf">
-            <router-view v-waitForT/>
-        </q-layout>
-    </div>
+  <router-view />
 </template>
+<script lang="ts">
+import { defineComponent } from 'vue';
 
-<script>
-    export default {
-        name: 'App'
-    };
+export default defineComponent({
+  name: 'App'
+})
 </script>
-
