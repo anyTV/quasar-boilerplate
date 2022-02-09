@@ -1,6 +1,7 @@
 'use strict';
 
 import _ from 'lodash';
+import moment from 'moment';
 import pageConfig from 'src/config/pagination';
 
 export function arrayToOptions(inputArray, prefix = null) {
@@ -20,6 +21,10 @@ export function valueToLabel(value, prefix = '') {
     }
 
     return `${prefix}${_.kebabCase(value)}`;
+}
+
+export function humanizedDate(date, format = config.DATE_FORMAT.FULL_DATE) {
+    return date ? moment.utc(date).local().format(format) : '';
 }
 
 export default {

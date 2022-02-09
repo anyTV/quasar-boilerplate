@@ -44,5 +44,19 @@
   "oauth_denied_error": "Failed authentication. Please try again.",
   "server_error_notice": "There was a problem in our server. Try again later",
   "logged_out_notice": "Successfully logged out",
-  "quasar_boilerplate": "Quasar Boilerplate"
+  "quasar_boilerplate": "Quasar Boilerplate",
+  "add_filter": "Add filter",
+  "apply": "Apply",
+  "user_id": "User ID",
+  "filter_list_by": "Filter list by",
+  "birthday": "Birthday",
+  "birth_date": "Date of birth",
+  "likes": "Likes",
+  "user_type": "User type",
+  "status": "Status",
+  "with_format": "Returns primitive value (overrides default behavior to return array)",
+  "table_title_no_filter": "FFilter Component Demo only (does not perform actual filtering of records)",
+  "=": "is",
+  "multiselect": "Multiselect option on",
+  "with_integer_rule": "rule set to accept integer only"
 }
