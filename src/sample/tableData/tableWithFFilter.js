@@ -9,7 +9,7 @@ export default {
             birthday: '2000-01-01',
             likes: 1010,
             user_type: 'admin',
-            status: 'approved',
+            status: 'accepted',
         },
         {
             id: 2,
@@ -17,7 +17,7 @@ export default {
             birthday: '2003-02-02',
             likes: 500,
             user_type: 'superadmin',
-            status: 'approved',
+            status: 'accepted',
         },
         {
             id: 3,
@@ -33,7 +33,7 @@ export default {
             birthday: '2008-07-15',
             likes: 3211,
             user_type: 'admin',
-            status: 'approved',
+            status: 'accepted',
         },
         {
             id: 5,

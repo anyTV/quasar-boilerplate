@@ -102,6 +102,7 @@
 </template>
 
 <script>
+    import _ from 'lodash';
     import FPaginate from "src/components/common/FPaginate";
     import pageConfig from 'src/config/pagination';
     import tableData from 'src/sample/tableData/tableWithFFilter';
@@ -122,7 +123,7 @@
         data () {
             return {
                 isDark: false,
-                tableTitle: this.$trans('table_title_no_filter'),
+                tableTitle: this.$trans('table_title_f_filter'),
                 breadcrumbs: [
                     {label: 'home', to: '/'},
                     {label: 'channel', to: '/table-with-tabs-2'},
@@ -141,6 +142,7 @@
                 filter_fields: {
                     name: {},
                     user_id: {
+                        key: 'id',
                         rule: integer,
                         caption: 'with_integer_rule',
                     },
@@ -238,6 +240,7 @@
                 // emulate server
                 setTimeout(() => {
                     const returnedData = this.fetchFromServer({
+                        search_filters: props.search_filters,
                         ...props.pagination
                     });
                     this.requestTabData = returnedData.data.items;
@@ -253,18 +256,22 @@
             },
 
             // emulate api call
-            fetchFromServer ({page, rowsPerPage, sortBy, descending}) {
-
+            fetchFromServer ({search_filters, page, rowsPerPage, sortBy, descending}) {
                 const total = this.tableData.items.length;
                 const startRow = (page - 1) * rowsPerPage;
                 const count = rowsPerPage === 0 ? total : rowsPerPage;
                 const tableData = this.tableData.items;
+                const text_fields = [
+                    'name',
+                    'user_type',
+                    'status',
+                ]
 
                 if (sortBy) {
-                    const sortFn = sortBy === 'name'
+                    const sortFn = _.find(text_fields, (field) => field === sortBy) 
                         ? (descending
-                            ? (a, b) => (a.name > b.name ? -1 : a.name < b.name ? 1 : 0)
-                            : (a, b) => (a.name > b.name ? 1 : a.name < b.name ? -1 : 0)
+                            ? (a, b) => (a[sortBy] > b[sortBy] ? -1 : a[sortBy] < b[sortBy] ? 1 : 0)
+                            : (a, b) => (a[sortBy] > b[sortBy] ? 1 : a[sortBy] < b[sortBy] ? -1 : 0)
                         )
                         : (descending
                             ? (a, b) => (parseFloat(b[sortBy]) - parseFloat(a[sortBy]))
@@ -273,19 +280,73 @@
                     tableData.sort(sortFn);
                 }
 
+                const table_data = tableData.slice(startRow, startRow + count)
+                let filtered_data = [];
+                
+                _.forEach(table_data, item => {
+                    let passed = true;
+                    _.forEach(search_filters, (filter, key) => {
+                        let filter_key = key;
+                        if (_.includes(['status', 'status_with_format', 'status_multiselect'], key)) {
+                            filter_key = 'status';
+                        }
+                        const comparison = _.get(filter, 'operation', (filter_key === 'name' ? 'like' : '='));
+                        if (!this.has_passed_filter(item, filter_key, _.get(filter, 'value', filter), comparison)) {
+                            passed = false;
+                        }
+                    });
+
+                    if (passed) {
+                        filtered_data.push(item);
+                    }
+                });
+
                 const data = {
                     page,
                     perPage: rowsPerPage,
                     total,
-                    items: tableData.slice(startRow, startRow + count)
+                    items: filtered_data
                 };
                 return {
                     data
                 };
             },
 
+            has_passed_filter(data, field, filter_val, comparison = '=') {
+                if (comparison === '=') {
+                    if (_.isArray(filter_val)) {
+                        return !_.isUndefined(_.find(filter_val, (val) => val.toLowerCase() === data[field].toLowerCase()));
+                    }
+                    else {
+                        if (!_.isNumber(parseInt(filter_val))) {
+                            return data[field].toLowerCase() === filter_val.toLowerCase();
+                        }
+                        
+                        return parseInt(data[field]) === parseInt(filter_val);
+                    }
+                }
+                else if (comparison === 'like') {
+                    if (_.isArray(filter_val)) {
+                        return !_.isUndefined(_.find(filter_val, (val) => val.toLowerCase() === data[field].toLowerCase()));
+                    }
+                    else {
+                        return _.includes(data[field].toLowerCase(), filter_val.toLowerCase());
+                    }
+                }
+                else if (_.isNumber(parseInt(filter_val))) {
+                    return eval(`${data[field]} ${comparison} ${filter_val}`);
+                }
+
+                return false;
+            },
+
             on_filter_search(filters) {
                 this.search_filters = filters;
+
+                this.getTableData({
+                    search_filters: this.search_filters,
+                    pagination: this.tablePagination,
+                });
             },
         }
     };

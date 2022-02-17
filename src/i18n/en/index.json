@@ -55,7 +55,7 @@
   "user_type": "User type",
   "status": "Status",
   "with_format": "Returns primitive value (overrides default behavior to return array)",
-  "table_title_no_filter": "FFilter Component Demo only (does not perform actual filtering of records)",
+  "table_title_f_filter": "FFilter Component Demo",
   "=": "is",
   "multiselect": "Multiselect option on",
   "with_integer_rule": "rule set to accept integer only"
