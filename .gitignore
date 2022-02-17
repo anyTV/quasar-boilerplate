@@ -75,3 +75,5 @@ dist/
 
 # esdoc
 docs/
+/src-pwa/pwa-flag.d.ts
+/src/store/store-flag.d.ts
