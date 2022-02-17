@@ -1,6 +1,6 @@
 {
     "name": "anytv-quasar-boilerplate",
-    "version": "1.5.0",
+    "version": "1.5.1",
     "description": "AnyTV Quasar Boilerplate",
     "repository": "https://github.com/anyTV/quasar-boilerplate",
     "productName": "Freedom! App",
@@ -11,9 +11,11 @@
         "url": "www.freedom.tm"
     },
     "scripts": {
+        "preinstall": "find ./node_modules* -xtype l -delete || echo skip preinstall",
         "lint": "eslint --ext .js,.vue src",
         "dev": "cross-env node node_modules/@quasar/cli/bin/quasar dev",
-        "docs": "esdoc"
+        "docs": "esdoc",
+        "postinstall": "npm i --no-save ./node_modules/quasar-app-extension-freedom-components/f-table"
     },
     "dependencies": {
         "@panter/vue-i18next": "^0.15.1",
@@ -28,6 +30,7 @@
         "moment": "^2.20.1",
         "qs": "^6.5.2",
         "quasar": "^1.15.23",
+        "quasar-app-extension-freedom-components": "git+https://freedom-components-readonly:9jawmhdE8Pxuzy6a5yQQ@gitlab.com/anyTV/incubator/freedom-components.git",
         "vue": "2.6.11",
         "vue-gtm": "3.1.0-vue2",
         "vue-router": "^3.0.1",
