@@ -76,7 +76,6 @@
 <script>
     import _ from 'lodash';
     import FPaginate from "src/components/common/FPaginate";
-    import FTable from 'src/components/partials/tables/FTable';
     import pageConfig from 'src/config/pagination';
     import tableData from 'src/sample/tableData/tableWithTabs';
     import tableColumns from 'src/sample/tableColumns/tableWithTabs';
@@ -84,7 +83,7 @@
 
     export default {
         name: 'TableWithTabs',
-        components: { FTable, FPaginate },
+        components: { FPaginate },
         mixins: [
             UtilMixin
         ],
