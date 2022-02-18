@@ -1,3 +1,6 @@
+Version 1.5.2:
+ - Dev-4216 Platform > Freedom Components > FFilter Demo Page [(#46)](https://github.com/anyTV/quasar-boilerplate/pull/46)
+
 Version 1.5.1:
  - Delta-1641 Platform > Freedom Components > use FTable from freedom-components [(#47)](https://github.com/anyTV/quasar-boilerplate/pull/47)
 
