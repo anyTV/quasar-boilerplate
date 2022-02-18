@@ -4,6 +4,7 @@
  * Build configurations should be placed in /config directory outside the /src directory.
  */
 import API from './api';
+import date from './date';
 
 export default {
     API,
@@ -19,5 +20,7 @@ export default {
         enabled: true,
         debug: false,
         trackOnNextTick: false
-    }
+    },
+
+    date,
 };

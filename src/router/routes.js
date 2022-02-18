@@ -1,6 +1,7 @@
 import TableWithTabs from 'pages/TableWithTabs';
 import TableWithTabs2 from 'pages/TableWithTabs2';
 import TableWithoutTab from 'pages/TableWithoutTab';
+import FFilterDemo from 'pages/FFilterDemo';
 import Logout from 'components/Logout';
 import LogoutPage from 'pages/Logout';
 import LandingPage from 'pages/Landing';
@@ -26,6 +27,11 @@ export default [
         path: '/table-without-tabs',
         name: 'table_without_tabs',
         component: TableWithoutTab
+    },
+    {
+        path: '/ffilter-demo',
+        name: 'ffilter_demo',
+        component: FFilterDemo
     },
     {
         path: '/logout',
