@@ -5,6 +5,7 @@
  */
 import API from './api';
 import date from './date';
+import application from './application';
 
 export default {
     API,
@@ -23,4 +24,5 @@ export default {
     },
 
     date,
+    application,
 };
