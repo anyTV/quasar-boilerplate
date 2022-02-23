@@ -4,10 +4,6 @@ import i18nextLangDetector from 'i18next-browser-languagedetector';
 import VueI18next from '@panter/vue-i18next';
 import i18nextConfig from 'src/config/i18next';
 import _ from 'lodash';
-import {
-    get_application_name,
-    get_application_name_key,
-} from 'src/mixins/utils';
 
 /**
  * Plugin for injecting i18n directive and filter
@@ -96,19 +92,7 @@ export default async ({ app, Vue }) => {
                 }
 
                 return obj;
-            },
-            $trans_with_app_name(obj) {
-                let trans_param = _.isString(obj)
-                    ? {
-                        key: obj,
-                        data: {
-                            [get_application_name_key()]: get_application_name()
-                        }
-                    }
-                    : obj;
-
-                return this.$trans(trans_param);
-            },
+            }
         }
     });
 };

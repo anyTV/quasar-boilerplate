@@ -1,16 +1,24 @@
 <template>
     <div class="full-width row wrap justify-center items-start">
         <div class="history-container">
-            <f-history :history="history_sample" />
+            <f-history 
+                :history="history_sample"
+                :status-types="status_types"
+            />
         </div>
     </div>
 </template>
 
 <script>
+    import _ from 'lodash';
+    import claim_status from 'src/data/claim-history-types.json';
+    import user_status from 'src/data/user-status-types.json';
+
     export default {
         name : 'FHistoryDemo',
         data () {
             return {
+                status_types: _.merge(claim_status, user_status),
                 history_sample: {
                     items: [
                         {
@@ -40,7 +48,7 @@
                         {
                             id: 3,
                             reviewerId: 531,
-                            notes: 'Lorem amet consectetur adipisicing elit. Ullam possimus reiciendis nam dolor quia! Quidem, unde.',
+                            notes: 'Lorem amet consectetur adipisicing elit. Ullam possimus reiciendis nam dolor quia! Quidem, unde. orem amet consectetur adipisicing elit. Ullam possimus reiciendis nam dolor quia! Quidem, unde.',
                             status: 'rejected',
                             createdAt: '2021-02-16T10:03:04.000Z',
                             reviewerName: 'John Doe'
@@ -48,7 +56,7 @@
                         {
                             id: 4,
                             reviewerId: 531,
-                            notes: 'sit amet consectetur adipisicing elit. Ullam possimus reiciendis nam dol',
+                            notes: 'sit amet consectetur adipisicing elit. Ullam possimus reiciendis nam dol orem amet consectetur adipisicing elit. Ullam possimus reiciendis nam dolor quia! Quidem, unde.orem amet consectetur adipisicing elit. Ullam possimus reiciendis nam dolor quia! Quidem, unde.',
                             status: 'escalated',
                             createdAt: '2021-02-16T09:05:04.000Z',
                             reviewerName: 'John Doe'
@@ -72,7 +80,7 @@
                         {
                             id: 7,
                             reviewerId: 531,
-                            notes: 'Ullam possimus reiciendis nam dolor quia! Quidem, unde.',
+                            notes: 'Ullam possimus reiciendis nam dolor quia! Quidem, unde. orem amet consectetur adipisicing elit. Ullam possimus reiciendis nam dolor quia! Quidem, unde.orem amet consectetur adipisicing elit. Ullam possimus reiciendis nam dolor quia! Quidem, unde.',
                             status: 'under_verification',
                             createdAt: '2021-02-16T07:03:04.000Z',
                             reviewerName: 'John Doe'

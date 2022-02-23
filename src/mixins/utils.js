@@ -28,25 +28,12 @@ export function humanizedDate(date, format = config.date.formats.FULL_DATE) {
     return date ? moment.utc(date).local().format(format) : '';
 }
 
-export function localizeUtc(date) {
-    return moment.utc(date).local();
-}
-
-export function get_application_name_key() {
-    return config.application.name_key;
-}
-
-export function get_application_name() {
-    return config.application.name;
-}
-
 export default {
     data() {
         return {
             utils: {
                 arrayToOptions,
                 valueToLabel,
-                localizeUtc,
             },
         };
     },
