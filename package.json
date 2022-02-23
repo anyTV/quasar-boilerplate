@@ -30,7 +30,7 @@
         "moment": "^2.20.1",
         "qs": "^6.5.2",
         "quasar": "^1.15.23",
-        "quasar-app-extension-freedom-components": "../freedom-components",
+        "quasar-app-extension-freedom-components": "git+https://freedom-components-readonly:9jawmhdE8Pxuzy6a5yQQ@gitlab.com/anyTV/incubator/freedom-components.git",
         "vue": "2.6.11",
         "vue-gtm": "3.1.0-vue2",
         "vue-router": "^3.0.1",
