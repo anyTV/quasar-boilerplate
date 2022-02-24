@@ -1,0 +1,17 @@
+{
+    "claim-created": {
+        "label": "claim-created",
+        "styleClass": "text-positive",
+        "description": "claim-created-description"
+    },
+    "release": {
+        "label": "released",
+        "styleClass": "text-positive",
+        "description": "user-accepted-description"
+    },
+    "update": {
+        "label": "updated",
+        "styleClass": "text-positive",
+        "description": "user-accepted-description"
+    }
+}

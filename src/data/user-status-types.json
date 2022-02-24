@@ -1,0 +1,41 @@
+{
+    "resubmitted": {
+        "label": "resubmitted",
+        "description": "user-resubmitted-description"
+    },
+    "pending": {
+        "label": "pending",
+        "description": "user-pending-description"
+    },
+    "accepted": {
+        "label": "accepted",
+        "styleClass": "text-positive",
+        "description": "user-accepted-description"
+    },
+    "rejected": {
+        "label": "rejected",
+        "styleClass": "text-negative",
+        "description": "user-rejected-description"
+    },
+    "escalated": {
+        "label": "escalated",
+        "styleClass": "text-primary",
+        "description": "user-escalated-description",
+        "hidden": true
+    },
+    "cancelled": {
+        "label": "cancelled",
+        "styleClass": "text-faded",
+        "description": "user-cancelled-description",
+        "hidden": true
+    },
+    "banned": {
+        "label": "banned",
+        "description": "user-banned-description"
+    },
+    "under_verification": {
+        "label": "waiting-for-verification",
+        "styleClass": "text-faded",
+        "description": "user-under-verification-description"
+    }
+}

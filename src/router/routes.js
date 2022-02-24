@@ -2,6 +2,7 @@ import TableWithTabs from 'pages/TableWithTabs';
 import TableWithTabs2 from 'pages/TableWithTabs2';
 import TableWithoutTab from 'pages/TableWithoutTab';
 import FFilterDemo from 'pages/FFilterDemo';
+import FHistoryDemo from 'pages/FHistoryDemo';
 import Logout from 'components/Logout';
 import LogoutPage from 'pages/Logout';
 import LandingPage from 'pages/Landing';
@@ -32,6 +33,11 @@ export default [
         path: '/ffilter-demo',
         name: 'ffilter_demo',
         component: FFilterDemo
+    },
+    {
+        path: '/fhistory-demo',
+        name: 'fhistory_demo',
+        component: FHistoryDemo
     },
     {
         path: '/logout',

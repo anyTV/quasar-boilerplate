@@ -58,5 +58,26 @@
   "table_title_f_filter": "FFilter Component Demo",
   "=": "is",
   "multiselect": "Multiselect option on",
-  "with_integer_rule": "rule set to accept integer only"
+  "with_integer_rule": "rule set to accept integer only",
+  "resubmitted": "Resubmitted",
+  "pending": "Pending",
+  "accepted": "Accepted",
+  "escalated": "Escalated",
+  "cancelled": "Cancelled",
+  "banned": "Banned",
+  "updated": "Updated",
+  "released": "Released",
+  "claim-created": "Claim Created",
+
+  "user-resubmitted-description": "Resubmitted user applications.",
+  "user-pending-description": "Newly registered users.",
+  "user-accepted-description": "Users that are accepted to {{ app_name }} after reviewing their sample videos.",
+  "user-rejected-description": "Users that are rejected from {{ app_name }}. The reasons for rejection are specified.",
+  "user-escalated-description": "Users that required more investigation.",
+  "user-cancelled-description": "Users that cancelled their application.",
+  "user-banned-description": "Users that are banned from {{ app_name }}",
+  "waiting-for-verification": "Waiting for verification",
+  "user-under-verification-description": "Users that are under verification in {{ app_name }}",
+  "updated-profile": "Updated Profile"
+
 }

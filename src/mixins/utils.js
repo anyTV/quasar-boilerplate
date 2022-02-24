@@ -3,6 +3,7 @@
 import _ from 'lodash';
 import moment from 'moment';
 import pageConfig from 'src/config/pagination';
+import config from 'src/config';
 
 export function arrayToOptions(inputArray, prefix = null) {
     return _.map(inputArray, value => ({
@@ -23,7 +24,7 @@ export function valueToLabel(value, prefix = '') {
     return `${prefix}${_.kebabCase(value)}`;
 }
 
-export function humanizedDate(date, format = config.DATE_FORMAT.FULL_DATE) {
+export function humanizedDate(date, format = config.date.formats.FULL_DATE) {
     return date ? moment.utc(date).local().format(format) : '';
 }
 
