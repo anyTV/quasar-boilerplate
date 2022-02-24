@@ -1,3 +1,6 @@
+Version 1.5.3:
+ - Delta-1642 Platform > Freedom Components > FHistory [(#50)](https://github.com/anyTV/quasar-boilerplate/pull/50)
+
 Version 1.5.2:
  - Dev-4216 Platform > Freedom Components > FFilter Demo Page [(#46)](https://github.com/anyTV/quasar-boilerplate/pull/46)
 
