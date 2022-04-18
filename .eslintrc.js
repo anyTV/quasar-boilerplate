@@ -62,6 +62,12 @@ module.exports = {
         // allow console and debugger during development
         'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
-        'brace-style': ['error', 'stroustrup', { 'allowSingleLine': true }]
+        'brace-style': ['error', 'stroustrup', { 'allowSingleLine': true }],
+
+        'vue/custom-event-name-casing': 'off',
+        'vue/no-mutating-props': 'off',
+
+        // allow re-throwing of error in try catch
+        'no-useless-catch': 'off',
     }
 };

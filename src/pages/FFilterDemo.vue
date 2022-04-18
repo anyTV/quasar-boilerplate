@@ -40,7 +40,10 @@
                     class="text-h5"
                     v-text="tableTitle"
                 />
-                <q-badge color="secondary" multi-line>
+                <q-badge
+                    color="secondary"
+                    multi-line
+                >
                     Filters: "{{ search_filters }}"
                 </q-badge>
             </div>
@@ -265,7 +268,7 @@
                     'name',
                     'user_type',
                     'status',
-                ]
+                ];
 
                 if (sortBy) {
                     const sortFn = _.find(text_fields, (field) => field === sortBy) 
@@ -280,7 +283,7 @@
                     tableData.sort(sortFn);
                 }
 
-                const table_data = tableData.slice(startRow, startRow + count)
+                const table_data = tableData.slice(startRow, startRow + count);
                 let filtered_data = [];
                 
                 _.forEach(table_data, item => {

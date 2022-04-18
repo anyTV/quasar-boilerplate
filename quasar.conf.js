@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const config = require('./config');
 const pkg = require('./package');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 // Configuration for your app
 module.exports = function (ctx) {
@@ -44,12 +45,10 @@ module.exports = function (ctx) {
             devtool: 'source-map',
             env: config.env,
             extendWebpack(cfg) {
-                cfg.module.rules.push({
-                    enforce: 'pre',
-                    test: /\.(js|vue)$/,
-                    loader: 'eslint-loader',
-                    exclude: /(node_modules|quasar)/
-                });
+                cfg.plugins.push(new ESLintPlugin({
+                    extensions: ['js', 'vue'],
+                    exclude: ['node_modules', 'quasar'],
+                }));
 
                 cfg.resolve.alias = {
                     ...cfg.resolve.alias,
