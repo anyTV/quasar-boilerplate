@@ -3,14 +3,14 @@
         :tabs-data="headerTabs"
         :header-help-text="$trans('payment_requests')"
     >
-        <template v-slot:header-left>
+        <template #header-left>
             <span
                 class="text-tertiary"
                 v-text="$trans('payment_requests')"
             />
         </template>
 
-        <template v-slot:header-right>
+        <template #header-right>
             <q-toggle
                 v-model="isDark"
                 :label="$trans('toggle_theme')"
@@ -20,7 +20,7 @@
             />
         </template>
 
-        <template v-slot:control-left>
+        <template #control-left>
             <q-tabs
                 v-model="selectedTab"
                 inline-label
@@ -44,10 +44,9 @@
                     />
                 </q-tab>
             </q-tabs>
-
         </template>
 
-        <template v-slot:control-right>
+        <template #control-right>
             <div class="q-gutter-xs">
                 <q-btn
                     :label="$trans('on_left')"
@@ -60,15 +59,17 @@
             </div>
         </template>
 
-        <template v-slot:content>
+        <template #content>
             <q-tab-panels
                 v-model="selectedTab"
-                animated>
+                animated
+            >
                 <q-tab-panel
                     v-for="tab in tabs"
                     :key="tab.name"
                     :name="tab.name"
-                    class="q-pa-none">
+                    class="q-pa-none"
+                >
                     <div class="row">
                         <div class="col q-pa-md border-bottom">
                             <span v-text="$trans('filter')" />
@@ -87,11 +88,10 @@
                         @request="getTableData"
                     />
                 </q-tab-panel>
-
             </q-tab-panels>
         </template>
 
-        <template v-slot:paginate>
+        <template #paginate>
             <f-paginate
                 v-model="tablePagination"
                 per-page-text="requests_per_page"
@@ -101,7 +101,6 @@
                 @input="newPagination"
             />
         </template>
-
     </f-table>
 </template>
 
