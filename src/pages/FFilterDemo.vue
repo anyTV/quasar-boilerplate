@@ -1,11 +1,11 @@
 <template>
     <f-table :height="'83px'">
-        <template v-slot:header-left>
+        <template #header-left>
             <q-breadcrumbs
                 active-color="tertiary"
                 separator-color="tertiary"
             >
-                <template v-slot:separator>
+                <template #separator>
                     <q-icon
                         size="1.3em"
                         name="chevron_right"
@@ -13,16 +13,16 @@
                 </template>
                 <q-breadcrumbs-el
                     v-for="breadcrumb in breadcrumbs"
-                    :label="$trans(breadcrumb.label)"
                     :key="breadcrumb.label"
+                    :label="$trans(breadcrumb.label)"
                     :to="breadcrumb.to"
                 />
             </q-breadcrumbs>
         </template>
 
-        <template v-slot:header-right>
+        <template #header-right>
             <div class="text-tertiary">
-                <span v-text="$trans('additional_info')"/>
+                <span v-text="$trans('additional_info')" />
                 <q-icon
                     name="warning_amber"
                     class="q-px-xs"
@@ -34,19 +34,22 @@
             </div>
         </template>
 
-        <template v-slot:control-left>
+        <template #control-left>
             <div class="q-gutter-xs q-pb-xs">
                 <div
                     class="text-h5"
                     v-text="tableTitle"
                 />
-                <q-badge color="secondary" multi-line>
+                <q-badge
+                    color="secondary"
+                    multi-line
+                >
                     Filters: "{{ search_filters }}"
                 </q-badge>
             </div>
         </template>
         
-        <template v-slot:filters>
+        <template #filters>
             <f-filter
                 :filter-fields="filter_fields"
                 class="col"
@@ -54,7 +57,7 @@
             />
         </template>
 
-        <template v-slot:control-right>
+        <template #control-right>
             <div class="q-gutter-xs q-pb-xs">
                 <q-toggle
                     v-model="isDark"
@@ -73,7 +76,7 @@
             </div>
         </template>
 
-        <template v-slot:content>
+        <template #content>
             <q-table
                 :data="requestTabData"
                 :columns="columns"
@@ -87,7 +90,7 @@
             />
         </template>
 
-        <template v-slot:paginate>
+        <template #paginate>
             <f-paginate
                 v-model="tablePagination"
                 show-items-total
@@ -97,7 +100,6 @@
                 @input="newPagination"
             />
         </template>
-
     </f-table>
 </template>
 
@@ -265,7 +267,7 @@
                     'name',
                     'user_type',
                     'status',
-                ]
+                ];
 
                 if (sortBy) {
                     const sortFn = _.find(text_fields, (field) => field === sortBy) 
@@ -280,7 +282,7 @@
                     tableData.sort(sortFn);
                 }
 
-                const table_data = tableData.slice(startRow, startRow + count)
+                const table_data = tableData.slice(startRow, startRow + count);
                 let filtered_data = [];
                 
                 _.forEach(table_data, item => {

@@ -5,7 +5,9 @@
         no-border
     >
         <slot name="header">
-            <q-list-header v-if="header">{{ $t(header) }}</q-list-header>
+            <q-list-header v-if="header">
+                {{ $t(header) }}
+            </q-list-header>
         </slot>
         <slot
             :change-language="changeLanguage"
