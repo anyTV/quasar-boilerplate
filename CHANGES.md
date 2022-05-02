@@ -1,3 +1,6 @@
+Version 1.6.0:
+ - Dev-4278 OKR > Content ID > Upgrade from eslint-loader to eslint-webpack-plugin [(#52)](https://github.com/anyTV/quasar-boilerplate/pull/52)
+
 Version 1.5.3:
  - Delta-1642 Platform > Freedom Components > FHistory [(#50)](https://github.com/anyTV/quasar-boilerplate/pull/50)
 
