@@ -1,16 +1,9 @@
+import { boot } from 'quasar/wrappers';
 import GoogleAPIClient from 'src/helpers/google-api-client';
-import googleAPIConfig from 'src/config/google-api';
+import google_api_config from 'src/config/google-api';
 
-export default async ({ Vue }) => {
-    const client = await GoogleAPIClient(googleAPIConfig);
+export default boot(async ({ app }) => {
+    const client = await GoogleAPIClient(google_api_config);
 
-    Vue.googleAPI = client;
-
-    Object.defineProperties(Vue.prototype, {
-        $googleAPI: {
-            get() {
-                return client;
-            },
-        },
-    });
-};
+    app.config.globalProperties.$google_api = client;
+});

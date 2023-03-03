@@ -2,32 +2,45 @@
 
 > Frontend boilerplate using Quasar Framework
 
-## Build Setup
+## Env pre-requisites
+```bash
+"node": ">= 12.22.1",
+"npm": ">= 6.13.4",
+"yarn": ">= 1.21.1"
 
-``` bash
+```
+
+## Install the dependencies
+```bash
 # install cross-env
 $ npm i -g cross-env
 
-# install dependencies
-$ npm install
+yarn
+# or
+npm install
+```
 
-# serve with hot reload at localhost:8081
-$ npm run dev
+### Start the app in development mode (hot-code reloading, error reporting, etc.)
+```bash
+npm run dev
+```
 
-# build for production with minification
-$ npm run build
+### Build the app for production
+```bash
+npm run build
+```
 
+### Other commands
+```bash
 # lint code
 $ npm run lint
 
 # fix lint errors
-$ npm run lint -- --fix
-
-# run unit tests
-$ npm test
-
-# TDD
-$ npm run tdd
+$ npm run lint-fix
 ```
 
+### Customize the configuration
+See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js).
+
+### Boilerplate usage
 For more information regarding usage, see [WIKI](https://github.com/anyTV/quasar-boilerplate/wiki).

@@ -1,9 +1,9 @@
-import i18next from 'i18next';
-import i18nextHttpBackend from 'i18next-http-backend';
-import i18nextLangDetector from 'i18next-browser-languagedetector';
-import VueI18next from '@panter/vue-i18next';
-import i18nextConfig from 'src/config/i18next';
 import _ from 'lodash';
+import { boot } from 'quasar/wrappers';
+
+import { createI18n } from 'vue-i18n';
+import i18nextConfig from 'src/config/i18next';
+const i18n = createI18n(i18nextConfig);
 
 /**
  * Plugin for injecting i18n directive and filter
@@ -27,20 +27,11 @@ import _ from 'lodash';
  * this.$trans([obj1, obj2], ['key1', 'key2']); // also supports array of objects using multiple keys using array
  */
 
-export default async ({ app, Vue }) => {
-    Vue.use(VueI18next);
-
-    i18next.use(i18nextLangDetector);
-
-    if (i18nextConfig.backend) {
-        i18next.use(i18nextHttpBackend);
-    }
-
-    await i18next.init(i18nextConfig);
-
-    app.i18n = new VueI18next(i18next);
-
-    Vue.mixin({
+export default boot(async ({ app }) => {
+    app.i18n = i18n;
+    app.config.globalProperties.i18n = i18n;
+    app.use(i18n);
+    app.mixin({
         methods: {
             $trans(obj, props, trim = false) {
                 /**
@@ -95,4 +86,6 @@ export default async ({ app, Vue }) => {
             }
         }
     });
-};
+});
+
+export { i18n };

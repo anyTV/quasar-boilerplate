@@ -1,6 +1,6 @@
 {
     "name": "anytv-quasar-boilerplate",
-    "version": "1.6.0",
+    "version": "2.0.0",
     "description": "AnyTV Quasar Boilerplate",
     "repository": "https://github.com/anyTV/quasar-boilerplate",
     "productName": "Freedom! App",
@@ -13,58 +13,52 @@
     "scripts": {
         "lint": "eslint --ext .js,.vue src",
         "lint-fix": "eslint --fix --ext .js,.vue src",
-        "dev": "cross-env node node_modules/@quasar/cli/bin/quasar dev",
-        "docs": "esdoc",
+        "dev": "cross-env npx quasar dev -m pwa",
+        "build": "cross-env NODE_ENV=production npx quasar build -m pwa",
         "postinstall": "quasar-app-extension-freedom-components"
     },
     "dependencies": {
-        "@panter/vue-i18next": "^0.15.1",
-        "@quasar/app": "^1.9.6",
-        "@quasar/extras": "^1.10.10",
-        "axios": "^0.21.1",
-        "i18next": "^10.2.2",
-        "i18next-browser-languagedetector": "^2.1.0",
-        "i18next-http-backend": "^1.2.4",
-        "jsonwebtoken": "^8.2.1",
-        "lodash-es": "^4.17.10",
-        "moment": "^2.20.1",
-        "qs": "^6.5.2",
-        "quasar": "^1.15.23",
-        "quasar-app-extension-freedom-components": "git+https://freedom-components-readonly:9jawmhdE8Pxuzy6a5yQQ@gitlab.com/anyTV/incubator/freedom-components.git#v1.8.0",
-        "vue": "2.6.11",
-        "vue-gtm": "3.1.0-vue2",
-        "vue-router": "^3.0.1",
-        "vue-template-compiler": "2.6.11",
-        "vuelidate": "^0.7.6",
-        "vuex": "^3.0.1"
-    },
-    "dependenciesComments": {
-        "vue-gtm": "Default packages are built for vue3, use `-vue2` for all packages that would be installed. @see https://github.com/mib200/vue-gtm/issues/98"
+        "@quasar/extras": "^1.0.0",
+        "@vuelidate/core": "^2.0.0",
+        "@vuelidate/validators": "^2.0.0",
+        "axios": "^1.3.4",
+        "core-js": "^3.6.5",
+        "eslint-webpack-plugin": "^4.0.0",
+        "i18next": "^22.4.10",
+        "i18next-browser-languagedetector": "^7.0.1",
+        "i18next-http-backend": "^2.1.1",
+        "jsonwebtoken": "^9.0.0",
+        "moment": "^2.29.4",
+        "node-polyfill-webpack-plugin": "^2.0.1",
+        "pinia": "^2.0.32",
+        "qs": "^6.11.0",
+        "quasar": "^2.6.0",
+        "quasar-app-extension-freedom-components": "git+https://freedom-components-readonly:9jawmhdE8Pxuzy6a5yQQ@gitlab.com/anyTV/incubator/freedom-components.git#v1.11.11",
+        "vue": "^3.2.33",
+        "vue-analytics": "^5.22.1",
+        "vue-i18n": "^9.2.2",
+        "vue-router": "^4.0.0",
+        "workbox-webpack-plugin": "^6.5.4"
     },
     "devDependencies": {
-        "@quasar/cli": "^1.2.1",
-        "babel-eslint": "^8.2.1",
-        "cross-env": "^7.0.3",
-        "esdoc": "^1.1.0",
-        "esdoc-standard-plugin": "^1.0.0",
-        "eslint": "^7.32.0",
-        "eslint-friendly-formatter": "^4.0.1",
-        "eslint-plugin-import": "^2.9.0",
-        "eslint-plugin-node": "^6.0.1",
-        "eslint-plugin-promise": "^3.7.0",
-        "eslint-plugin-vue": "^7.0.0",
-        "eslint-webpack-plugin": "^3.1.1",
-        "lodash": "^4.17.10",
-        "strip-ansi": "^3.0.1",
-        "webpack": "^4.39.1"
-    },
-    "engines": {
-        "node": ">= 8.9.0",
-        "npm": ">= 5.6.0"
+        "@quasar/app-webpack": "^3.0.0",
+        "stylus": "^0.59.0",
+        "stylus-loader": "^7.1.0"
     },
     "browserslist": [
-        "> 1%",
-        "last 2 versions",
-        "not ie <= 10"
-    ]
+        "last 10 Chrome versions",
+        "last 10 Firefox versions",
+        "last 4 Edge versions",
+        "last 7 Safari versions",
+        "last 8 Android versions",
+        "last 8 ChromeAndroid versions",
+        "last 8 FirefoxAndroid versions",
+        "last 10 iOS versions",
+        "last 5 Opera versions"
+    ],
+    "engines": {
+        "node": ">= 12.22.1",
+        "npm": ">= 6.13.4",
+        "yarn": ">= 1.21.1"
+    }
 }
