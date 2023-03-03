@@ -1,11 +1,6 @@
+import { boot } from 'quasar/wrappers';
 import axiosHelper from 'src/helpers/axios';
 
-export default ({ Vue }) => {
-    Object.defineProperties(Vue.prototype, {
-        $axios: {
-            get() {
-                return axiosHelper;
-            }
-        }
-    });
-};
+export default boot(({ app }) => {
+    app.config.globalProperties.$axios = axiosHelper;
+});

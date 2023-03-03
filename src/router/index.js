@@ -8,14 +8,14 @@ Vue.use(VueRouter);
 
 const Router = new VueRouter({
     /*
-     * NOTE! Change Vue Router mode from quasar.conf.js -> build -> vueRouterMode
+     * NOTE! Change Vue Router mode from quasar.config.js -> build -> vueRouterMode
      *
      * When going with "history" mode, please also make sure "build.publicPath"
      * is set to something other than an empty string.
      * Example: '/' instead of ''
      */
 
-    // Leave as is and change from quasar.conf.js instead!
+    // Leave as is and change from quasar.config.js instead!
     mode: process.env.VUE_ROUTER_MODE,
     base: process.env.VUE_ROUTER_BASE,
     scrollBehavior: () => ({ y: 0 }),
