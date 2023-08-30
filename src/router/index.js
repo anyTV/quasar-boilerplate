@@ -1,36 +1,48 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { route } from 'quasar/wrappers';
+import { createApp } from 'vue';
+import { createGtm } from '@gtm-support/vue-gtm';
+import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router';
+import routes from 'src/router/routes';
+import ga from 'src/router/analytics';
 
-import routes from './routes';
-import ga from './analytics';
+import config from 'src/config/index';
 
-Vue.use(VueRouter);
+const app = createApp({});
 
-const Router = new VueRouter({
-    /*
-     * NOTE! Change Vue Router mode from quasar.config.js -> build -> vueRouterMode
-     *
-     * When going with "history" mode, please also make sure "build.publicPath"
-     * is set to something other than an empty string.
-     * Example: '/' instead of ''
-     */
+export default route(function() {
+    const createHistory = process.env.SERVER
+        ? createMemoryHistory
+        : (process.env.VUE_ROUTER_MODE === 'history' ? createWebHistory : createWebHashHistory);
 
-    // Leave as is and change from quasar.config.js instead!
-    mode: process.env.VUE_ROUTER_MODE,
-    base: process.env.VUE_ROUTER_BASE,
-    scrollBehavior: () => ({ y: 0 }),
-    routes
+    const Router = createRouter({
+        scrollBehavior: () => ({ y: 0 }),
+        routes,
+        // Leave this as is and make changes in quasar.conf.js instead!
+        // quasar.conf.js -> build -> vueRouterMode
+        // quasar.conf.js -> build -> publicPath
+        history: createHistory(process.env.VUE_ROUTER_BASE)
+    });
+
+    if (config.GTM_CONFIG) {
+        app.use(
+            createGtm({
+                ...config.GTM_CONFIG,
+                loadScript: true,
+                vueRouter: Router,
+            })
+        );
+    }
+
+    Router.afterEach(to => {
+        app.config.globalProperties.$gtm.trackView(
+            to.path,
+            to.name,
+            {
+                cid: ga.createSessionId(),
+                path: to.path
+            }
+        );
+    });
+
+    return Router;
 });
-
-Router.afterEach(to => {
-    Vue.gtm.trackView(
-        to.path,
-        to.name,
-        {
-            cid: ga.createSessionId(),
-            path: to.path
-        }
-    );
-});
-
-export default Router;

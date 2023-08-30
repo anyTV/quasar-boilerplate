@@ -1,5 +1,6 @@
-import Vuelidate from 'vuelidate';
+import { useVuelidate } from '@vuelidate/core';
 
-export default ({ Vue }) => {
-    Vue.use(Vuelidate);
+export default ({ app }) => {
+
+    app.use(useVuelidate);
 };

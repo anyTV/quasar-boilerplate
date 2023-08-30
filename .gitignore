@@ -77,4 +77,4 @@ dist/
 docs/
 
 /src-pwa/pwa-flag.d.ts
-/src/store/store-flag.d.ts
+/src/stores/store-flag.d.ts
