@@ -53,7 +53,7 @@
                             :pagination.sync="tablePagination"
                             binary-state-sort
                             row-key="id"
-                            class="f-table"
+                            class="stick-header-table"
                             @request="getTableData"
                         />
                     </q-tab-panel>
@@ -188,3 +188,8 @@
         }
     };
 </script>
+
+<style lang="stylus" scoped>
+    .stick-header-table
+          height calc(100% - 100px)
+</style>
