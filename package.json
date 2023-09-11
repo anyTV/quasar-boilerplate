@@ -1,6 +1,6 @@
 {
     "name": "anytv-quasar-boilerplate",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "description": "AnyTV Quasar Boilerplate",
     "repository": "https://github.com/anyTV/quasar-boilerplate",
     "productName": "Freedom! App",
@@ -35,7 +35,7 @@
         "pinia-plugin-persistedstate": "^3.2.0",
         "qs": "^6.11.0",
         "quasar": "^2.6.0",
-        "quasar-app-extension-freedom-components": "git+https://gitlab.com/anyTV/incubator/freedom-components.git#cc6ba22d",
+        "quasar-app-extension-freedom-components": "git+https://gitlab.com/anyTV/incubator/freedom-components.git#v2.0.0-alpha.1",
         "vue": "^3.2.33",
         "vue-analytics": "^5.22.1",
         "vue-i18n": "^9.2.2",
