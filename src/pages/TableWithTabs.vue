@@ -82,7 +82,7 @@
                         :hide-bottom="hideBottom"
                         :loading="loading"
                         :pagination.sync="tablePagination"
-                        class="f-table"
+                        class="stick-header-table"
                         binary-state-sort
                         row-key="id"
                         @request="getTableData"
@@ -225,3 +225,8 @@
         }
     };
 </script>
+
+<style lang="stylus" scoped>
+    .stick-header-table
+          height calc(100% - 100px)
+</style>

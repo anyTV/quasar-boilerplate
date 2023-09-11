@@ -18,6 +18,7 @@
         "postinstall": "quasar-app-extension-freedom-components"
     },
     "dependencies": {
+        "@gtm-support/vue-gtm": "^2.1.0",
         "@quasar/extras": "^1.0.0",
         "@vuelidate/core": "^2.0.0",
         "@vuelidate/validators": "^2.0.0",
@@ -31,9 +32,10 @@
         "moment": "^2.29.4",
         "node-polyfill-webpack-plugin": "^2.0.1",
         "pinia": "^2.0.32",
+        "pinia-plugin-persistedstate": "^3.2.0",
         "qs": "^6.11.0",
         "quasar": "^2.6.0",
-        "quasar-app-extension-freedom-components": "git+https://freedom-components-readonly:9jawmhdE8Pxuzy6a5yQQ@gitlab.com/anyTV/incubator/freedom-components.git#v1.11.11",
+        "quasar-app-extension-freedom-components": "git+https://gitlab.com/anyTV/incubator/freedom-components.git#cc6ba22d",
         "vue": "^3.2.33",
         "vue-analytics": "^5.22.1",
         "vue-i18n": "^9.2.2",

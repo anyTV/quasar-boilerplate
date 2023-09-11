@@ -10,7 +10,8 @@ module.exports = {
             {
                 'modules': false,
                 'loose': false,
-                'useBuiltIns': 'usage'
+                'useBuiltIns': 'usage',
+                'corejs': '^3.6.5'
             }
         ],
     ],

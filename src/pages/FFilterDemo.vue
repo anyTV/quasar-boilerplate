@@ -110,7 +110,7 @@
     import tableData from 'src/sample/tableData/tableWithFFilter';
     import tableColumns from 'src/sample/tableColumns/tableWithFFilter';
     import UtilMixin from 'src/mixins/utils';
-    import { integer } from 'vuelidate/lib/validators';
+    import { integer } from '@vuelidate/validators';
     import {
         isValidStrictDateFormat,
     } from 'src/helpers/custom-validators';
@@ -145,7 +145,7 @@
                     name: {},
                     user_id: {
                         key: 'id',
-                        rule: integer,
+                        rule: integer.$validator,
                         caption: 'with_integer_rule',
                     },
                     user_type: {
